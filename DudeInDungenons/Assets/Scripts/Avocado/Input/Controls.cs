@@ -8,10 +8,10 @@ using UnityEngine.InputSystem.Utilities;
 
 namespace Input
 {
-    public class Controls : IInputActionCollection, IDisposable
+    public class @Controls : IInputActionCollection, IDisposable
     {
         public InputActionAsset asset { get; }
-        public Controls()
+        public @Controls()
         {
             asset = InputActionAsset.FromJson(@"{
     ""name"": ""ControlsDefault"",
