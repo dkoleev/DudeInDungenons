@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Avocado.Logic {
+namespace Runtime.Logic {
     public class MoveByAxis {
         public void Move(Vector2 axis, float speed, Transform transform) {
             if (axis.magnitude > 0) {

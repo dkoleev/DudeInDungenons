@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Avocado {
+namespace Runtime {
     public class GameRunner : MonoBehaviour {
         private void Awake() {
         

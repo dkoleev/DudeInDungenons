@@ -1,9 +1,9 @@
-﻿using Avocado.Input;
-using Avocado.Logic;
+﻿using Runtime.Input;
+using Runtime.Logic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Avocado {
+namespace Runtime {
     public class Player : MonoBehaviour {
         [SerializeField] private float _speedMove;
         private Vector2 _moveAxis;
