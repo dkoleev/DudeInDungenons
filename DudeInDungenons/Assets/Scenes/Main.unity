@@ -237,7 +237,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6433404170102657654, guid: b85ca94f595b0524f8307c1c2ed47ac6, type: 3}
   m_PrefabInstance: {fileID: 5564326734528516612}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1664434136
+--- !u!114 &1664434140
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,34 +256,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 778178448, guid: 39d2071de590bb04ea8e15b3c4ae45f6, type: 3}
-      propertyPath: m_FollowOffset.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 778178448, guid: 39d2071de590bb04ea8e15b3c4ae45f6, type: 3}
-      propertyPath: m_FollowOffset.z
-      value: -12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1003129810, guid: 39d2071de590bb04ea8e15b3c4ae45f6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1003129810, guid: 39d2071de590bb04ea8e15b3c4ae45f6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -12
-      objectReference: {fileID: 0}
     - target: {fileID: 1003129811, guid: 39d2071de590bb04ea8e15b3c4ae45f6, type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 6581401098219450051}
-    - target: {fileID: 2042879479, guid: 39d2071de590bb04ea8e15b3c4ae45f6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2042879479, guid: 39d2071de590bb04ea8e15b3c4ae45f6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -12
-      objectReference: {fileID: 0}
     - target: {fileID: 639065257301763658, guid: 39d2071de590bb04ea8e15b3c4ae45f6, type: 3}
       propertyPath: m_RootOrder
       value: 2
