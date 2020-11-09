@@ -17,6 +17,7 @@ namespace Runtime {
 
         public Transform RaycastStartPoint => _shootRaycastStartPoint;
 
+        private Enemy _currentTarget;
         private MoveByController _mover;
         private AttackComponent _attackComponent;
         private Transform _rotateTransform;
@@ -34,14 +35,25 @@ namespace Runtime {
             }
 
             _mover.Update();
-            Debug.Log(_mover.IsMoving);
             if (_mover.IsMoving) {
+                _currentTarget = null;
                 Rotate(_rotateTransform, 5);
             } else {
                 _attackComponent.Update();
-                var enemy = Object.FindObjectOfType<Enemy>();
-                if (enemy != null) {
-                    _rotateTransform.LookAt(enemy.transform);
+                if (_currentTarget == null) {
+                    var enemies = FindObjectsOfType<Enemy>();
+                    foreach (var enemy in enemies) {
+                        if (_currentTarget == null) {
+                            _currentTarget = enemy;
+                        } else if(enemy != _currentTarget &&
+                            Vector3.Distance(transform.position, enemy.transform.position) < Vector3.Distance(transform.position, _currentTarget.transform.position)) {
+                            _currentTarget = enemy;
+                        }
+                    }
+                }
+
+                if (_currentTarget != null) {
+                    _rotateTransform.LookAt(_currentTarget.transform);
                 }
             }
         }
