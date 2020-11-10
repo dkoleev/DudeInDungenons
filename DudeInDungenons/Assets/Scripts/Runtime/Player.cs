@@ -1,4 +1,5 @@
-﻿using Runtime.Logic;
+﻿using Runtime.Data;
+using Runtime.Logic;
 using Runtime.Logic.Components;
 using Runtime.Logic.WeaponSystem;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Runtime {
     public class Player : MonoBehaviour, ILocalPositionAdapter, IWeaponOwner {
-        [SerializeField] private float _speedMove;
+        [SerializeField] private PlayerData _data;
         [SerializeField] private Transform _shootRaycastStartPoint;
         
         public Vector3 LocalPosition {
@@ -24,7 +25,7 @@ namespace Runtime {
         private bool _initialized;
     
         private void Awake() {
-            _mover = new MoveByController(this, _speedMove);
+            _mover = new MoveByController(this, _data.SpeedMove);
             _rotateTransform = transform.Find("Root");
             CreateWeapon();
         }

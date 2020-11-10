@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65d6fca84f325474885efe2e258f1a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedMove: 5
+  _data: {fileID: 11400000, guid: a6a0ec420927bc74798496466b9b4549, type: 2}
   _shootRaycastStartPoint: {fileID: 7031976892715273398}
 --- !u!1 &5050705496684896311
 GameObject:

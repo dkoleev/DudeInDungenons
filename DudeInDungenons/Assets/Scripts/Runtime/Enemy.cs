@@ -1,21 +1,25 @@
-﻿using Runtime.Logic;
+﻿using Runtime.Data;
+using Runtime.Logic;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Runtime {
-    public class Enemy : MonoBehaviour, IDamagable {
-        public int StartHeath = 10;
-        public int CurrentHealth { get; set; }
+    public class Enemy : MonoBehWrapper, IDamagable {
+        [SerializeField] private EnemyData _data;
+        
+        private int _currentHealth;
         private NavMeshAgent _agent;
         private RandomMove _mover;
 
-        private void Awake() {
+        protected override void Initialize() {
+            base.Initialize();
+            
+            _currentHealth = _data.MaxHealth;
             _agent = GetComponent<NavMeshAgent>();
             _mover = new RandomMove(_agent);
             _mover.Move();
-            CurrentHealth = StartHeath;
         }
-
+        
         private void Update() {
             if (_mover.IsTargetReached()) {
                 _mover.Move();
@@ -23,14 +27,14 @@ namespace Runtime {
         }
 
         public void TakeDamage(int damage) {
-            CurrentHealth -= damage;
-            if (CurrentHealth <= 0) {
+            _currentHealth -= damage;
+            if (_currentHealth <= 0) {
+                _currentHealth = 0;
                 Death();
             }
         }
 
         private void Death() {
-            CurrentHealth = 0;
             Destroy(gameObject);
         }
     }
