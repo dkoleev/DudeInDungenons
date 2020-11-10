@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 79ba07b223909444d883a36e2de6b36f, type: 2}
+  _healthBar: {fileID: 7491007298600999820}
 --- !u!195 &229799885
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -283,3 +284,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6722490535974493087, guid: 969c68631a2a25943a160c85349b8f0d, type: 3}
   m_PrefabInstance: {fileID: 1456073763975385447}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7491007298600999820 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8340776655911668459, guid: 969c68631a2a25943a160c85349b8f0d, type: 3}
+  m_PrefabInstance: {fileID: 1456073763975385447}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6356167412495222041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2984c4ec5a64e49a873362b672873e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
