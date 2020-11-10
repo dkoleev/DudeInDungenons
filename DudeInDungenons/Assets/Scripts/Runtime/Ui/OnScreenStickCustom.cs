@@ -1,17 +1,17 @@
 using System;
+using Runtime.Logic.Core.EventBus;
+using Runtime.Logic.Events;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Runtime.Ui {
     public class OnScreenStickCustom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
-        public Action<bool> OnPointerChangeState;
-        
         public void OnPointerDown(PointerEventData eventData) {
-            OnPointerChangeState?.Invoke(true);
+            EventBus<OnMovePlayer>.Raise(new OnMovePlayer(true));
         }
 
         public void OnPointerUp(PointerEventData eventData) {
-            OnPointerChangeState?.Invoke(false);
+            EventBus<OnMovePlayer>.Raise(new OnMovePlayer( false));
         }
     }
 }
