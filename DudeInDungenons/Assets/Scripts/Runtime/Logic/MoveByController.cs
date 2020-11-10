@@ -1,11 +1,12 @@
-using Runtime.Input;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Runtime.Logic {
-    public class MoveByController : IEventReceiver<OnMovePlayer> {
+    public class MoveByController : 
+        IEventReceiver<OnMovePlayer>, 
+        IEventReceiver<OnMovePerformed>,
+        IEventReceiver<OnMoveCancelled> {
         public bool IsMoving => _isMoving;
         public Vector2 MoveAxis => _moveAxis;
         
@@ -20,21 +21,10 @@ namespace Runtime.Logic {
             _moveAxis = Vector2.zero;
             
             EventBus.Register(this);
-            InputManager.Instance.MainControl.Player.Move.performed += MoveOnPerformed;
-            InputManager.Instance.MainControl.Player.Move.canceled += MoveOnCanceled;
-            InputManager.Instance.MainControl.Player.Move.Enable();
         }
 
         public void Update() {
             Move();
-        }
-
-        private void MoveOnCanceled(InputAction.CallbackContext obj) {
-            _moveAxis = Vector2.zero;
-        }
-
-        private void MoveOnPerformed(InputAction.CallbackContext context) {
-            _moveAxis = context.ReadValue<Vector2>();
         }
         
         private void Move() {
@@ -45,9 +35,16 @@ namespace Runtime.Logic {
                     _moveAxis.y * Time.deltaTime * _speed);
             }
         }
+        
+        public void OnEvent(OnMovePerformed e) {
+            _moveAxis = e.Axis;
+        }
 
+        public void OnEvent(OnMoveCancelled e) {
+            _moveAxis = Vector2.zero;
+        }
+        
         public void OnEvent(OnMovePlayer e) {
-            Debug.Log("isMove " + e.IsMove);
             _isMoving = e.IsMove;
         }
     }

@@ -217,7 +217,7 @@ namespace Runtime.Input
                     ""path"": ""<Touchscreen>/tap"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Touch"",
+                    ""groups"": """",
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
