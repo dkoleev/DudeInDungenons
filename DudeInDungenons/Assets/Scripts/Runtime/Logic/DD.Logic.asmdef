@@ -1,6 +1,8 @@
 {
     "name": "DD.Logic",
-    "references": [],
+    "references": [
+        "GUID:0c8bca3a1551cd54e975cbde173dfac4"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

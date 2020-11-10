@@ -1,4 +1,4 @@
-﻿using System;
+﻿using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,27 +7,20 @@ namespace Runtime.Ui.World {
         [SerializeField] private Image _progress;
         [SerializeField] private Image _bufferProgress;
 
-        private void Initialize() {
-            /*var value = (float) _health.Model.CurrentHealth / _health.Model.MaxHealth;
-            SetProgress(value, value);
-            _health.Model.OnHealthChange.AddListener((prev, current, max) => {
-                var prevValue = (float)prev / max;
-                var newValue = (float)current / max;
-                SetProgress(newValue, prevValue);
-            });
-            _health.Model.OnDead.AddListener(component => {
-                gameObject.SetActive(false);
-            });*/
+        private float _currentValue;
+        private float _maxValue;
+
+        public void Initialize(float currentValue, float maxValue) {
+            _currentValue = currentValue;
+            _maxValue = maxValue;
+            SetProgress(_currentValue);
         }
 
-        private void SetProgress(float value, float prevValue) {
-            /*_progress.fillAmount = Mathf.Clamp01(value);
-            _bufferProgress.DOFillAmount(value, 1.0f);*/
-        }
-
-        private void Update() {
-            /*base.Update();
-            transform.eulerAngles = Vector3.zero;*/
+        public void SetProgress(float value) {
+            var value01 = (float) value / _maxValue;
+            
+            _progress.fillAmount = Mathf.Clamp01(value01);
+            _bufferProgress.DOFillAmount(value01, 1.0f);
         }
     }
 }

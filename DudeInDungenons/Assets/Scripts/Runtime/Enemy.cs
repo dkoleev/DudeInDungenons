@@ -19,6 +19,7 @@ namespace Runtime {
             _currentHealth = _data.MaxHealth;
             _agent = GetComponent<NavMeshAgent>();
             _healthBar = GetComponentInChildren<WorldBar>();
+            _healthBar.Initialize(_currentHealth, _data.MaxHealth);
             
             _mover = new RandomMove(_agent);
             _mover.Move();
@@ -36,6 +37,8 @@ namespace Runtime {
                 _currentHealth = 0;
                 Death();
             }
+            
+            _healthBar.SetProgress(_currentHealth);
         }
 
         private void Death() {
