@@ -5,9 +5,9 @@ using UnityEngine;
 namespace Runtime.Logic.Components {
     public class AttackComponent : IComponent {
         public Action OnShoot;
-        
         private Weapon _currentWeapon;
         private float _currentShootDelay = 0;
+
         
         public AttackComponent(Weapon weapon) {
             _currentWeapon = weapon;
@@ -16,6 +16,10 @@ namespace Runtime.Logic.Components {
 
         public void Reset() {
             _currentShootDelay = _currentWeapon.ShootDelay;
+        }
+
+        public void Initialize() {
+            
         }
 
         public void Update() {

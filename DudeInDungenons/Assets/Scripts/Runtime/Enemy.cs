@@ -1,28 +1,33 @@
 ﻿using Runtime.Data;
 using Runtime.Logic;
-using Runtime.Ui.World;
+using Sigtrap.Relays;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Runtime {
     public class Enemy : MonoBehWrapper, IDamagable {
         [SerializeField] private EnemyData _data;
+
+        public int CurrentHealth => _currentHealth;
+        public EnemyData Data => _data;
         
-        private WorldBar _healthBar;
+        public Relay<float> OnHealthChanged = new Relay<float>();
+        public Relay OnDead = new Relay();
+        
         private int _currentHealth;
         private NavMeshAgent _agent;
         private RandomMove _mover;
+        private EnemyVisual _visual;
 
         protected override void Initialize() {
             base.Initialize();
             
             _currentHealth = _data.MaxHealth;
             _agent = GetComponent<NavMeshAgent>();
-            _healthBar = GetComponentInChildren<WorldBar>();
-            _healthBar.Initialize(_currentHealth, _data.MaxHealth);
-            
+        
             _mover = new RandomMove(_agent);
             _mover.Move();
+            _visual = new EnemyVisual(this);
         }
         
         private void Update() {
@@ -38,10 +43,13 @@ namespace Runtime {
                 Death();
             }
             
-            _healthBar.SetProgress(_currentHealth);
+            OnHealthChanged.Dispatch(_currentHealth);
         }
 
         private void Death() {
+            OnDead.Dispatch();
+            _visual.Dispose();
+            
             Destroy(gameObject);
         }
     }
