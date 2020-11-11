@@ -11,7 +11,7 @@ namespace Runtime.Logic.Components {
         }
 
         public void Update() {
-            _enemy.NavMeshAgent.destination = _player.Transform.position;
+            _enemy.NavMeshAgent.destination = _player.MainTransform.position;
             Attack(IsTargetReached());
         }
         

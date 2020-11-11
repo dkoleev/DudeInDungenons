@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Runtime.Logic {
     public interface IDamagable {
-        Transform Transform { get; }
+        Transform MainTransform { get; }
         void TakeDamage(int damage);
     }
 }

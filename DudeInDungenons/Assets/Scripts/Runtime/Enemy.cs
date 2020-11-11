@@ -1,13 +1,9 @@
-﻿using System;
-using Runtime.Data;
+﻿using Runtime.Data;
 using Runtime.Logic;
 using Runtime.Logic.Components;
-using Runtime.Logic.WeaponSystem;
 using Sigtrap.Relays;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.AI;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Runtime {
     public class Enemy : MonoBehaviour, IDamagable, IWeaponOwner {
@@ -16,6 +12,7 @@ namespace Runtime {
         
         public Transform RaycastStartPoint => _shootRaycastStartPoint;
         public Transform RotateTransform => transform;
+        public Transform MainTransform => transform;
 
         public Transform Transform => transform;
         public NavMeshAgent NavMeshAgent => _agent;
@@ -38,10 +35,9 @@ namespace Runtime {
 
         private void Awake() {
             _currentHealth = _data.MaxHealth;
+            _attackComponent = new AttackComponent("Bit", this);
             _agent = GetComponent<NavMeshAgent>();
             _visual = new EnemyVisual(this);
-
-            CreateWeapon();
         }
 
         private void Start() {
@@ -71,7 +67,7 @@ namespace Runtime {
 
             _isAttack = _ai.IsAttack;
         }
-
+        
         public void TakeDamage(int damage) {
             _currentHealth -= damage;
             if (_currentHealth <= 0) {
@@ -87,21 +83,6 @@ namespace Runtime {
             _visual.Dispose();
             
             Destroy(gameObject);
-        }
-        
-        private void CreateWeapon() {
-            var weaponPlacer = gameObject.GetComponentInChildren<WeaponPlacer>();
-            Addressables.InstantiateAsync("Bit", weaponPlacer.transform).Completed += OnLoad;
-            void OnLoad(AsyncOperationHandle<GameObject> handle) {
-                var go = handle.Result;
-                var weapon = go.GetComponent<Weapon>();
-                weapon.Initialize(this);
-                go.transform.localPosition = Vector3.zero;
-                go.transform.localRotation = Quaternion.identity;
-                _attackComponent = new AttackComponent(weapon, this);
-
-                _initialized = true;
-            }
         }
     }
 }

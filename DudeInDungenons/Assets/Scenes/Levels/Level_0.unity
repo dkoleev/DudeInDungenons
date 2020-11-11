@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1512549525958094027, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
+      propertyPath: m_Mass
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 1884230657228393506, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
@@ -187,6 +191,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1512549525958094027, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
+      propertyPath: m_Mass
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 1884230657228393506, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
       propertyPath: m_Name
       value: Enemy (2)
@@ -295,7 +303,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &241562463270771445
 PrefabInstance:
@@ -310,7 +318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2055929359865321751, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2055929359865321751, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
       propertyPath: m_LocalPosition.x
@@ -375,7 +383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5431767391689578249, guid: f7982561aeaa6584399de869d5ac2a5b, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5431767391689578249, guid: f7982561aeaa6584399de869d5ac2a5b, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,11 +1,8 @@
 ﻿using Runtime.Data;
 using Runtime.Logic;
 using Runtime.Logic.Components;
-using Runtime.Logic.WeaponSystem;
 using Runtime.Ui.World;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Runtime {
     public class Player : MonoBehaviour, ILocalPositionAdapter, IWeaponOwner, IDamagable {
@@ -19,7 +16,7 @@ namespace Runtime {
 
         public Transform RaycastStartPoint => _shootRaycastStartPoint;
         public Transform RotateTransform => _rotateTransform;
-        public Transform Transform => _mainTransform;
+        public Transform MainTransform => _mainTransform;
 
         private WorldBar _healthBar;
         private MoveByController _mover;
@@ -39,14 +36,17 @@ namespace Runtime {
         private void Start() {
             _currentHealth = _data.MaxHealth;
             _mainTransform = transform;
+            
+            _attackComponent = new AttackComponent("Pistol", this);
             _mover = new MoveByController(this, _data.SpeedMove);
             _rotator = new RotateByAxis(_rotateTransform, _data.SpeedRotate);
             _lookAtTarget = new LookAtTarget(_mainTransform);
             _lookAtTarget.Initialize();
+            
             _healthBar = GetComponentInChildren<WorldBar>();
             _healthBar.Initialize(_data.MaxHealth, _data.MaxHealth);
-            
-            CreateWeapon();
+
+            _initialized = true;
         }
 
         private void Update() {
@@ -61,24 +61,11 @@ namespace Runtime {
             } else {
                 _lookAtTarget.Update();
                 if (_lookAtTarget.CurrentTarget != null) {
-                    _attackComponent.Update(_lookAtTarget.CurrentTarget);
+                    _attackComponent?.Update(_lookAtTarget.CurrentTarget);
                 }
             }
-        }
-
-        private void CreateWeapon() {
-            var weaponPlacer = gameObject.GetComponentInChildren<WeaponPlacer>();
-            Addressables.InstantiateAsync("Pistol", weaponPlacer.transform).Completed += OnLoad;
-            void OnLoad(AsyncOperationHandle<GameObject> handle) {
-                var go = handle.Result;
-                var weapon = go.GetComponent<Weapon>();
-                weapon.Initialize(this);
-                go.transform.localPosition = Vector3.zero;
-                go.transform.localRotation = Quaternion.identity;
-                _attackComponent = new AttackComponent(weapon, this);
-
-                _initialized = true;
-            }
+            
+            _mainTransform.localRotation = Quaternion.Euler(new Vector3(0, _mainTransform.localRotation.y, 0));
         }
         
         public void TakeDamage(int damage) {
