@@ -6,6 +6,7 @@ namespace Runtime.Logic.WeaponSystem {
         [SerializeField] protected WeaponData Data;
         
         public float ShootDelay => Data.ShootDelay;
+        public float Range => Data.Range;
 
         protected int Damage => Data.Damage;
         protected IWeaponOwner Owner;
@@ -14,6 +15,7 @@ namespace Runtime.Logic.WeaponSystem {
             Owner = owner;
         }
 
+        public abstract void Shoot(IDamagable target);
         public abstract void Shoot();
     }
 }

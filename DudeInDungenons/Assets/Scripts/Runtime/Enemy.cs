@@ -8,6 +8,7 @@ namespace Runtime {
     public class Enemy : MonoBehWrapper, IDamagable {
         [SerializeField] private EnemyData _data;
 
+        public Transform Transform => transform;
         public int CurrentHealth => _currentHealth;
         public EnemyData Data => _data;
         

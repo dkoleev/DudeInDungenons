@@ -4,9 +4,13 @@ using Debug = UnityEngine.Debug;
 
 namespace Runtime.Logic.WeaponSystem {
     public class Pistol : Weapon {
+        public override void Shoot(IDamagable target) {
+            target.TakeDamage(Damage);
+        }
+
         public override void Shoot() {
             RaycastHit hit;
-            if (Physics.Raycast(Owner.RaycastStartPoint.position, Owner.RaycastStartPoint.forward, out hit, 100)) {
+            if (Physics.Raycast(Owner.RaycastStartPoint.position, Owner.RaycastStartPoint.forward, out hit, Range)) {
                 var targets = hit.transform.GetComponentsInParent<MonoBehaviour>();
                 foreach (var target in targets) {
                     if (target is IDamagable damagable) {

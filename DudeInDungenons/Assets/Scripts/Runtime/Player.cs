@@ -1,5 +1,4 @@
-﻿using System;
-using Runtime.Data;
+﻿using Runtime.Data;
 using Runtime.Logic;
 using Runtime.Logic.Components;
 using Runtime.Logic.WeaponSystem;
@@ -18,6 +17,7 @@ namespace Runtime {
         }
 
         public Transform RaycastStartPoint => _shootRaycastStartPoint;
+        public Transform RotateTransform => _rotateTransform;
 
         private MoveByController _mover;
         private AttackComponent _attackComponent;
@@ -52,9 +52,8 @@ namespace Runtime {
                 _rotator.Rotate(_mover.MoveAxis);
             } else {
                 _lookAtTarget.Update();
-                _attackComponent.Update();
                 if (_lookAtTarget.CurrentTarget != null) {
-                    _rotateTransform.LookAt(_lookAtTarget.CurrentTarget.transform);
+                    _attackComponent.Update(_lookAtTarget.CurrentTarget);
                 }
             }
         }
@@ -68,10 +67,7 @@ namespace Runtime {
                 weapon.Initialize(this);
                 go.transform.localPosition = Vector3.zero;
                 go.transform.localRotation = Quaternion.identity;
-                _attackComponent = new AttackComponent(weapon);
-                _attackComponent.Initialize();
-                _attackComponent.OnShoot += () => {
-                };
+                _attackComponent = new AttackComponent(weapon, this);
 
                 _initialized = true;
             }
