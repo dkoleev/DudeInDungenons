@@ -13,11 +13,11 @@ namespace Runtime.Logic.Components {
         public AttackComponent(Weapon weapon, IWeaponOwner owner) {
             _currentWeapon = weapon;
             _owner = owner;
-            Reset();
+            _currentShootDelay = _currentWeapon.ShootDelay;
         }
 
         public void Reset() {
-            _currentShootDelay = _currentWeapon.ShootDelay;
+            _currentShootDelay = 0;
         }
 
         public void Update(IDamagable target) {
@@ -30,7 +30,7 @@ namespace Runtime.Logic.Components {
 
             _currentShootDelay -= Time.deltaTime;
             if (_currentShootDelay <= 0) {
-                Reset();
+                _currentShootDelay = _currentWeapon.ShootDelay;
                 Shoot(target);
             }
         }

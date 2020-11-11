@@ -15,7 +15,9 @@ namespace Runtime.Logic.WeaponSystem {
             Owner = owner;
         }
 
-        public abstract void Shoot(IDamagable target);
+        public virtual void Shoot(IDamagable target) {
+            target.TakeDamage(Damage);
+        }
         public abstract void Shoot();
     }
 }
