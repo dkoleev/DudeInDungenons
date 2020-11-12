@@ -182,6 +182,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4029894381163908314, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4029894381163908314, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
+    - target: {fileID: 5239277370686827984, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 823
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
 --- !u!1001 &717329944
@@ -242,6 +250,14 @@ PrefabInstance:
     - target: {fileID: 2055929359865321751, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4029894381163908314, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4029894381163908314, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
+    - target: {fileID: 5239277370686827984, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 823
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
@@ -359,6 +375,14 @@ PrefabInstance:
     - target: {fileID: 2055929359865321751, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4029894381163908314, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 4029894381163908314, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
+    - target: {fileID: 5239277370686827984, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 823
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 042687b7d492f07418cfecb7f1ff1712, type: 3}

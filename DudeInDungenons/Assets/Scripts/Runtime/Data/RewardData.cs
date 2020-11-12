@@ -6,8 +6,8 @@ namespace Runtime.Data {
     [CreateAssetMenu]
     public class RewardData : SerializedScriptableObject {
         [SerializeField]
-        private Dictionary<string, int> _reward = new Dictionary<string, int>();
+        private Dictionary<string, int> _reward;
 
-        public Dictionary<string, int> Reward => _reward;
+        public Dictionary<string, int> Reward => _reward; 
     }
 }

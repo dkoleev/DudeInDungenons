@@ -507,6 +507,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7104310950735738078, guid: b85ca94f595b0524f8307c1c2ed47ac6, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 823
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b85ca94f595b0524f8307c1c2ed47ac6, type: 3}
 --- !u!1001 &6581401098219450048
@@ -516,10 +520,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1955854651982960107, guid: 9c3ff88ebb070b44eb06471b5a1c476e, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 823
+      objectReference: {fileID: 0}
     - target: {fileID: 3546745757658878854, guid: 9c3ff88ebb070b44eb06471b5a1c476e, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6581401098219450050, guid: 9c3ff88ebb070b44eb06471b5a1c476e, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 6581401098219450050, guid: 9c3ff88ebb070b44eb06471b5a1c476e, type: 3}
     - target: {fileID: 6848696318094376108, guid: 9c3ff88ebb070b44eb06471b5a1c476e, type: 3}
       propertyPath: m_RootOrder
       value: 2
