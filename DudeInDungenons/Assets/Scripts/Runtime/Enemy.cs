@@ -1,6 +1,8 @@
 ﻿using Runtime.Data;
 using Runtime.Logic;
 using Runtime.Logic.Components;
+using Runtime.Logic.Core.EventBus;
+using Runtime.Logic.Events;
 using Sigtrap.Relays;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -92,6 +94,7 @@ namespace Runtime {
         }
 
         private void Death() {
+            EventBus<OnEnemyDead>.Raise(new OnEnemyDead(this));
             OnDead.Dispatch();
             _visual.Dispose();
             

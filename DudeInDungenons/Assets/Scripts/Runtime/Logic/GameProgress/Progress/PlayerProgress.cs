@@ -1,5 +1,7 @@
+using System.Collections.Generic;
+
 namespace Runtime.Logic.GameProgress.Progress {
     public class PlayerProgress {
-        public int Health;
+        public Dictionary<string, int> Inventory = new Dictionary<string, int>();
     }
 }

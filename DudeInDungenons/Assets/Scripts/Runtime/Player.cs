@@ -1,13 +1,18 @@
 ﻿using Runtime.Data;
+using Runtime.Data.Items;
 using Runtime.Logic;
 using Runtime.Logic.Components;
+using Runtime.Logic.Core.EventBus;
+using Runtime.Logic.Events;
 using Runtime.Logic.GameProgress.Progress;
 using Runtime.Ui.World;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Runtime {
-    public class Player : Entity, ILocalPositionAdapter, IWeaponOwner, IDamagable {
+    public class Player : Entity, ILocalPositionAdapter, IWeaponOwner, IDamagable,
+        IEventReceiver<OnEnemyDead> {
+        
         [SerializeField, Required, AssetsOnly] 
         [InlineEditor(InlineEditorModes.GUIOnly)]
         private PlayerData _data;
@@ -32,18 +37,18 @@ namespace Runtime {
         private Transform _rotateTransform;
         private Transform _mainTransform;
         private PlayerProgress _progress;
+        private int _health;
         private bool _initialized;
 
         protected override void Awake() {
             base.Awake();
 
             _progress = Progress.Player;
-            
+            EventBus.Register(this);
+
+            _health = _data.MaxHealth;
             _mainTransform = transform;
             _rotateTransform = _mainTransform.Find("Root");
-            if (_progress.Health == 0) {
-                _progress.Health = _data.MaxHealth;
-            }
             
             _attackComponent = new AttackComponent("Pistol", this);
             AddComponent(_attackComponent);
@@ -55,7 +60,7 @@ namespace Runtime {
             AddComponent(_findTargetByDistance);
             
             _healthBar = GetComponentInChildren<WorldBar>();
-            _healthBar.Initialize(_progress.Health, _data.MaxHealth);
+            _healthBar.Initialize(_health, _data.MaxHealth);
         }
 
         protected override void Start() {
@@ -86,17 +91,33 @@ namespace Runtime {
         }
         
         public void TakeDamage(int damage) {
-            _progress.Health -= damage;
-            if (_progress.Health <= 0) {
-                _progress.Health = 0;
+            _health -= damage;
+            if (_health <= 0) {
+                _health = 0;
                 Dead();
             }
             
-            _healthBar.SetProgress(_progress.Health);
+            _healthBar.SetProgress(_health);
         }
 
         private void Dead() {
             Debug.Log("Player dead");
+        }
+
+        public void OnEvent(OnEnemyDead e) {
+            AddToInventory(e.Enemy.Data.Drop);
+        }
+
+        private void AddToInventory(ItemStack[] drop) {
+            var inventory = _progress.Inventory;
+            foreach (var itemStack in drop) {
+                var id = itemStack.Item.Id;
+                if (inventory.ContainsKey(id)) {
+                    inventory[id] += itemStack.Amount;
+                } else {
+                    inventory.Add(id, itemStack.Amount);
+                }
+            }
         }
     }
 }
