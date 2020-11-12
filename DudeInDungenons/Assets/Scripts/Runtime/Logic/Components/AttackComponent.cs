@@ -5,7 +5,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Runtime.Logic.Components {
-    public class AttackComponent {
+    public class AttackComponent : IComponent {
         public Relay OnShoot = new Relay();
         public bool Initialized { get; private set; }
 
@@ -16,6 +16,10 @@ namespace Runtime.Logic.Components {
         public AttackComponent(string weaponId, IWeaponOwner owner) {
             _owner = owner;
             CreateWeapon(weaponId);
+        }
+        
+        public void Initialize() {
+            
         }
 
         public void Reset() {

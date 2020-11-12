@@ -1,11 +1,12 @@
-﻿using Runtime.Data;
+﻿using System.Collections.Generic;
+using Runtime.Data;
 using Runtime.Logic;
 using Runtime.Logic.Components;
 using Runtime.Ui.World;
 using UnityEngine;
 
 namespace Runtime {
-    public class Player : MonoBehaviour, ILocalPositionAdapter, IWeaponOwner, IDamagable {
+    public class Player : Entity, ILocalPositionAdapter, IWeaponOwner, IDamagable {
         [SerializeField] private PlayerData _data;
         [SerializeField] private Transform _shootRaycastStartPoint;
         
@@ -28,30 +29,37 @@ namespace Runtime {
         private Transform _mainTransform;
         private int _currentHealth;
         private bool _initialized;
-        
 
-        private void Awake() {
-            _rotateTransform = transform.Find("Root");
+
+        protected override void Awake() {
+            base.Awake();
+            
+            _mainTransform = transform;
+            _rotateTransform = _mainTransform.Find("Root");
+            _currentHealth = _data.MaxHealth;
             
             _attackComponent = new AttackComponent("Pistol", this);
+            AddComponent(_attackComponent);
             _mover = new MoveByController(this, _data.SpeedMove);
-        }
-
-        private void Start() {
-            _currentHealth = _data.MaxHealth;
-            _mainTransform = transform;
-            
+            AddComponent(_mover);
             _rotator = new RotateByAxis(_rotateTransform, _data.SpeedRotate);
+            AddComponent(_rotator);
             _lookAtTarget = new LookAtTarget(_mainTransform);
-            _lookAtTarget.Initialize();
+            AddComponent(_lookAtTarget);
             
             _healthBar = GetComponentInChildren<WorldBar>();
             _healthBar.Initialize(_data.MaxHealth, _data.MaxHealth);
+        }
 
+        protected override void Start() {
+            base.Start();
+            
             _initialized = true;
         }
 
-        private void Update() {
+        protected override void Update() {
+            base.Update();
+            
             if (!_initialized) {
                 return;
             }

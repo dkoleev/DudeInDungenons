@@ -1,12 +1,16 @@
 using UnityEngine;
 
 namespace Runtime.Logic.Components {
-    public class RotateByAxis {
+    public class RotateByAxis : IComponent {
         private Transform _target;
         private float _rotateSpeed;
         public RotateByAxis(Transform target, float rotateSpeed) {
             _target = target;
             _rotateSpeed = rotateSpeed;
+        }
+        
+        public void Initialize() {
+            
         }
 
         public void Rotate(Vector2 axis) {

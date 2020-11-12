@@ -1,12 +1,16 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Runtime.Logic {
-    public class RandomMove {
+namespace Runtime.Logic.Components {
+    public class RandomMove : IComponent {
         private NavMeshAgent _agent;
 
         public RandomMove(NavMeshAgent agent) {
             _agent = agent;
+        }
+        
+        public void Initialize() {
+            
         }
         
         public void Move() {

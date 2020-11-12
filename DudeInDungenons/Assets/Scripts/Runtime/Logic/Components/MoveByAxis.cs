@@ -1,10 +1,14 @@
 using UnityEngine;
 
-namespace Runtime.Logic {
-    public class MoveByAxis {
+namespace Runtime.Logic.Components {
+    public class MoveByAxis : IComponent {
         private Vector2 _moveAxis;
         public bool IsMoving => _moveAxis.x > 0 || _moveAxis.y > 0;
-
+        
+        public void Initialize() {
+            
+        }
+        
         public void Move(Vector2 axis, float speed, ILocalPositionAdapter localPosition) {
             _moveAxis = axis;
             if (_moveAxis.magnitude > 0) {

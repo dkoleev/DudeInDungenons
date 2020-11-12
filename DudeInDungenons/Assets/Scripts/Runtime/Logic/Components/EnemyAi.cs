@@ -1,5 +1,5 @@
 namespace Runtime.Logic.Components {
-    public class EnemyAi {
+    public class EnemyAi : IComponent {
         public bool IsAttack { get; private set; }
         
         private Enemy _enemy;
@@ -8,6 +8,10 @@ namespace Runtime.Logic.Components {
         public EnemyAi(Enemy enemy, Player player) {
             _enemy = enemy;
             _player = player;
+        }
+        
+        public void Initialize() {
+            
         }
 
         public void Update() {

@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace Runtime.Logic.Components {
-    public class LookAtTarget {
+    public class LookAtTarget : IComponent {
         public Enemy CurrentTarget => _currentTarget;
 
         private Transform _owner;

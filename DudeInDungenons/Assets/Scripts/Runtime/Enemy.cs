@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 namespace Runtime {
-    public class Enemy : MonoBehaviour, IDamagable, IWeaponOwner {
+    public class Enemy : Entity, IDamagable, IWeaponOwner {
         [SerializeField] private EnemyData _data;
         [SerializeField] private Transform _shootRaycastStartPoint;
         
@@ -32,21 +32,29 @@ namespace Runtime {
 
         private bool _initialized;
 
-        private void Awake() {
+        protected override void Awake() {
+            base.Awake();
+            
             _currentHealth = _data.MaxHealth;
-            _attackComponent = new AttackComponent("Bit", this);
             _agent = GetComponent<NavMeshAgent>();
             _visual = new EnemyVisual(this);
+
+            _attackComponent = new AttackComponent("Bit", this);
+            AddComponent(_attackComponent);
         }
 
-        private void Start() {
+        protected override void Start() {
+            base.Start();
+            
             _player = GameObject.FindWithTag("Player").GetComponent<Player>();
             _ai = new EnemyAi(this, _player);
 
             _initialized = true;
         }
         
-        private void Update() {
+        protected override void Update() {
+            base.Update();
+            
             if (!_initialized) {
                 return;
             }

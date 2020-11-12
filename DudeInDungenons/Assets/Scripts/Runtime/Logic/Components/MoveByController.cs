@@ -3,7 +3,7 @@ using Runtime.Logic.Events;
 using UnityEngine;
 
 namespace Runtime.Logic.Components {
-    public class MoveByController :
+    public class MoveByController : IComponent,
         IEventReceiver<OnMovePlayer>, 
         IEventReceiver<OnMovePerformed>,
         IEventReceiver<OnMoveCancelled> {
@@ -21,6 +21,10 @@ namespace Runtime.Logic.Components {
             _moveAxis = Vector2.zero;
             
             EventBus.Register(this);
+        }
+        
+        public void Initialize() {
+            
         }
 
         public void Update() {
