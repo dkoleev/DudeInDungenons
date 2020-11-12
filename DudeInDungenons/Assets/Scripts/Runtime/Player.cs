@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Runtime.Data;
+﻿using Runtime.Data;
 using Runtime.Logic;
 using Runtime.Logic.Components;
 using Runtime.Ui.World;
@@ -9,7 +8,7 @@ namespace Runtime {
     public class Player : Entity, ILocalPositionAdapter, IWeaponOwner, IDamagable {
         [SerializeField] private PlayerData _data;
         [SerializeField] private Transform _shootRaycastStartPoint;
-        
+
         public Vector3 LocalPosition {
             get => transform.localPosition;
             set => transform.localPosition = value;
