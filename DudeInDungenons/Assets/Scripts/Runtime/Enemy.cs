@@ -2,13 +2,17 @@
 using Runtime.Logic;
 using Runtime.Logic.Components;
 using Sigtrap.Relays;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Runtime {
     public class Enemy : Entity, IDamagable, IWeaponOwner {
-        [SerializeField] private EnemyData _data;
-        [SerializeField] private Transform _shootRaycastStartPoint;
+        [SerializeField, Required, AssetsOnly]
+        [InlineEditor(InlineEditorModes.GUIOnly)]
+        private EnemyData _data;
+        [SerializeField, Required] 
+        private Transform _shootRaycastStartPoint;
         
         public Transform RaycastStartPoint => _shootRaycastStartPoint;
         public Transform RotateTransform => transform;

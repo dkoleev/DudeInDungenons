@@ -3,14 +3,14 @@ using System.Linq;
 using UnityEngine;
 
 namespace Runtime.Logic.Components {
-    public class LookAtTarget : IComponent {
+    public class FindTargetByDistance : IComponent {
         public Enemy CurrentTarget => _currentTarget;
 
         private Transform _owner;
         private Enemy _currentTarget;
         private List<Enemy> _targets = new List<Enemy>();
 
-        public LookAtTarget(Transform owner) {
+        public FindTargetByDistance(Transform owner) {
             _owner = owner;
         }
         

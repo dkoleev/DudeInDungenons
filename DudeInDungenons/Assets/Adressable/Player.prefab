@@ -249,6 +249,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorldBar
       objectReference: {fileID: 0}
+    - target: {fileID: 6665508171387452599, guid: 969c68631a2a25943a160c85349b8f0d, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 823
+      objectReference: {fileID: 0}
     - target: {fileID: 6722490535974493087, guid: 969c68631a2a25943a160c85349b8f0d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -2,12 +2,16 @@
 using Runtime.Logic;
 using Runtime.Logic.Components;
 using Runtime.Ui.World;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Runtime {
     public class Player : Entity, ILocalPositionAdapter, IWeaponOwner, IDamagable {
-        [SerializeField] private PlayerData _data;
-        [SerializeField] private Transform _shootRaycastStartPoint;
+        [SerializeField, Required, AssetsOnly] 
+        [InlineEditor(InlineEditorModes.GUIOnly)]
+        private PlayerData _data;
+        [SerializeField, Required]
+        private Transform _shootRaycastStartPoint;
 
         public Vector3 LocalPosition {
             get => transform.localPosition;
@@ -22,7 +26,7 @@ namespace Runtime {
         private MoveByController _mover;
         private AttackComponent _attackComponent;
         private RotateByAxis _rotator;
-        private LookAtTarget _lookAtTarget;
+        private FindTargetByDistance _findTargetByDistance;
         
         private Transform _rotateTransform;
         private Transform _mainTransform;
@@ -43,8 +47,8 @@ namespace Runtime {
             AddComponent(_mover);
             _rotator = new RotateByAxis(_rotateTransform, _data.SpeedRotate);
             AddComponent(_rotator);
-            _lookAtTarget = new LookAtTarget(_mainTransform);
-            AddComponent(_lookAtTarget);
+            _findTargetByDistance = new FindTargetByDistance(_mainTransform);
+            AddComponent(_findTargetByDistance);
             
             _healthBar = GetComponentInChildren<WorldBar>();
             _healthBar.Initialize(_data.MaxHealth, _data.MaxHealth);
@@ -65,12 +69,12 @@ namespace Runtime {
 
             _mover.Update();
             if (_mover.IsMoving) {
-                _lookAtTarget.SetTarget(null);
+                _findTargetByDistance.SetTarget(null);
                 _rotator.Rotate(_mover.MoveAxis);
             } else {
-                _lookAtTarget.Update();
-                if (_lookAtTarget.CurrentTarget != null) {
-                    _attackComponent?.Update(_lookAtTarget.CurrentTarget);
+                _findTargetByDistance.Update();
+                if (_findTargetByDistance.CurrentTarget != null) {
+                    _attackComponent?.Update(_findTargetByDistance.CurrentTarget);
                 }
             }
             
