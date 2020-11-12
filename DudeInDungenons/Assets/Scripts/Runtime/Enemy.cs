@@ -35,6 +35,7 @@ namespace Runtime {
         private Player _player;
         private AttackComponent _attackComponent;
         private bool _isAttack;
+        private bool _isDead;
 
         private bool _initialized;
 
@@ -84,6 +85,10 @@ namespace Runtime {
         }
         
         public void TakeDamage(int damage) {
+            if (_isDead) {
+                return;
+            }
+
             _currentHealth -= damage;
             if (_currentHealth <= 0) {
                 _currentHealth = 0;
@@ -94,6 +99,7 @@ namespace Runtime {
         }
 
         private void Death() {
+            _isDead = true;
             EventBus<OnEnemyDead>.Raise(new OnEnemyDead(this));
             OnDead.Dispatch();
             _visual.Dispose();

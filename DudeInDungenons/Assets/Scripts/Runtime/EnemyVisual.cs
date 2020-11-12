@@ -20,6 +20,7 @@ namespace Runtime {
 
         public void Dispose() {
             _enemy.OnHealthChanged.RemoveListener(HealthChangeHandle);
+            _healthBar.Dispose();
         }
     }
 }

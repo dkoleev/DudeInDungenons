@@ -1,10 +1,11 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Runtime.Ui.World {
-    public class WorldBar : MonoBehaviour {
+    public class WorldBar : MonoBehaviour, IDisposable {
         [SerializeField] private Image _progress;
         [SerializeField] private Image _bufferProgress;
         [SerializeField] private TextMeshPro _amount;
@@ -25,6 +26,10 @@ namespace Runtime.Ui.World {
             var value01 = (float) value / _maxValue;
             _progress.fillAmount = Mathf.Clamp01(value01);
             _bufferProgress.DOFillAmount(value01, animationSpeed);
+        }
+
+        public void Dispose() {
+            DOTween.Kill(_bufferProgress);
         }
     }
 }
