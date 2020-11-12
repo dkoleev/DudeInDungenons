@@ -28,17 +28,19 @@ namespace Runtime {
         private Transform _mainTransform;
         private int _currentHealth;
         private bool _initialized;
+        
 
         private void Awake() {
             _rotateTransform = transform.Find("Root");
+            
+            _attackComponent = new AttackComponent("Pistol", this);
+            _mover = new MoveByController(this, _data.SpeedMove);
         }
 
         private void Start() {
             _currentHealth = _data.MaxHealth;
             _mainTransform = transform;
             
-            _attackComponent = new AttackComponent("Pistol", this);
-            _mover = new MoveByController(this, _data.SpeedMove);
             _rotator = new RotateByAxis(_rotateTransform, _data.SpeedRotate);
             _lookAtTarget = new LookAtTarget(_mainTransform);
             _lookAtTarget.Initialize();

@@ -14,7 +14,6 @@ namespace Runtime {
         public Transform RotateTransform => transform;
         public Transform MainTransform => transform;
 
-        public Transform Transform => transform;
         public NavMeshAgent NavMeshAgent => _agent;
         public int CurrentHealth => _currentHealth;
         public EnemyData Data => _data;

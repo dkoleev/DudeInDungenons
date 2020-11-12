@@ -2,8 +2,8 @@ using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 using UnityEngine;
 
-namespace Runtime.Logic {
-    public class MoveByController : 
+namespace Runtime.Logic.Components {
+    public class MoveByController :
         IEventReceiver<OnMovePlayer>, 
         IEventReceiver<OnMovePerformed>,
         IEventReceiver<OnMoveCancelled> {
