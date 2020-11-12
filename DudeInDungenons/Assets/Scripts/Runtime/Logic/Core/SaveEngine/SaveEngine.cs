@@ -106,5 +106,9 @@ namespace Runtime.Logic.Core.SaveEngine {
                 fileStream?.Close();
             }
         }
+        
+        public static void Delete() {
+            File.Delete(SaveFilePath);
+        }
     }
 }
