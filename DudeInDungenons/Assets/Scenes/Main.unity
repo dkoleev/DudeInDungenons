@@ -260,11 +260,11 @@ GameObject:
   - component: {fileID: 1936352730}
   - component: {fileID: 1936352729}
   m_Layer: 0
-  m_Name: GameRunner
-  m_TagString: Untagged
+  m_Name: GameController
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &1936352729
 MonoBehaviour:
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1936352728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7dee301445ff14f86019b0fdf47c08, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e0d2858d936463f8c1f7eb5782c6e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1936352730

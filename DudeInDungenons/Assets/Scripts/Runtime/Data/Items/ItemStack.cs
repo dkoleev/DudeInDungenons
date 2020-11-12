@@ -2,7 +2,7 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Runtime.Data {
+namespace Runtime.Data.Items {
     [Serializable]
     public class ItemStack {
         [SerializeField]

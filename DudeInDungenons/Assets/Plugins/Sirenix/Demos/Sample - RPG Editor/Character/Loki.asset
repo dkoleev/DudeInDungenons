@@ -38,7 +38,7 @@ MonoBehaviour:
       Data: Sirenix.OdinInspector.Demos.RPGEditor.ItemSlot, Assembly-CSharp-firstpass
     - Name: ItemCount
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: Item
       Entry: 10
       Data: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
       Data: Sirenix.OdinInspector.Demos.RPGEditor.ItemSlot, Assembly-CSharp-firstpass
     - Name: ItemCount
       Entry: 3
-      Data: 0
+      Data: 2
     - Name: Item
       Entry: 10
       Data: 1
@@ -182,7 +182,7 @@ MonoBehaviour:
       Data: Sirenix.OdinInspector.Demos.RPGEditor.ItemSlot, Assembly-CSharp-firstpass
     - Name: ItemCount
       Entry: 3
-      Data: 0
+      Data: 2
     - Name: Item
       Entry: 10
       Data: 2

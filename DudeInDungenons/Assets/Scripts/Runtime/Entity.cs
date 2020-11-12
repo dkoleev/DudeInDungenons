@@ -1,11 +1,17 @@
 using System.Collections.Generic;
 using Runtime.Logic.Components;
+using Runtime.Logic.GameProgress;
 using UnityEngine;
 
 namespace Runtime {
     public class Entity : MonoBehaviour {
         protected readonly List<IComponent> Components = new List<IComponent>();
-        
+        protected GameProgress Progress;
+
+        public void Initialize(GameProgress progress) {
+            Progress = progress;
+        }
+
         protected virtual void Awake() {
         }
 

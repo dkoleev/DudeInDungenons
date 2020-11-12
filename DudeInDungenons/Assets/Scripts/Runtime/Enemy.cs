@@ -45,13 +45,15 @@ namespace Runtime {
 
             _attackComponent = new AttackComponent("Bit", this);
             AddComponent(_attackComponent);
+            _ai = new EnemyAi(this);
+            AddComponent(_ai);
         }
 
         protected override void Start() {
             base.Start();
-            
+
             _player = GameObject.FindWithTag("Player").GetComponent<Player>();
-            _ai = new EnemyAi(this, _player);
+            _ai.SetTarget(_player);
 
             _initialized = true;
         }

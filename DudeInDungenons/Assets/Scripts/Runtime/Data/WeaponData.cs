@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Runtime.Data {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "Weapon", menuName = "Data/Weapons/Weapon")]
     public class WeaponData : ScriptableObject {
         [SerializeField] private int _damage;
         [SerializeField] private float _shootDelay;

@@ -17,6 +17,18 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: abf0eff0a4243574da298dc20986b5eb
   m_SerializeEntries:
+  - m_GUID: 042687b7d492f07418cfecb7f1ff1712
+    m_Address: Zombie
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 3ddca9d1a17e6d34981dec1f05699399
+    m_Address: Troll
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 9fe5f2d5e646994459a9a61f678a9bd4
     m_Address: Pistol
     m_ReadOnly: 0

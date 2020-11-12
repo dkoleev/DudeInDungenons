@@ -1,8 +1,8 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Runtime.Data {
-    [CreateAssetMenu]
+namespace Runtime.Data.Items {
+    [CreateAssetMenu(fileName = "Item", menuName = "Data/Items/Item")]
     public class Item : ScriptableObject {
         [SerializeField]
         private string _id;

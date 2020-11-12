@@ -1,6 +1,7 @@
 ﻿using Runtime.Data;
 using Runtime.Logic;
 using Runtime.Logic.Components;
+using Runtime.Logic.GameProgress.Progress;
 using Runtime.Ui.World;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -30,16 +31,19 @@ namespace Runtime {
         
         private Transform _rotateTransform;
         private Transform _mainTransform;
-        private int _currentHealth;
+        private PlayerProgress _progress;
         private bool _initialized;
-
 
         protected override void Awake() {
             base.Awake();
+
+            _progress = Progress.Player;
             
             _mainTransform = transform;
             _rotateTransform = _mainTransform.Find("Root");
-            _currentHealth = _data.MaxHealth;
+            if (_progress.Health == 0) {
+                _progress.Health = _data.MaxHealth;
+            }
             
             _attackComponent = new AttackComponent("Pistol", this);
             AddComponent(_attackComponent);
@@ -51,7 +55,7 @@ namespace Runtime {
             AddComponent(_findTargetByDistance);
             
             _healthBar = GetComponentInChildren<WorldBar>();
-            _healthBar.Initialize(_data.MaxHealth, _data.MaxHealth);
+            _healthBar.Initialize(_progress.Health, _data.MaxHealth);
         }
 
         protected override void Start() {
@@ -82,13 +86,13 @@ namespace Runtime {
         }
         
         public void TakeDamage(int damage) {
-            _currentHealth -= damage;
-            if (_currentHealth <= 0) {
-                _currentHealth = 0;
+            _progress.Health -= damage;
+            if (_progress.Health <= 0) {
+                _progress.Health = 0;
                 Dead();
             }
             
-            _healthBar.SetProgress(_currentHealth);
+            _healthBar.SetProgress(_progress.Health);
         }
 
         private void Dead() {
