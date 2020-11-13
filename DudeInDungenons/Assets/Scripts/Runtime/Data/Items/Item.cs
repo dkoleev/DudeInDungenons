@@ -8,8 +8,9 @@ namespace Runtime.Data.Items {
         private string _id;
         [SerializeField]
         [HideLabel, PreviewField(55)]
-        private Texture _icon;
+        private Texture2D _icon;
 
         public string Id => _id;
+        public Texture2D Icon => _icon;
     }
 }

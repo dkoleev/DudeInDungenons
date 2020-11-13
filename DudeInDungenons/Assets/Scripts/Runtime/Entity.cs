@@ -1,16 +1,14 @@
 using System.Collections.Generic;
 using Runtime.Logic.Components;
 using Runtime.Logic.GameProgress;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Runtime {
     public class Entity : MonoBehaviour {
+        [ShowInInspector]
         protected readonly List<IComponent> Components = new List<IComponent>();
         protected GameProgress Progress;
-
-        public void Initialize(GameProgress progress) {
-            Progress = progress;
-        }
 
         protected virtual void Awake() {
         }
@@ -19,6 +17,10 @@ namespace Runtime {
             foreach (var component in Components) {
                 component.Initialize();
             }
+        }
+        
+        public void Initialize(GameProgress progress) {
+            Progress = progress;
         }
 
         protected virtual void Update() {

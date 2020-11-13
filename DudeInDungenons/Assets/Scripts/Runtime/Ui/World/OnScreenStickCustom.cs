@@ -3,7 +3,7 @@ using Runtime.Logic.Events;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Runtime.Ui {
+namespace Runtime.Ui.World {
     public class OnScreenStickCustom : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
         public void OnPointerDown(PointerEventData eventData) {
             EventBus<OnMovePlayer>.Raise(new OnMovePlayer(true));

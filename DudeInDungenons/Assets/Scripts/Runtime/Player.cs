@@ -36,14 +36,13 @@ namespace Runtime {
         
         private Transform _rotateTransform;
         private Transform _mainTransform;
-        private PlayerProgress _progress;
+        private PlayerProgress PlayerProgress => Progress.Player;
         private int _health;
         private bool _initialized;
 
         protected override void Awake() {
             base.Awake();
 
-            _progress = Progress.Player;
             EventBus.Register(this);
 
             _health = _data.MaxHealth;
@@ -109,7 +108,7 @@ namespace Runtime {
         }
 
         private void AddToInventory(ItemStack[] drop) {
-            var inventory = _progress.Inventory;
+            var inventory = PlayerProgress.Inventory;
             foreach (var itemStack in drop) {
                 var id = itemStack.Item.Id;
                 if (inventory.ContainsKey(id)) {

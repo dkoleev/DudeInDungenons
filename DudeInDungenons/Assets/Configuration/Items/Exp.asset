@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Exp
   m_EditorClassIdentifier: 
   _id: exp
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 187f751a62046af4bb6ce6732411eade, type: 3}
