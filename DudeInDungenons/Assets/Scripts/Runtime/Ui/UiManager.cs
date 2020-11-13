@@ -8,10 +8,16 @@ namespace Runtime.Ui {
         private Hud _hud;
         private MainMenu.MainMenu _mainMenu;
 
-        public void Initialize(GameProgress  progress, ItemsReference itemsReference) {
-            _mainMenu = FindObjectOfType<MainMenu.MainMenu>();
-            _mainMenu.Initialize(progress, itemsReference);
-            _hud = FindObjectOfType<Hud>();
+        public void Initialize(GameProgress  progress, ItemsReference itemsReference, GameMode gameMode) {
+            switch (gameMode) {
+                case GameMode.MainMenu:
+                    _mainMenu = FindObjectOfType<MainMenu.MainMenu>();
+                    _mainMenu.Initialize(progress, itemsReference);
+                    break;
+                case GameMode.Level:
+                    _hud = FindObjectOfType<Hud>();
+                    break;
+            }
         }
     }
 }

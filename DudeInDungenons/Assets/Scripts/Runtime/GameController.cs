@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Runtime.Input;
 using Runtime.Logic.Core.SaveEngine;
@@ -8,8 +9,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Runtime {
+    public enum GameMode {
+        MainMenu,
+        Level
+    }
+    
     public class GameController : MonoBehaviour {
-        public enum RunMode {
+        private enum RunMode {
             MainMenu,
             Level
         }
@@ -30,19 +36,46 @@ namespace Runtime {
         private InputManager _inputManager;
         private Player _player;
         private GameProgress _progress;
+        private bool _allScenesLoaded;
+        private Action OnAllScenesLoaded;
+        
+        private GameMode _gameMode = GameMode.MainMenu;
 
         private void Awake() {
             _progress = LoadGameProgress();
             _inputManager = new InputManager();
 
-            LoadMainMenu();
+            if (_runMode == RunMode.MainMenu) {
+                LoadMainMenu();
+            } else {
+                LoadLevel(_levelToLoad);
+            }
         }
 
         private void Start() {
             _itemsReference.Initialize();
-            _uiManager.Initialize(_progress, _itemsReference);
 
-            _uiManager.MainMenu.OnPlayClick.AddListener(LoadLevel);
+            if (_allScenesLoaded) {
+                InitMode();
+            } else {
+                OnAllScenesLoaded += InitMode;
+            }
+
+            void InitMode() {
+                _uiManager.Initialize(_progress, _itemsReference, _gameMode);
+
+                switch (_gameMode) {
+                    case GameMode.MainMenu:
+                        _uiManager.MainMenu.OnPlayClick.AddListener(() => {
+                            LoadLevel("Level_0");
+                        });
+                        break;
+                    case GameMode.Level:
+                        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+                        _player.Initialize(_progress);
+                        break;
+                }
+            }
         }
 
         private GameProgress LoadGameProgress() {
@@ -50,32 +83,35 @@ namespace Runtime {
             return _saveEngine.LoadProgress();
         }
 
-        private void LoadLevel() {
-            StartCoroutine(LoadLevelCor());
+        private void LoadLevel(string levelName) {
+            _gameMode = GameMode.Level;
+            StartCoroutine(LoadLevelCor(levelName));
         }
 
         private void LoadMainMenu() {
+            _gameMode = GameMode.MainMenu;
             StartCoroutine(LoadMainMenuCor());
         }
         
         private IEnumerator LoadMainMenuCor() {
-            yield return StartCoroutine(UnloadScene(SceneNames.LevelMain));
             yield return StartCoroutine(UnloadScene(SceneNames.LevelUI));
             yield return StartCoroutine(UnloadScene("Level_0"));
             yield return StartCoroutine(LoadScene(SceneNames.MenuMain, LoadSceneMode.Additive));
             yield return StartCoroutine(LoadScene(SceneNames.MenuUI, LoadSceneMode.Additive));
+            
+            _allScenesLoaded = true;
+            OnAllScenesLoaded?.Invoke();
         }
         
-        private IEnumerator LoadLevelCor() {
+        private IEnumerator LoadLevelCor(string levelName) {
             yield return StartCoroutine(UnloadScene(SceneNames.MenuMain));
             yield return StartCoroutine(UnloadScene(SceneNames.MenuUI));
             
-            yield return StartCoroutine(LoadScene(SceneNames.LevelMain, LoadSceneMode.Additive));
             yield return StartCoroutine(LoadScene(SceneNames.LevelUI, LoadSceneMode.Additive));
-            yield return StartCoroutine(LoadScene("Level_0", LoadSceneMode.Additive));
+            yield return StartCoroutine(LoadScene(levelName, LoadSceneMode.Additive));
 
-            _player = GameObject.FindWithTag("Player").GetComponent<Player>();
-            _player.Initialize(_progress);
+            _allScenesLoaded = true;
+            OnAllScenesLoaded?.Invoke();
         }
 
         private IEnumerator LoadScene(string sceneName, LoadSceneMode mode) {
