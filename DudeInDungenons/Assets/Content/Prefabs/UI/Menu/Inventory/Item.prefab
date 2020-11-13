@@ -262,7 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 707158427732099118}
   _amount: {fileID: 3296712140013488610}
-  _test: {fileID: 21300000, guid: 4f27d4cd48bb668429b1cfedebaf1d0a, type: 3}
+  test: {fileID: 21300000, guid: 078adeb1833b160449bfece828c01cf0, type: 3}
 --- !u!1 &9014949564309384398
 GameObject:
   m_ObjectHideFlags: 0

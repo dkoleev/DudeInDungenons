@@ -7,7 +7,7 @@ namespace Runtime.Data.Items {
         [SerializeField]
         private string _id;
         [SerializeField]
-        [HideLabel, PreviewField(55)]
+        [HideLabel, PreviewField(55, ObjectFieldAlignment.Left)]
         private Texture2D _icon;
 
         public string Id => _id;

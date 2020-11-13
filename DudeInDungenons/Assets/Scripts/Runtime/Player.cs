@@ -1,4 +1,5 @@
-﻿using Runtime.Data;
+﻿using System.Collections.Generic;
+using Runtime.Data;
 using Runtime.Data.Items;
 using Runtime.Logic;
 using Runtime.Logic.Components;
@@ -107,7 +108,7 @@ namespace Runtime {
             AddToInventory(e.Enemy.Data.Drop);
         }
 
-        private void AddToInventory(ItemStack[] drop) {
+        private void AddToInventory(List<ItemStack> drop) {
             var inventory = PlayerProgress.Inventory;
             foreach (var itemStack in drop) {
                 var id = itemStack.Item.Id;

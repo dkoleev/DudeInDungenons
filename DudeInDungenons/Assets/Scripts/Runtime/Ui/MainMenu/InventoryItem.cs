@@ -10,8 +10,10 @@ namespace Runtime.Ui.MainMenu {
         [SerializeField, Required]
         private TextMeshProUGUI _amount;
 
+        public Sprite test;
+
         public void Initialize(Texture2D icon, string amount) {
-            _icon.sprite = Sprite.Create(icon, new Rect(0, 0, icon.width, icon.height), new Vector2(0.5f, 0.5f));
+            _icon.sprite = Sprite.Create(icon, new Rect(0, 0, icon.width, icon.height), Vector2.one / 2f);
             _amount.text = amount;
         }
     }

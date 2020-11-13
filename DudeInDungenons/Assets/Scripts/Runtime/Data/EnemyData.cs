@@ -1,4 +1,5 @@
-﻿using Runtime.Data.Items;
+﻿using System.Collections.Generic;
+using Runtime.Data.Items;
 using Runtime.Logic.WeaponSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -18,11 +19,12 @@ namespace Runtime.Data {
         private Weapon _weapon;
 
         [SerializeField]
-        private ItemStack[] _drop;
+        [TableList]
+        private List<ItemStack> _drop;
 
         public int MaxHealth => _maxHealth;
         public float SpeedMove => _speedMove;
         public float SpeedRotate => _speedRotate;
-        public ItemStack[] Drop => _drop;
+        public List<ItemStack> Drop => _drop;
     }
 }

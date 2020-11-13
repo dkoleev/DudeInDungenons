@@ -16,6 +16,7 @@ namespace Runtime.Data {
         private float _speedRotate;
         [SerializeField]
         [TabGroup("Starting Inventory")]
+        [TableList]
         private ItemStack[] _startInventory;
         
 

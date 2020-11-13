@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Runtime.Ui {
     public class UiManager : MonoBehaviour {
+        public MainMenu.MainMenu MainMenu => _mainMenu;
         private Hud _hud;
         private MainMenu.MainMenu _mainMenu;
 
