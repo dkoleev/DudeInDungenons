@@ -19,7 +19,7 @@ namespace Runtime.Data {
         private Weapon _weapon;
 
         [SerializeField]
-        [TableList]
+      //  [TableList]
         private List<ItemStack> _drop;
 
         public int MaxHealth => _maxHealth;

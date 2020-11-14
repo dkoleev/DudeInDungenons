@@ -26,6 +26,8 @@ namespace Runtime {
         
         public Relay<float> OnHealthChanged = new Relay<float>();
         public Relay OnDead = new Relay();
+
+        public Animator Animator { get; private set; }
         
         private int _currentHealth;
         private NavMeshAgent _agent;
@@ -43,6 +45,7 @@ namespace Runtime {
             base.Awake();
             
             _currentHealth = _data.MaxHealth;
+            Animator = GetComponentInChildren<Animator>();
             _agent = GetComponent<NavMeshAgent>();
             _visual = new EnemyVisual(this);
 

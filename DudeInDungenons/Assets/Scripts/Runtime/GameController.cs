@@ -17,7 +17,8 @@ namespace Runtime {
     public class GameController : MonoBehaviour {
         private enum RunMode {
             MainMenu,
-            Level
+            Level,
+            Empty
         }
 
         [SerializeField]
@@ -45,10 +46,16 @@ namespace Runtime {
             _progress = LoadGameProgress();
             _inputManager = new InputManager();
 
-            if (_runMode == RunMode.MainMenu) {
-                LoadMainMenu();
-            } else {
-                LoadLevel(_levelToLoad);
+            switch (_runMode) {
+                case RunMode.MainMenu:
+                    LoadMainMenu();
+                    break;
+                case RunMode.Level:
+                    LoadLevel(_levelToLoad);
+                    break;
+                case RunMode.Empty:
+
+                    break;
             }
         }
 
