@@ -49,7 +49,7 @@ namespace Runtime {
             _agent = GetComponent<NavMeshAgent>();
             _visual = new EnemyVisual(this);
 
-            _attackComponent = new AttackComponent("Bit", this);
+            _attackComponent = new AttackComponent("Hand", this);
             AddComponent(_attackComponent);
             _ai = new EnemyAi(this);
             AddComponent(_ai);

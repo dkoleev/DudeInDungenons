@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 
 namespace Runtime.Data {
+    public enum WeaponType {
+        Hand,
+        Bit,
+        Pistol
+    }
+    
     [CreateAssetMenu(fileName = "Weapon", menuName = "Data/Weapons/Weapon")]
     public class WeaponData : ScriptableObject {
         [SerializeField] private int _damage;
