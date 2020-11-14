@@ -60,7 +60,6 @@ namespace Runtime.Logic.Components {
                 _enemy.Animator.SetTrigger(_animationAttack);
             }
 
-            Debug.LogError(_enemy.NavMeshAgent.isStopped);
             _enemy.Animator.SetBool(_animationRun, !_enemy.NavMeshAgent.isStopped);
         }
     }

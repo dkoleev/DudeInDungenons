@@ -9,17 +9,24 @@ namespace Runtime {
         public EnemyVisual(Enemy enemy) {
             _enemy = enemy;
             _healthBar = _enemy.GetComponentInChildren<WorldBar>();
-            _healthBar.Initialize(enemy.CurrentHealth, enemy.Data.MaxHealth);
+            if (_healthBar != null) {
+                _healthBar.Initialize(enemy.CurrentHealth, enemy.Data.MaxHealth);
+            }
 
             _enemy.OnHealthChanged.AddListener(HealthChangeHandle);
         }
 
         private void HealthChangeHandle(float newHealth) {
-            _healthBar.SetProgress(newHealth);
+            if (_healthBar != null) {
+                _healthBar.SetProgress(newHealth);
+            }
         }
 
         public void Dispose() {
-            _enemy.OnHealthChanged.RemoveListener(HealthChangeHandle);
+            if (_healthBar != null) {
+                _enemy.OnHealthChanged.RemoveListener(HealthChangeHandle);
+            }
+
             _healthBar.Dispose();
         }
     }

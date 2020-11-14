@@ -17,24 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: abf0eff0a4243574da298dc20986b5eb
   m_SerializeEntries:
-  - m_GUID: 042687b7d492f07418cfecb7f1ff1712
-    m_Address: Zombie
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
-  - m_GUID: 3ddca9d1a17e6d34981dec1f05699399
-    m_Address: Troll
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 1884230657228393506, guid: 3ddca9d1a17e6d34981dec1f05699399, type: 3}
-    m_TargetAsset: {fileID: 1884230657228393506, guid: 3ddca9d1a17e6d34981dec1f05699399, type: 3}
-  - m_GUID: 7c573786b923fd04fbd75968437430c3
-    m_Address: MushroomRed
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
   - m_GUID: 9fe5f2d5e646994459a9a61f678a9bd4
     m_Address: Pistol
     m_ReadOnly: 0
@@ -49,6 +31,12 @@ MonoBehaviour:
     - weapon
     m_MainAsset: {fileID: 2729572062571122813, guid: b9d813439ef01984cbb7240313f9e1a8, type: 3}
     m_TargetAsset: {fileID: 2729572062571122813, guid: b9d813439ef01984cbb7240313f9e1a8, type: 3}
+  - m_GUID: e5743e5caf7952d4ba64bff62cb3a549
+    m_Address: Hand
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f58ba2e77fdda0f4897abc610fa0dffd, type: 2}
   m_SchemaSet:
