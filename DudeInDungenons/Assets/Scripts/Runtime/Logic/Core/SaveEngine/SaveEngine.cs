@@ -3,6 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Bson;
 using UnityEngine;
 
 namespace Runtime.Logic.Core.SaveEngine {
