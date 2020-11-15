@@ -87,6 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6848696318094376108}
   - component: {fileID: 6581401098219450050}
+  - component: {fileID: 3102820095087392657}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -124,6 +125,19 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: a6a0ec420927bc74798496466b9b4549, type: 2}
   _attackTarget: 0
   _shootRaycastStartPoint: {fileID: 7031976892715273398}
+--- !u!65 &3102820095087392657
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3546745757658878854}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.5, z: 1}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1 &3660871107948060305
 GameObject:
   m_ObjectHideFlags: 0

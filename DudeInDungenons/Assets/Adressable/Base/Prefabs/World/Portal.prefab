@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7357332681327564457}
   - component: {fileID: 2097235004}
-  - component: {fileID: 3927109925730634}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -45,19 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e8580f729dc977488dbcbf501b0e3c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &3927109925730634
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6903705059732297284}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4, y: 4, z: 4}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8854170205402114961
 GameObject:
   m_ObjectHideFlags: 0
@@ -14326,6 +14312,7 @@ GameObject:
   - component: {fileID: 8857419652804973597}
   - component: {fileID: 8657161285121005997}
   - component: {fileID: 8656289174065568509}
+  - component: {fileID: 4044643540155249406}
   m_Layer: 0
   m_Name: Effect
   m_TagString: Untagged
@@ -19036,6 +19023,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!65 &4044643540155249406
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8854751504338949243}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8856085387112013627
 GameObject:
   m_ObjectHideFlags: 0
