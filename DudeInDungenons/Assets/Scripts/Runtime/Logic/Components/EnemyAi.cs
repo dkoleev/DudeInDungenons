@@ -1,17 +1,10 @@
-using UnityEngine;
-
 namespace Runtime.Logic.Components {
     public class EnemyAi : IComponent {
         public bool IsAttack { get; private set; }
+        public bool IsTargetReached { get; private set; }
         
         private Enemy _enemy;
         private ILocalPositionAdapter _target;
-        private Animator _animator;
-        
-        private static readonly int _animationWalk = Animator.StringToHash("Walk");
-        private static readonly int _animationRun = Animator.StringToHash("Run");
-        private static readonly int _animationIdle = Animator.StringToHash("Idle");
-        private static readonly int _animationAttack = Animator.StringToHash("Attack");
 
         public EnemyAi(Enemy enemy) {
             _enemy = enemy;
@@ -26,15 +19,15 @@ namespace Runtime.Logic.Components {
             _enemy.NavMeshAgent.angularSpeed = _enemy.Data.SpeedRotate;
         }
 
-        public void Update() {
+        public void Update(bool takeDamage) {
             _enemy.NavMeshAgent.destination = _target.LocalPosition;
 
-            var targetReached = IsTargetReached();
-            Attack(targetReached);
-            SetAnimation(targetReached);
+            IsTargetReached = TargetReached();
+            Attack(IsTargetReached && !takeDamage);
+            SetCanMove(IsTargetReached || takeDamage);
         }
         
-        private bool IsTargetReached() {
+        private bool TargetReached() {
             if (!_enemy.NavMeshAgent.pathPending) {
                 if (_enemy.NavMeshAgent.remainingDistance <= _enemy.NavMeshAgent.stoppingDistance) {
                     if (!_enemy.NavMeshAgent.hasPath || _enemy.NavMeshAgent.velocity.sqrMagnitude <= 0f) {
@@ -46,21 +39,12 @@ namespace Runtime.Logic.Components {
             return false;
         }
 
-        private void Attack(bool isAttack) {
-            IsAttack = isAttack;               
-            _enemy.NavMeshAgent.isStopped = isAttack;
+        private void SetCanMove(bool canMove) {
+            _enemy.NavMeshAgent.isStopped = canMove;
         }
 
-        private void SetAnimation(bool isTargetReached) {
-            if (_enemy.Animator == null) {
-                return;
-            }
-
-            if (isTargetReached) {
-                _enemy.Animator.SetTrigger(_animationAttack);
-            }
-
-            _enemy.Animator.SetBool(_animationRun, !_enemy.NavMeshAgent.isStopped);
+        private void Attack(bool canAttack) {
+            IsAttack = canAttack;               
         }
     }
 }

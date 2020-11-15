@@ -10,11 +10,21 @@ using UnityEngine.AI;
 
 namespace Runtime {
     public class Enemy : Entity, IDamagable, IWeaponOwner {
+        public enum EnemyState {
+            Idle,
+            Run,
+            Attack,
+            TakeDamage,
+            Dead
+        }
+        
         [SerializeField, Required, AssetsOnly]
         [InlineEditor(InlineEditorModes.GUIOnly)]
         private EnemyData _data;
         [SerializeField, Required] 
         private Transform _shootRaycastStartPoint;
+        
+        public Relay<EnemyState> OnStateChanged = new Relay<EnemyState>();
         
         public Transform RaycastStartPoint => _shootRaycastStartPoint;
         public Transform RotateTransform => transform;
@@ -26,18 +36,18 @@ namespace Runtime {
         
         public Relay<float> OnHealthChanged = new Relay<float>();
         public Relay OnDead = new Relay();
-
-        public Animator Animator { get; private set; }
+        private EnemyAi AI;
         
         private int _currentHealth;
         private NavMeshAgent _agent;
         private RandomMove _mover;
-        private EnemyAi _ai;
         private EnemyVisual _visual;
         private Player _player;
         private AttackComponent _attackComponent;
         private bool _isAttack;
         private bool _isDead;
+        private float _currentTakeDamageDelay;
+        private EnemyState _currentState = EnemyState.Idle;
 
         private bool _initialized;
 
@@ -45,21 +55,21 @@ namespace Runtime {
             base.Awake();
             
             _currentHealth = _data.MaxHealth;
-            Animator = GetComponentInChildren<Animator>();
             _agent = GetComponent<NavMeshAgent>();
             _visual = new EnemyVisual(this);
 
-            _attackComponent = new AttackComponent("Hand", this);
+            _attackComponent = new AttackComponent(_data.Weapon.name, this);
             AddComponent(_attackComponent);
-            _ai = new EnemyAi(this);
-            AddComponent(_ai);
+            AI = new EnemyAi(this);
+            AddComponent(AI);
         }
 
         protected override void Start() {
             base.Start();
 
             _player = GameObject.FindWithTag("Player").GetComponent<Player>();
-            _ai.SetTarget(_player);
+            AI.SetTarget(_player);
+            _visual.Initialize();
 
             _initialized = true;
         }
@@ -70,13 +80,19 @@ namespace Runtime {
             if (!_initialized) {
                 return;
             }
+
+            var takeDamage = _currentTakeDamageDelay > 0;
+            if (takeDamage) {
+                _currentTakeDamageDelay -= Time.deltaTime;
+            }
             
-            _ai.Update();
+            AI.Update(takeDamage);
             UpdateAttack();
+            UpdateState();
         }
 
         private void UpdateAttack() {
-            if (_ai.IsAttack) {
+            if (AI.IsAttack) {
                 if (!_isAttack) {
                     _attackComponent?.Reset();
                 }
@@ -84,13 +100,15 @@ namespace Runtime {
                 _attackComponent?.Update(_player);
             }
 
-            _isAttack = _ai.IsAttack;
+            _isAttack = AI.IsAttack;
         }
         
         public void TakeDamage(int damage) {
             if (_isDead) {
                 return;
             }
+
+            _currentTakeDamageDelay = _data.TakeDamageDelay;
 
             _currentHealth -= damage;
             if (_currentHealth <= 0) {
@@ -99,6 +117,26 @@ namespace Runtime {
             }
             
             OnHealthChanged.Dispatch(_currentHealth);
+        }
+
+        private void UpdateState() {
+            if (_currentTakeDamageDelay > 0) {
+                ChangeCurrentState(EnemyState.TakeDamage, true);
+                return;
+            }
+
+            if (AI.IsAttack) {
+                ChangeCurrentState(EnemyState.Attack, true);
+            } else {
+                ChangeCurrentState(EnemyState.Run);
+            }
+        }
+
+        private void ChangeCurrentState(EnemyState state, bool sendSameState = false) {
+            if (_currentState != state || sendSameState) {
+                _currentState = state;
+                OnStateChanged.Dispatch(_currentState);
+            }
         }
 
         private void Death() {

@@ -14,6 +14,9 @@ namespace Runtime.Data {
         [SerializeField]
         private float _speedRotate;
 
+        [SerializeField]
+        private float _takeDamageDelay;
+
         [SerializeField, AssetsOnly]
         [InlineEditor(InlineEditorModes.LargePreview)]
         private Weapon _weapon;
@@ -26,5 +29,7 @@ namespace Runtime.Data {
         public float SpeedMove => _speedMove;
         public float SpeedRotate => _speedRotate;
         public List<ItemStack> Drop => _drop;
+        public Weapon Weapon => _weapon;
+        public float TakeDamageDelay => _takeDamageDelay;
     }
 }
