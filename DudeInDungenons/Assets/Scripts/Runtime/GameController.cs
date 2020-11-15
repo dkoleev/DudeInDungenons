@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using Avocado.DeveloperCheatConsole.Scripts.Core;
+using Avocado.DeveloperCheatConsole.Scripts.Core.Commands;
 using Runtime.Data;
 using Runtime.Input;
 using Runtime.Logic.Core.SaveEngine;
@@ -9,6 +11,8 @@ using Runtime.Ui;
 using Runtime.Ui.MainMenu;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 
 namespace Runtime {
@@ -67,6 +71,8 @@ namespace Runtime {
 
                     break;
             }
+
+            AddDevCommands();
         }
 
         private void Start() {
@@ -165,6 +171,12 @@ namespace Runtime {
         
         private void OnApplicationQuit() {
             _saveEngine.SaveProgress();
+        }
+
+        private void AddDevCommands() {
+            DeveloperConsole.Instance.AddCommand(new DevCommand("spawn", "Spawn object on scene", delegate(string entityId) {
+                Addressables.InstantiateAsync(entityId, Vector3.zero, Quaternion.identity);
+            }));
         }
     }
 }
