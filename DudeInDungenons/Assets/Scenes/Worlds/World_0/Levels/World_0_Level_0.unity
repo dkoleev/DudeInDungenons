@@ -445,6 +445,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorldBase
       objectReference: {fileID: 0}
+    - target: {fileID: 3206450798434345591, guid: 3945d5e0ff700a44daa1db3f607759e6, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: dbbc53a6bc8f5c64bb234194ce1380aa, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3945d5e0ff700a44daa1db3f607759e6, type: 3}
 --- !u!1 &3631857884987683759

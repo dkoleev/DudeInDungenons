@@ -29,7 +29,7 @@ namespace Runtime.Logic.Components {
         }
 
         public void Update(IDamagable target) {
-            if (!Initialized) {
+            if (!Initialized || target == null) {
                 return;
             }
 

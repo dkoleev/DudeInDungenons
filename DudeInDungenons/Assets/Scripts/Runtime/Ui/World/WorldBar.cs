@@ -30,6 +30,7 @@ namespace Runtime.Ui.World {
 
         public void Dispose() {
             DOTween.Kill(_bufferProgress);
+            gameObject.SetActive(false);
         }
     }
 }

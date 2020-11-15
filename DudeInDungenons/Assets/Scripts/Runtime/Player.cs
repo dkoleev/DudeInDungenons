@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Runtime.Data;
 using Runtime.Data.Items;
 using Runtime.Logic;
@@ -8,12 +9,19 @@ using Runtime.Logic.Events;
 using Runtime.Logic.GameProgress.Progress;
 using Runtime.Static;
 using Runtime.Ui.World;
+using Sigtrap.Relays;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Runtime {
     public class Player : Entity, ILocalPositionAdapter, IWeaponOwner, IDamagable,
         IEventReceiver<OnEnemyDead> {
+        
+        public enum PlayerState {
+            Idle,
+            Run,
+            Attack
+        }
         
         [SerializeField, Required, AssetsOnly] 
         [InlineEditor(InlineEditorModes.GUIOnly)]
@@ -23,6 +31,8 @@ namespace Runtime {
         public EntityTag _attackTarget;
         [SerializeField, Required]
         private Transform _shootRaycastStartPoint;
+        
+        public Relay<PlayerState> OnStateChanged = new Relay<PlayerState>();
 
         public Vector3 LocalPosition {
             get => transform.localPosition;
@@ -32,12 +42,15 @@ namespace Runtime {
         public Transform RaycastStartPoint => _shootRaycastStartPoint;
         public Transform RotateTransform => _rotateTransform;
         public Transform MainTransform => _mainTransform;
+        public PlayerState CurrentState { get; private set; }
+        public bool IsMoving => _mover.IsMoving;
 
         private WorldBar _healthBar;
         private MoveByController _mover;
         private AttackComponent _attackComponent;
         private RotateByAxis _rotator;
         private FindTargetByDistance _findTargetByDistance;
+        private PlayerVisual _visual;
         
         private Transform _rotateTransform;
         private Transform _mainTransform;
@@ -52,7 +65,9 @@ namespace Runtime {
             _health = _data.MaxHealth;
             _mainTransform = transform;
             _rotateTransform = _mainTransform.Find("Root");
+            SetState(PlayerState.Idle);
             
+            _visual = new PlayerVisual(this);
             _attackComponent = new AttackComponent("Pistol", this);
             AddComponent(_attackComponent);
             _mover = new MoveByController(this, _data.SpeedMove);
@@ -64,10 +79,14 @@ namespace Runtime {
             
             _healthBar = GetComponentInChildren<WorldBar>();
             _healthBar.Initialize(_health, _data.MaxHealth);
-        }
 
+            _attackComponent.OnShoot.AddListener(OnShoot);
+        }
+        
         protected override void Start() {
             base.Start();
+            
+            _visual.Initialize();
             
             _initialized = true;
         }
@@ -85,12 +104,17 @@ namespace Runtime {
                 _rotator.Rotate(_mover.MoveAxis);
             } else {
                 _findTargetByDistance.Update();
-                if (_findTargetByDistance.CurrentTarget != null) {
+                if (_findTargetByDistance.CurrentTargetIsAvailable()) {
                     _attackComponent?.Update(_findTargetByDistance.CurrentTarget.Transform.GetComponent<IDamagable>());
                 }
             }
+            _visual.Update();
             
             _mainTransform.localRotation = Quaternion.Euler(new Vector3(0, _mainTransform.localRotation.y, 0));
+        }
+        
+        private void OnShoot() {
+            SetState(PlayerState.Attack, true);
         }
         
         public void TakeDamage(int damage) {
@@ -121,6 +145,17 @@ namespace Runtime {
                     inventory.Add(id, itemStack.Amount);
                 }
             }
+        }
+
+        private void SetState(PlayerState state, bool sendSameState = false) {
+            if (CurrentState != state || sendSameState) {
+                CurrentState = state;
+                OnStateChanged.Dispatch(CurrentState);
+            }
+        }
+
+        private void OnDestroy() {
+            _attackComponent.OnShoot.RemoveListener(OnShoot);
         }
     }
 }

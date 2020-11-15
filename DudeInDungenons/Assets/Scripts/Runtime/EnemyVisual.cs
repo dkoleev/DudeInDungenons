@@ -54,7 +54,7 @@ namespace Runtime {
 
                     break;
                 case Enemy.EnemyState.Dead:
-                    _healthBar.gameObject.SetActive(false);
+                    Dispose();
                     break;
             }
         }

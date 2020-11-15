@@ -298,8 +298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0d2858d936463f8c1f7eb5782c6e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _runMode: 0
-  _levelToLoad: Level_0
+  _runMode: 1
+  _levelToLoad: World_0_Level_0
   _worldData: {fileID: 11400000, guid: c6d6d1c4a36bfa742a616200bfba4a04, type: 2}
   _itemsReference: {fileID: 1667604189}
   _uiManager: {fileID: 1665176545}

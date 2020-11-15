@@ -31,7 +31,11 @@ namespace Runtime.Logic.Components {
         public void SetTarget(ITarget target) {
             _currentTarget = target;
         }
-
+        
+        public bool CurrentTargetIsAvailable() {
+            return _currentTarget != null && _currentTarget.IsReachable;
+        }
+        
         private bool TargetIsAvailable(ITarget target) {
             return target != null && target.IsReachable;
         }
