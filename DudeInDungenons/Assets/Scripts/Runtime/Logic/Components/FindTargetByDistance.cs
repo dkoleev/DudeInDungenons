@@ -1,26 +1,35 @@
 using System.Collections.Generic;
 using System.Linq;
+using Runtime.Logic.Core.EventBus;
+using Runtime.Logic.Events;
 using Runtime.Static;
 using UnityEngine;
 
 namespace Runtime.Logic.Components {
-    public class FindTargetByDistance : IComponent {
+    public class FindTargetByDistance : IComponent, IEventReceiver<OnEntityCreated> {
         public ITarget CurrentTarget => _currentTarget;
 
         private Transform _owner;
         private ITarget _currentTarget;
-        private List<ITarget> _targets = new List<ITarget>();
+        private HashSet<ITarget> _targets = new HashSet<ITarget>();
         private EntityTag _targetTag;
 
         public FindTargetByDistance(Transform owner, EntityTag targetTag) {
             _owner = owner;
             _targetTag = targetTag;
+            EventBus.Register(this);
         }
         
         public void Initialize() {
             var objects = GameObject.FindGameObjectsWithTag(_targetTag.ToString()).ToList();
             foreach (var go in objects) {
                 _targets.Add(go.GetComponent<ITarget>());
+            }
+        }
+        
+        public void OnEvent(OnEntityCreated e) {
+            if (e.Entity.gameObject.CompareTag(_targetTag.ToString())) {
+                _targets.Add(e.Entity as ITarget);
             }
         }
 
@@ -42,7 +51,8 @@ namespace Runtime.Logic.Components {
 
         private void SetTargetByDistance() {
             if (!TargetIsAvailable(_currentTarget)) {
-                foreach (var target in _targets) {
+                var bufferTargets = _targets.ToList();
+                foreach (var target in bufferTargets) {
                     if (!TargetIsAvailable(target)) {
                         continue;
                     }

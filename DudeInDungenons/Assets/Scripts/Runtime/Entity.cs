@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Runtime.Logic.Components;
+using Runtime.Logic.Core.EventBus;
+using Runtime.Logic.Events;
 using Runtime.Logic.GameProgress;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -17,6 +19,8 @@ namespace Runtime {
             foreach (var component in Components) {
                 component.Initialize();
             }
+            
+            EventBus<OnEntityCreated>.Raise(new OnEntityCreated(this));
         }
         
         public void Initialize(GameProgress progress) {
