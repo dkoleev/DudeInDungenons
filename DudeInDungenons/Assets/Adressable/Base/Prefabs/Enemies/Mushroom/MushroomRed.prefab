@@ -11,6 +11,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MushroomRed
       objectReference: {fileID: 0}
+    - target: {fileID: 5496379868141616967, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496379868141616967, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496379868141616967, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 6225159634826654684, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,6 +65,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6225159634826654684, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119172817402424883, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
+      propertyPath: _showAmount
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8877778953892020640, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}

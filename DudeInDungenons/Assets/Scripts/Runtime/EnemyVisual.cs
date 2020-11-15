@@ -1,5 +1,4 @@
 using System;
-using Runtime.Logic.Components;
 using Runtime.Ui.World;
 using UnityEngine;
 
@@ -55,7 +54,7 @@ namespace Runtime {
 
                     break;
                 case Enemy.EnemyState.Dead:
-                        
+                    _healthBar.gameObject.SetActive(false);
                     break;
             }
         }
