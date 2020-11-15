@@ -5,11 +5,13 @@ namespace Runtime {
     public class Portal : Entity {
         private ParticleSystem _effect;
         private Level _level;
+        private BoxCollider _collider;
 
         protected override void Start() {
             base.Start();
             
             _effect = GetComponentInChildren<ParticleSystem>();
+            _collider = GetComponent<BoxCollider>();
             Disable();
         }
 
@@ -19,11 +21,13 @@ namespace Runtime {
 
         public void Activate() {
             _effect.gameObject.SetActive(true);
+            _collider.enabled = true;
             _effect.Play(true);
         }
 
         private void Disable() {
             _effect.gameObject.SetActive(false);
+            _collider.enabled = false;
         }
 
         private void OnTriggerEnter(Collider other) {

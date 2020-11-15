@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   _maxHealth: 1000
-  _speedMove: 5
+  _speedMove: 7
   _speedRotate: 5
   _startInventory:
   - _item: {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
