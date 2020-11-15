@@ -449,6 +449,10 @@ PrefabInstance:
       propertyPath: m_Avatar
       value: 
       objectReference: {fileID: 9000000, guid: dbbc53a6bc8f5c64bb234194ce1380aa, type: 3}
+    - target: {fileID: 5496553003378416761, guid: 3945d5e0ff700a44daa1db3f607759e6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3945d5e0ff700a44daa1db3f607759e6, type: 3}
 --- !u!1 &3631857884987683759
