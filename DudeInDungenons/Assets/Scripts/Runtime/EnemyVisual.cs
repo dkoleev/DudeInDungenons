@@ -10,6 +10,7 @@ namespace Runtime {
         private static readonly int _animationIdle = Animator.StringToHash("Idle");
         private static readonly int _animationAttack = Animator.StringToHash("Attack");
         private static readonly int _animationTakeDamage= Animator.StringToHash("TakeDamage");
+        private static readonly int _animationDead= Animator.StringToHash("Dead");
         
         private readonly WorldBar _healthBar;
         private readonly Enemy _enemy;
@@ -53,6 +54,9 @@ namespace Runtime {
                 case Enemy.EnemyState.Run:
 
                     break;
+                case Enemy.EnemyState.Dead:
+                        
+                    break;
             }
         }
 
@@ -63,6 +67,7 @@ namespace Runtime {
             
             _animator.ResetTrigger(_animationAttack);
             _animator.ResetTrigger(_animationTakeDamage);
+            _animator.ResetTrigger(_animationDead);
 
             if (state == Enemy.EnemyState.Attack) {
                 _animator.SetTrigger(_animationAttack);
@@ -70,6 +75,10 @@ namespace Runtime {
             
             if (state == Enemy.EnemyState.TakeDamage) {
                 _animator.SetTrigger(_animationTakeDamage);
+            }
+            
+            if (state == Enemy.EnemyState.Dead) {
+                _animator.SetTrigger(_animationDead);
             }
 
             _animator.SetBool(_animationRun, state == Enemy.EnemyState.Run);

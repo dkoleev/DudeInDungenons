@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Runtime.Logic.Components {
     public class FindTargetByDistance : IComponent {
-        public Transform CurrentTarget => _currentTarget;
+        public ITarget CurrentTarget => _currentTarget;
 
         private Transform _owner;
-        private Transform _currentTarget;
-        private List<Transform> _targets = new List<Transform>();
+        private ITarget _currentTarget;
+        private List<ITarget> _targets = new List<ITarget>();
         private EntityTag _targetTag;
 
         public FindTargetByDistance(Transform owner, EntityTag targetTag) {
@@ -20,7 +20,7 @@ namespace Runtime.Logic.Components {
         public void Initialize() {
             var objects = GameObject.FindGameObjectsWithTag(_targetTag.ToString()).ToList();
             foreach (var go in objects) {
-                _targets.Add(go.transform);
+                _targets.Add(go.GetComponent<ITarget>());
             }
         }
 
@@ -28,21 +28,25 @@ namespace Runtime.Logic.Components {
             SetTargetByDistance();
         }
 
-        public void SetTarget(Transform target) {
+        public void SetTarget(ITarget target) {
             _currentTarget = target;
         }
 
+        private bool TargetIsAvailable(ITarget target) {
+            return target != null && target.IsReachable;
+        }
+
         private void SetTargetByDistance() {
-            if (_currentTarget == null) {
+            if (!TargetIsAvailable(_currentTarget)) {
                 foreach (var target in _targets) {
-                    if (target == null) {
+                    if (!TargetIsAvailable(target)) {
                         continue;
                     }
 
-                    if (_currentTarget == null) {
+                    if (!TargetIsAvailable(_currentTarget)) {
                         _currentTarget = target;
                     } else if(target != _currentTarget &&
-                              Vector3.Distance(_owner.position, target.localPosition) < Vector3.Distance(_owner.position, _currentTarget.localPosition)) {
+                              Vector3.Distance(_owner.position, target.Transform.localPosition) < Vector3.Distance(_owner.position, _currentTarget.Transform.localPosition)) {
                         _currentTarget = target;
                     }
                 }

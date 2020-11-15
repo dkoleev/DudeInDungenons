@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 namespace Runtime {
-    public class Enemy : Entity, IDamagable, IWeaponOwner {
+    public class Enemy : Entity, IDamagable, IWeaponOwner, ITarget{
         public enum EnemyState {
             Idle,
             Run,
@@ -27,6 +27,8 @@ namespace Runtime {
         public Relay<EnemyState> OnStateChanged = new Relay<EnemyState>();
         
         public Transform RaycastStartPoint => _shootRaycastStartPoint;
+        public bool IsReachable => CurrentState != EnemyState.Dead;
+        public Transform Transform => transform;
         public Transform RotateTransform => transform;
         public Transform MainTransform => transform;
 
@@ -45,9 +47,8 @@ namespace Runtime {
         private Player _player;
         private AttackComponent _attackComponent;
         private bool _isAttack;
-        private bool _isDead;
         private float _currentTakeDamageDelay;
-        private EnemyState _currentState = EnemyState.Idle;
+        public EnemyState CurrentState { get; private set; }
 
         private bool _initialized;
 
@@ -77,7 +78,7 @@ namespace Runtime {
         protected override void Update() {
             base.Update();
             
-            if (!_initialized) {
+            if (!_initialized || CurrentState == EnemyState.Dead) {
                 return;
             }
 
@@ -104,7 +105,7 @@ namespace Runtime {
         }
         
         public void TakeDamage(int damage) {
-            if (_isDead) {
+            if (CurrentState == EnemyState.Dead) {
                 return;
             }
 
@@ -133,19 +134,17 @@ namespace Runtime {
         }
 
         private void ChangeCurrentState(EnemyState state, bool sendSameState = false) {
-            if (_currentState != state || sendSameState) {
-                _currentState = state;
-                OnStateChanged.Dispatch(_currentState);
+            if (CurrentState != state || sendSameState) {
+                CurrentState = state;
+                OnStateChanged.Dispatch(CurrentState);
             }
         }
 
         private void Death() {
-            _isDead = true;
+            ChangeCurrentState(EnemyState.Dead);
+
             EventBus<OnEnemyDead>.Raise(new OnEnemyDead(this));
             OnDead.Dispatch();
-            _visual.Dispose();
-            
-            Destroy(gameObject);
         }
     }
 }

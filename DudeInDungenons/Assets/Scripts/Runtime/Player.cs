@@ -86,7 +86,7 @@ namespace Runtime {
             } else {
                 _findTargetByDistance.Update();
                 if (_findTargetByDistance.CurrentTarget != null) {
-                    _attackComponent?.Update(_findTargetByDistance.CurrentTarget.GetComponent<IDamagable>());
+                    _attackComponent?.Update(_findTargetByDistance.CurrentTarget.Transform.GetComponent<IDamagable>());
                 }
             }
             
