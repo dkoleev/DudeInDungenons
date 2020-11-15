@@ -6,6 +6,7 @@ using Runtime.Logic.Components;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 using Runtime.Logic.GameProgress.Progress;
+using Runtime.Static;
 using Runtime.Ui.World;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -17,6 +18,9 @@ namespace Runtime {
         [SerializeField, Required, AssetsOnly] 
         [InlineEditor(InlineEditorModes.GUIOnly)]
         private PlayerData _data;
+
+        [SerializeField]
+        public EntityTag _attackTarget;
         [SerializeField, Required]
         private Transform _shootRaycastStartPoint;
 
@@ -43,7 +47,6 @@ namespace Runtime {
 
         protected override void Awake() {
             base.Awake();
-
             EventBus.Register(this);
 
             _health = _data.MaxHealth;
@@ -56,7 +59,7 @@ namespace Runtime {
             AddComponent(_mover);
             _rotator = new RotateByAxis(_rotateTransform, _data.SpeedRotate);
             AddComponent(_rotator);
-            _findTargetByDistance = new FindTargetByDistance(_mainTransform);
+            _findTargetByDistance = new FindTargetByDistance(_mainTransform, _attackTarget);
             AddComponent(_findTargetByDistance);
             
             _healthBar = GetComponentInChildren<WorldBar>();
@@ -83,7 +86,7 @@ namespace Runtime {
             } else {
                 _findTargetByDistance.Update();
                 if (_findTargetByDistance.CurrentTarget != null) {
-                    _attackComponent?.Update(_findTargetByDistance.CurrentTarget);
+                    _attackComponent?.Update(_findTargetByDistance.CurrentTarget.GetComponent<IDamagable>());
                 }
             }
             

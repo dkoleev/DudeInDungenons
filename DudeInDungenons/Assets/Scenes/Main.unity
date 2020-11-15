@@ -243,6 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _runMode: 0
   _levelToLoad: Level_0
+  _worldData: {fileID: 11400000, guid: c6d6d1c4a36bfa742a616200bfba4a04, type: 2}
   _itemsReference: {fileID: 1667604189}
   _uiManager: {fileID: 1665176545}
 --- !u!4 &1936352730

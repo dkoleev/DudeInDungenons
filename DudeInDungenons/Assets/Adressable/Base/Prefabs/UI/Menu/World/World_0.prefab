@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76ac64cbf9b64f54daf3f9e46adfd748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: c6d6d1c4a36bfa742a616200bfba4a04, type: 2}
   _floatAnimationTarget: {fileID: 7815708259875908967}
   _animationSpeed: 2
   _floatingOffset: 0.15

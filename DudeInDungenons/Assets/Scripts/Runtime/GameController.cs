@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
+using Runtime.Data;
 using Runtime.Input;
 using Runtime.Logic.Core.SaveEngine;
 using Runtime.Logic.GameProgress;
+using Runtime.Static;
 using Runtime.Ui;
+using Runtime.Ui.MainMenu;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -27,11 +30,16 @@ namespace Runtime {
         [SerializeField]
         [ShowIf("_runMode", RunMode.Level)]
         private string _levelToLoad;
+        [SerializeField]
+        [ShowIf("_runMode", RunMode.Level)]
+        private WorldData _worldData;
 
         [SerializeField, Required]
         private ItemsReference _itemsReference;
         [SerializeField, Required]
         private UiManager _uiManager;
+        
+        public WorldData CurrentWorldData { get; private set; }
         
         private SaveEngine<GameProgress> _saveEngine;
         private InputManager _inputManager;
@@ -39,7 +47,9 @@ namespace Runtime {
         private GameProgress _progress;
         private bool _allScenesLoaded;
         private Action OnAllScenesLoaded;
-        
+
+        private Level _currentLevel;
+
         private GameMode _gameMode = GameMode.MainMenu;
 
         private void Awake() {
@@ -48,7 +58,7 @@ namespace Runtime {
 
             switch (_runMode) {
                 case RunMode.MainMenu:
-                    LoadMainMenu();
+                    LoadMainMenu(null);
                     break;
                 case RunMode.Level:
                     LoadLevel(_levelToLoad);
@@ -73,8 +83,9 @@ namespace Runtime {
 
                 switch (_gameMode) {
                     case GameMode.MainMenu:
+                        CurrentWorldData = FindObjectOfType<WorldVisual>().Data;
                         _uiManager.MainMenu.OnPlayClick.AddListener(() => {
-                            LoadLevel("Level_0");
+                            LoadLevel(CurrentWorldData.Levels[0].Value);
                         });
                         break;
                     case GameMode.Level:
@@ -90,19 +101,22 @@ namespace Runtime {
             return _saveEngine.LoadProgress();
         }
 
-        private void LoadLevel(string levelName) {
+        public void LoadLevel(string levelName) {
             _gameMode = GameMode.Level;
             StartCoroutine(LoadLevelCor(levelName));
         }
 
-        private void LoadMainMenu() {
+        public void LoadMainMenu(string levelToUnloadName) {
             _gameMode = GameMode.MainMenu;
-            StartCoroutine(LoadMainMenuCor());
+            StartCoroutine(LoadMainMenuCor(levelToUnloadName));
         }
         
-        private IEnumerator LoadMainMenuCor() {
+        private IEnumerator LoadMainMenuCor(string currentLevel) {
             yield return StartCoroutine(UnloadScene(SceneNames.LevelUI));
-            yield return StartCoroutine(UnloadScene("Level_0"));
+            if (!string.IsNullOrEmpty(currentLevel)) {
+                yield return StartCoroutine(UnloadScene(currentLevel));
+            }
+
             yield return StartCoroutine(LoadScene(SceneNames.MenuMain, LoadSceneMode.Additive));
             yield return StartCoroutine(LoadScene(SceneNames.MenuUI, LoadSceneMode.Additive));
             
@@ -111,12 +125,18 @@ namespace Runtime {
         }
         
         private IEnumerator LoadLevelCor(string levelName) {
+            if (_currentLevel != null) {
+                yield return StartCoroutine(UnloadScene(_currentLevel.LevelName));
+            }
+
             yield return StartCoroutine(UnloadScene(SceneNames.MenuMain));
             yield return StartCoroutine(UnloadScene(SceneNames.MenuUI));
             
             yield return StartCoroutine(LoadScene(SceneNames.LevelUI, LoadSceneMode.Additive));
             yield return StartCoroutine(LoadScene(levelName, LoadSceneMode.Additive));
 
+            _currentLevel = new Level(this, levelName);
+            
             _allScenesLoaded = true;
             OnAllScenesLoaded?.Invoke();
         }

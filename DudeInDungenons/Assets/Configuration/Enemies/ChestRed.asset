@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dde86c2f49ed4ba4c8532835bf4c35a0, type: 3}
-  m_Name: Troll
+  m_Name: ChestRed
   m_EditorClassIdentifier: 
-  _maxHealth: 200
-  _speedMove: 2
-  _speedRotate: 120
-  _weapon: {fileID: 304213903785659191, guid: b9d813439ef01984cbb7240313f9e1a8, type: 3}
+  _maxHealth: 40
+  _speedMove: 5
+  _speedRotate: 180
+  _weapon: {fileID: 304213903785659191, guid: e5743e5caf7952d4ba64bff62cb3a549, type: 3}
   _drop:
   - _item: {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
-    _amount: 1
+    _amount: 50

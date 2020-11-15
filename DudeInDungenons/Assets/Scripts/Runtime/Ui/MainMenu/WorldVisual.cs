@@ -1,8 +1,12 @@
 ﻿using DG.Tweening;
+using Runtime.Data;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Runtime.Ui.MainMenu {
     public class WorldVisual : MonoBehaviour {
+        [SerializeField,Required]
+        private WorldData _data;
         [SerializeField]
         private Transform _floatAnimationTarget;
 
@@ -10,6 +14,8 @@ namespace Runtime.Ui.MainMenu {
         private float _animationSpeed = 1.0f;
         [SerializeField]
         private float _floatingOffset = 10.0f;
+
+        public WorldData Data => _data;
         
         void Start() {
             AnimateFloating();

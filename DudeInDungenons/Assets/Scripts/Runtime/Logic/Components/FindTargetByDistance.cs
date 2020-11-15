@@ -1,43 +1,49 @@
 using System.Collections.Generic;
 using System.Linq;
+using Runtime.Static;
 using UnityEngine;
 
 namespace Runtime.Logic.Components {
     public class FindTargetByDistance : IComponent {
-        public Enemy CurrentTarget => _currentTarget;
+        public Transform CurrentTarget => _currentTarget;
 
         private Transform _owner;
-        private Enemy _currentTarget;
-        private List<Enemy> _targets = new List<Enemy>();
+        private Transform _currentTarget;
+        private List<Transform> _targets = new List<Transform>();
+        private EntityTag _targetTag;
 
-        public FindTargetByDistance(Transform owner) {
+        public FindTargetByDistance(Transform owner, EntityTag targetTag) {
             _owner = owner;
+            _targetTag = targetTag;
         }
         
         public void Initialize() {
-            _targets = Object.FindObjectsOfType<Enemy>().ToList();
+            var objects = GameObject.FindGameObjectsWithTag(_targetTag.ToString()).ToList();
+            foreach (var go in objects) {
+                _targets.Add(go.transform);
+            }
         }
 
         public void Update() {
             SetTargetByDistance();
         }
 
-        public void SetTarget(Enemy target) {
+        public void SetTarget(Transform target) {
             _currentTarget = target;
         }
 
         private void SetTargetByDistance() {
             if (_currentTarget == null) {
-                foreach (var enemy in _targets) {
-                    if (enemy == null) {
+                foreach (var target in _targets) {
+                    if (target == null) {
                         continue;
                     }
 
                     if (_currentTarget == null) {
-                        _currentTarget = enemy;
-                    } else if(enemy != _currentTarget &&
-                              Vector3.Distance(_owner.position, enemy.transform.position) < Vector3.Distance(_owner.position, _currentTarget.transform.position)) {
-                        _currentTarget = enemy;
+                        _currentTarget = target;
+                    } else if(target != _currentTarget &&
+                              Vector3.Distance(_owner.position, target.localPosition) < Vector3.Distance(_owner.position, _currentTarget.localPosition)) {
+                        _currentTarget = target;
                     }
                 }
             }
