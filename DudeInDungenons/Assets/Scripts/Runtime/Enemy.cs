@@ -1,5 +1,6 @@
 ﻿using System;
 using Avocado.Framework.Patterns.StateMachine;
+using Avocado.UnityToolbox.Timer;
 using Runtime.Data;
 using Runtime.Logic;
 using Runtime.Logic.Components;
@@ -18,6 +19,10 @@ namespace Runtime {
         private EnemyData _data;
         [SerializeField, Required] 
         private Transform _shootRaycastStartPoint;
+        [SerializeField, AssetsOnly]
+        private GameObject _deadEffect;
+        [SerializeField, AssetsOnly]
+        private GameObject _dissappearEffect;
         
         public Relay<IState, IState> OnStateChanged = new Relay<IState, IState>();
         public Relay<float> OnHealthChanged = new Relay<float>();
@@ -42,19 +47,23 @@ namespace Runtime {
         private bool _isDead;
         private bool _takeDamage;
         private float _currentTakeDamageDelay;
+        private Transform _root;
         
         private StateMachine _stateMachine;
+        private TimeManager _timeManager;
 
         private bool _initialized;
 
         protected override void Awake() {
             base.Awake();
-            
+
+            _root = Transform.Find("Root") ?? Transform;
             _currentHealth = _data.MaxHealth;
             _agent = GetComponent<NavMeshAgent>();
             _agent.speed = Data.SpeedMove;
             _agent.angularSpeed = Data.SpeedRotate;
             
+            _timeManager = new TimeManager();
             _visual = new EnemyVisual(this);
 
             _attackComponent = new AttackComponent(_data.Weapon.name, this);
@@ -160,9 +169,10 @@ namespace Runtime {
 
         private void Death() {
             _isDead = true;
-
             EventBus<OnEnemyDead>.Raise(new OnEnemyDead(this));
             OnDead.Dispatch();
+            
+            PlayDeadEffect();
         }
         
         private bool TargetReached() {
@@ -175,6 +185,22 @@ namespace Runtime {
             }
 
             return false;
+        }
+
+        private void PlayDeadEffect() {
+            if (_deadEffect is null) {
+                return;
+            }
+
+            var effect = Instantiate(_deadEffect, _root);
+            effect.transform.localPosition = new Vector3(0, 1, 0);
+            effect.transform.localRotation = Quaternion.identity;
+            Destroy(effect, 1.5f);
+            _timeManager.Call(1.95f, () => {
+                Instantiate(_dissappearEffect, transform.position, Quaternion.identity);
+            });
+            
+            Destroy(gameObject, 2.0f);
         }
     }
 }

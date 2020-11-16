@@ -2486,6 +2486,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MushroomDark
       objectReference: {fileID: 0}
+    - target: {fileID: 8980296311750782110, guid: 7699ec640cb221b42bf1ababc6dae820, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7699ec640cb221b42bf1ababc6dae820, type: 3}
 --- !u!1001 &175481374

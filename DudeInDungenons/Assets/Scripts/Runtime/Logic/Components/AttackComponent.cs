@@ -13,10 +13,12 @@ namespace Runtime.Logic.Components {
         
         private float _currentShootDelay = 0;
         private IWeaponOwner _owner;
-        private const float RotationSpeed = 600;
+        private readonly float _rotationSpeed;
+        private bool _isRotating;
         
-        public AttackComponent(string weaponId, IWeaponOwner owner) {
+        public AttackComponent(string weaponId, IWeaponOwner owner, float rotationSpeed = 600) {
             _owner = owner;
+            _rotationSpeed = rotationSpeed;
             CreateWeapon(weaponId);
         }
         
@@ -41,18 +43,22 @@ namespace Runtime.Logic.Components {
             RotateToTarget(target);
 
             _currentShootDelay -= Time.deltaTime;
-            if (_currentShootDelay <= 0) {
+            if (_currentShootDelay <= 0 && !_isRotating) {
                 _currentShootDelay = CurrentWeapon.ShootDelay;
                 Shoot(target);
             }
         }
 
         private void RotateToTarget(IDamagable target) {
-            if (Quaternion.Angle(_owner.RotateTransform.rotation, target.MainTransform.rotation) > 0.01f) {
-                var targetDirection = (target.MainTransform.position - _owner.RotateTransform.position).normalized;
-                var targetRotation = Quaternion.LookRotation(targetDirection);
-                _owner.RotateTransform.rotation = Quaternion.RotateTowards(_owner.RotateTransform.rotation, targetRotation , Time.deltaTime * RotationSpeed);
-            }
+            var targetDirection = (target.MainTransform.position - _owner.RotateTransform.position).normalized;
+            var targetRotation = Quaternion.LookRotation(targetDirection);
+
+            var rotation = _owner.RotateTransform.rotation;
+            var angle = Quaternion.Angle(rotation, targetRotation);
+            _isRotating = angle > 10f;
+            
+            rotation = Quaternion.RotateTowards(rotation, targetRotation , Time.deltaTime * _rotationSpeed);
+            _owner.RotateTransform.rotation = rotation;
         }
 
         private void Shoot(IDamagable target) {
