@@ -16166,6 +16166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MushroomRed
       objectReference: {fileID: 0}
+    - target: {fileID: 726563576646290228, guid: 7c573786b923fd04fbd75968437430c3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8771144235824434246, guid: 7c573786b923fd04fbd75968437430c3, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -29112,6 +29116,10 @@ PrefabInstance:
     - target: {fileID: 1845427551236609522, guid: 3bbba0a365eb3cd4baa736ffb426d9c7, type: 3}
       propertyPath: m_Name
       value: MushroomBrown
+      objectReference: {fileID: 0}
+    - target: {fileID: 1845427551236609522, guid: 3bbba0a365eb3cd4baa736ffb426d9c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7651719239721013888, guid: 3bbba0a365eb3cd4baa736ffb426d9c7, type: 3}
       propertyPath: m_RootOrder

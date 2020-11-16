@@ -1,4 +1,6 @@
 using System;
+using Avocado.Framework.Patterns.StateMachine;
+using Runtime.Logic.States;
 using Runtime.Ui.World;
 using UnityEngine;
 
@@ -44,22 +46,14 @@ namespace Runtime {
             _healthBar.Dispose();
         }
 
-        private void UpdateVisualByState(Enemy.EnemyState state) {
-            SetAnimation(state);
-            switch (state) {
-                case Enemy.EnemyState.Attack:
-
-                    break;
-                case Enemy.EnemyState.Run:
-
-                    break;
-                case Enemy.EnemyState.Dead:
-                    Dispose();
-                    break;
+        private void UpdateVisualByState(IState prevState, IState newState) {
+            SetAnimation(newState);
+            if (newState is Dead) {
+                _healthBar.Dispose();
             }
         }
 
-        private void SetAnimation(Enemy.EnemyState state) {
+        private void SetAnimation(IState state) {
             if (_animator == null) {
                 return;
             }
@@ -68,19 +62,19 @@ namespace Runtime {
             _animator.ResetTrigger(_animationTakeDamage);
             _animator.ResetTrigger(_animationDead);
 
-            if (state == Enemy.EnemyState.Attack) {
+            if (state is Attack) {
                 _animator.SetTrigger(_animationAttack);
             }
             
-            if (state == Enemy.EnemyState.TakeDamage) {
+            if (state is TakeDamage) {
                 _animator.SetTrigger(_animationTakeDamage);
             }
             
-            if (state == Enemy.EnemyState.Dead) {
+            if (state is Dead) {
                 _animator.SetTrigger(_animationDead);
             }
 
-            _animator.SetBool(_animationRun, state == Enemy.EnemyState.Run);
+            _animator.SetBool(_animationRun, state is Move);
         }
     }
 }
