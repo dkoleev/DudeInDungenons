@@ -9,6 +9,7 @@ using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 using Runtime.Logic.GameProgress.Progress;
 using Runtime.Logic.States.Player;
+using Runtime.Logic.WeaponSystem;
 using Runtime.Static;
 using Runtime.Ui.World;
 using Sigtrap.Relays;
@@ -70,8 +71,13 @@ namespace Runtime {
             _rotateTransform = _mainTransform.Find("Root");
             
             _visual = new PlayerVisual(this);
-            _attackComponent = new AttackComponent("Pistol", this);
-            AddComponent(_attackComponent);
+
+            var currentWeapon = GetEquippedWeapon();
+            if (!string.IsNullOrEmpty(currentWeapon)) {
+                _attackComponent = new AttackComponent(currentWeapon, this);
+                AddComponent(_attackComponent);
+            }
+         
             _mover = new MoveByController(this, _data.SpeedMove);
             AddComponent(_mover);
             _rotator = new RotateByAxis(_rotateTransform, _data.SpeedRotate);
@@ -82,9 +88,19 @@ namespace Runtime {
             _healthBar = GetComponentInChildren<WorldBar>();
             _healthBar.Initialize(_health, _data.MaxHealth);
 
-            _attackComponent.OnShoot.AddListener(OnShoot);
+            _attackComponent?.OnShoot.AddListener(OnShoot);
         }
-        
+
+        private string GetEquippedWeapon() {
+            foreach (var itemStack in _data.StartInventory) {
+                if (itemStack.Equipped && itemStack.Item is WeaponData) {
+                    return itemStack.Item.Id;
+                }
+            }
+            
+            return String.Empty;
+        }
+
         protected override void Start() {
             base.Start();
             

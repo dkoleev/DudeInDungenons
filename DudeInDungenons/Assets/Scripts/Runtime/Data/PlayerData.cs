@@ -18,10 +18,10 @@ namespace Runtime.Data {
         [TabGroup("Starting Inventory")]
         [TableList]
         private ItemStack[] _startInventory;
-        
 
         public int MaxHealth => _maxHealth;
         public float SpeedMove => _speedMove;
         public float SpeedRotate => _speedRotate;
+        public ItemStack[] StartInventory => _startInventory;
     }
 }
