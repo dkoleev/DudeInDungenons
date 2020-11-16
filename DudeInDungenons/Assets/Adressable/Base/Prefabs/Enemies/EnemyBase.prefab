@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1081646040743554213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3324671955949450402}
+  m_Layer: 9
+  m_Name: DeadEffectParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3324671955949450402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081646040743554213}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1718891504295308713}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1595536383311309870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3292275774214023447}
+  m_Layer: 9
+  m_Name: AfterDeadEffectParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3292275774214023447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595536383311309870}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1718891504295308713}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2700325780493669344
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,6 +150,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 5b2bcaaed26f7f245921397bd4d88b33, type: 2}
   _shootRaycastStartPoint: {fileID: 3600354452525459052}
+  _deadEffectsParent: {fileID: 3324671955949450402}
+  _afterDeadEffectsParent: {fileID: 3292275774214023447}
+  _deadEffect: {fileID: 0}
+  _dissappearEffect: {fileID: 0}
 --- !u!195 &8832152762032189241
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -171,6 +235,8 @@ Transform:
   m_Children:
   - {fileID: 3600354452525459052}
   - {fileID: 424227110210734937}
+  - {fileID: 3324671955949450402}
+  - {fileID: 3292275774214023447}
   - {fileID: 5496379868141616967}
   m_Father: {fileID: 6225159634826654684}
   m_RootOrder: 0
@@ -196,7 +262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6722490535974493087, guid: 969c68631a2a25943a160c85349b8f0d, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6722490535974493087, guid: 969c68631a2a25943a160c85349b8f0d, type: 3}
       propertyPath: m_AnchorMax.x

@@ -333,6 +333,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 77630409208cd0c439783b1ddad6bb15, type: 2}
   - {fileID: 11400000, guid: 51bdc64555201ce4b920c07abc4780b9, type: 2}
   - {fileID: 11400000, guid: 34cfd57b43212af4ca4e6a814b1e52f7, type: 2}
+  - {fileID: 11400000, guid: e755c460eca3d034692e5d6c43df3b4a, type: 2}
 --- !u!1 &1936352728
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e0d2858d936463f8c1f7eb5782c6e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _runMode: 1
+  _runMode: 0
   _levelToLoad: World_0_Level_0
   _worldData: {fileID: 11400000, guid: c6d6d1c4a36bfa742a616200bfba4a04, type: 2}
   _itemsReference: {fileID: 1667604189}

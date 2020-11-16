@@ -3,8 +3,7 @@ using UnityEditor;
 using System.Collections;
 using System.Reflection;
 
-// Cartoon FX Easy Editor
-// (c) 2013,2014 - Jean Moreno
+// Cartoon FX Easy Editor - (c) 2013, Jean Moreno
 
 public class CFXEasyEditor : EditorWindow
 {
@@ -458,10 +457,8 @@ public class CFXEasyEditor : EditorWindow
 		{
 			//Scale Shuriken Particles Values
 			ParticleSystem[] systems;
-			if(pref_IncludeChildren)
-				systems = go.GetComponentsInChildren<ParticleSystem>(true);
-			else
-				systems = go.GetComponents<ParticleSystem>();
+			if(pref_IncludeChildren)		systems = go.GetComponentsInChildren<ParticleSystem>(true);
+			else 					systems = go.GetComponents<ParticleSystem>();
 			
 			foreach(ParticleSystem ps in systems)
 			{
@@ -479,10 +476,8 @@ public class CFXEasyEditor : EditorWindow
 		{
 			//Scale Shuriken Particles Values
 			ParticleSystem[] systems;
-			if(pref_IncludeChildren)
-				systems = go.GetComponentsInChildren<ParticleSystem>(true);
-			else
-				systems = go.GetComponents<ParticleSystem>();
+			if(pref_IncludeChildren)		systems = go.GetComponentsInChildren<ParticleSystem>(true);
+			else 					systems = go.GetComponents<ParticleSystem>();
 			
 			foreach(ParticleSystem ps in systems)
 			{
@@ -500,10 +495,8 @@ public class CFXEasyEditor : EditorWindow
 		{
 			//Scale Shuriken Particles Values
 			ParticleSystem[] systems;
-			if(pref_IncludeChildren)
-				systems = go.GetComponentsInChildren<ParticleSystem>(true);
-			else
-				systems = go.GetComponents<ParticleSystem>();
+			if(pref_IncludeChildren)		systems = go.GetComponentsInChildren<ParticleSystem>(true);
+			else 					systems = go.GetComponents<ParticleSystem>();
 			
 			foreach(ParticleSystem ps in systems)
 			{
@@ -526,10 +519,8 @@ public class CFXEasyEditor : EditorWindow
 		foreach(GameObject go in Selection.gameObjects)
 		{
 			ParticleSystem[] systems;
-			if(pref_IncludeChildren)
-				systems = go.GetComponentsInChildren<ParticleSystem>(true);
-			else
-				systems = go.GetComponents<ParticleSystem>();
+			if(pref_IncludeChildren)		systems = go.GetComponentsInChildren<ParticleSystem>(true);
+			else 					systems = go.GetComponents<ParticleSystem>();
 			
 			foreach(ParticleSystem ps in systems)
 			{
@@ -564,10 +555,8 @@ public class CFXEasyEditor : EditorWindow
 		foreach(GameObject go in Selection.gameObjects)
 		{
 			ParticleSystem[] systems;
-			if(pref_IncludeChildren)
-				systems = go.GetComponentsInChildren<ParticleSystem>(true);
-			else
-				systems = go.GetComponents<ParticleSystem>();
+			if(pref_IncludeChildren)		systems = go.GetComponentsInChildren<ParticleSystem>(true);
+			else 					systems = go.GetComponents<ParticleSystem>();
 			
 			foreach(ParticleSystem ps in systems)
 			{
@@ -639,16 +628,13 @@ public class CFXEasyEditor : EditorWindow
 		}
 		
 		float lightness = (float)(LightnessStep/100f);
-		if(substract)
-			lightness *= -1f;
+		if(substract) lightness *= -1f;
 		
 		foreach(GameObject go in Selection.gameObjects)
 		{
 			ParticleSystem[] systems;
-			if(pref_IncludeChildren)
-				systems = go.GetComponentsInChildren<ParticleSystem>(true);
-			else
-				systems = go.GetComponents<ParticleSystem>();
+			if(pref_IncludeChildren)		systems = go.GetComponentsInChildren<ParticleSystem>(true);
+			else 					systems = go.GetComponents<ParticleSystem>();
 			
 			foreach(ParticleSystem ps in systems)
 			{
@@ -870,10 +856,8 @@ public class CFXEasyEditor : EditorWindow
 		foreach(GameObject go in Selection.gameObjects)
 		{
 			ParticleSystem[] systems;
-			if(pref_IncludeChildren)
-				systems = go.GetComponentsInChildren<ParticleSystem>(true);
-			else
-				systems = go.GetComponents<ParticleSystem>();
+			if(pref_IncludeChildren)		systems = go.GetComponentsInChildren<ParticleSystem>(true);
+			else 					systems = go.GetComponents<ParticleSystem>();
 			
 			//Scale Lifetime
 			foreach(ParticleSystem ps in systems)
@@ -890,10 +874,8 @@ public class CFXEasyEditor : EditorWindow
 		{
 			//Scale Shuriken Particles Values
 			ParticleSystem[] systems;
-			if(pref_IncludeChildren)
-				systems = go.GetComponentsInChildren<ParticleSystem>(true);
-			else
-				systems = go.GetComponents<ParticleSystem>();
+			if(pref_IncludeChildren)		systems = go.GetComponentsInChildren<ParticleSystem>(true);
+			else 					systems = go.GetComponents<ParticleSystem>();
 			
 			foreach(ParticleSystem ps in systems)
 			{
@@ -910,10 +892,8 @@ public class CFXEasyEditor : EditorWindow
 		foreach(GameObject go in Selection.gameObjects)
 		{
 			ParticleSystem[] systems;
-			if(pref_IncludeChildren)
-				systems = go.GetComponentsInChildren<ParticleSystem>(true);
-			else
-				systems = go.GetComponents<ParticleSystem>();
+			if(pref_IncludeChildren)		systems = go.GetComponentsInChildren<ParticleSystem>(true);
+			else 					systems = go.GetComponents<ParticleSystem>();
 			
 			//Scale Lifetime
 			foreach(ParticleSystem ps in systems)
@@ -1169,18 +1149,11 @@ public class CFXEasyEditor : EditorWindow
 		//Particle System
 		ps.startSize *= ScalingValue;
 		ps.gravityModifier *= ScalingValue;
-		if(ps.startSpeed > 0.01f)
-			ps.startSpeed *= ScalingValue;
+		if(ps.startSpeed > 0.01f) ps.startSpeed *= ScalingValue;
 		if(ps.gameObject != parent)
 			ps.transform.localPosition *= ScalingValue;
 		
 		SerializedObject psSerial = new SerializedObject(ps);
-		
-		//Scale Emission Rate if set on Distance
-		if(psSerial.FindProperty("EmissionModule.enabled").boolValue && psSerial.FindProperty("EmissionModule.m_Type").intValue == 1)
-		{
-			psSerial.FindProperty("EmissionModule.rate.scalar").floatValue /= ScalingValue;
-		}
 		
 		//Scale Size By Speed Module
 		if(psSerial.FindProperty("SizeBySpeedModule.enabled").boolValue)
@@ -1247,11 +1220,6 @@ public class CFXEasyEditor : EditorWindow
 			//(ShapeModule.type 6 == Mesh)
 			if(psSerial.FindProperty("ShapeModule.type").intValue == 6)
 			{
-#if !UNITY_3_5
-				//Unity 4+ : changing the Transform scale will affect the shape Mesh
-				ps.transform.localScale = ps.transform.localScale * ScalingValue;
-				EditorUtility.SetDirty(ps);
-#else
 				Object obj = psSerial.FindProperty("ShapeModule.m_Mesh").objectReferenceValue;
 				if(obj != null)
 				{
@@ -1323,7 +1291,6 @@ public class CFXEasyEditor : EditorWindow
 					//Apply new Mesh
 					psSerial.FindProperty("ShapeModule.m_Mesh").objectReferenceValue = meshToUse;
 				}
-#endif
 			}
 		}
 		

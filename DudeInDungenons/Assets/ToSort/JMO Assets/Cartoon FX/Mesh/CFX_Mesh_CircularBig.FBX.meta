@@ -4,11 +4,26 @@ ModelImporter:
   serializedVersion: 20101
   internalIDToNameTable:
   - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      23: 2300000
+    second: //RootNode
+  - first:
+      33: 3300000
+    second: //RootNode
+  - first:
       43: 4300000
     second: Cylinder01
   - first:
       43: 4300002
     second: CFX_CircularBig
+  - first:
+      111: 11100000
+    second: //RootNode
   externalObjects: {}
   materials:
     materialImportMode: 0
@@ -95,13 +110,13 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
-    skeletonHasParents: 1
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 1
   humanoidOversampling: 1
   avatarSetup: 0
-  additionalBone: 0
+  additionalBone: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 

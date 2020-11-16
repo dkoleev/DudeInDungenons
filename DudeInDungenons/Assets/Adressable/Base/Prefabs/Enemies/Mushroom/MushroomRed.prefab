@@ -24,6 +24,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: MushroomRed
       objectReference: {fileID: 0}
+    - target: {fileID: 3292275774214023447, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3292275774214023447, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324671955949450402, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496379868141616967, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5496379868141616967, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
       propertyPath: m_SizeDelta.x
       value: 120
@@ -101,6 +117,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 265587682204641440, guid: ac30e363c9aa5e0459cd9fb3fa45617e, type: 3}
     - target: {fileID: 8877778953892020640, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
+      propertyPath: _effectsParent
+      value: 
+      objectReference: {fileID: 143819444897401656}
+    - target: {fileID: 8877778953892020640, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
       propertyPath: _dissappearEffect
       value: 
       objectReference: {fileID: 2998177809129160501, guid: d75cd8146c43a1e4f9d34aa664de660b, type: 3}
@@ -109,6 +129,11 @@ PrefabInstance:
 --- !u!4 &4037426719475618355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1718891504295308713, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
+  m_PrefabInstance: {fileID: 3449027799840898970}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &143819444897401656 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3324671955949450402, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
   m_PrefabInstance: {fileID: 3449027799840898970}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8319189163285289037

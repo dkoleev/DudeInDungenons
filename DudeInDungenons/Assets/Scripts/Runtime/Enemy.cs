@@ -19,6 +19,10 @@ namespace Runtime {
         private EnemyData _data;
         [SerializeField, Required] 
         private Transform _shootRaycastStartPoint;
+        [SerializeField, Required] 
+        private Transform _deadEffectsParent;
+        [SerializeField, Required] 
+        private Transform _afterDeadEffectsParent;
         [SerializeField, AssetsOnly]
         private GameObject _deadEffect;
         [SerializeField, AssetsOnly]
@@ -192,12 +196,12 @@ namespace Runtime {
                 return;
             }
 
-            var effect = Instantiate(_deadEffect, _root);
-            effect.transform.localPosition = new Vector3(0, 1, 0);
+            var effect = Instantiate(_deadEffect, _deadEffectsParent);
+            effect.transform.localPosition = Vector3.zero;
             effect.transform.localRotation = Quaternion.identity;
             Destroy(effect, 1.5f);
             _timeManager.Call(1.95f, () => {
-                Instantiate(_dissappearEffect, transform.position, Quaternion.identity);
+                Instantiate(_dissappearEffect, _afterDeadEffectsParent.position, Quaternion.identity);
             });
             
             Destroy(gameObject, 2.0f);

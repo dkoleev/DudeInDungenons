@@ -74,7 +74,7 @@ namespace Runtime {
 
             var currentWeapon = GetEquippedWeapon();
             if (!string.IsNullOrEmpty(currentWeapon)) {
-                AttackComponent = new AttackComponent(currentWeapon, this, _data.SpeedRotate);
+                AttackComponent = new AttackComponent(currentWeapon, this, _data.SpeedRotateNoMove);
                 AddComponent(AttackComponent);
             }
          

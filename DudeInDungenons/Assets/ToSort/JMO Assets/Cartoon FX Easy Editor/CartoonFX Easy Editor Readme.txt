@@ -1,7 +1,7 @@
-﻿Cartoon FX Easy Editor, version 1.61
-2013/12/06
-© 2013,2014 - Jean Moreno
-====================================
+Cartoon FX Easy Editor, version 1.6
+2013/05/28
+© 2013, Jean Moreno
+===================================
 
 You can display the editor window within the menu:
 Window -> CartoonFX Easy Editor
@@ -24,9 +24,6 @@ Enjoy! :)
 
 UPDATE NOTES
 ------------
-v1.61
-- fixed issue when scaling systems with emission set to 'distance'
-
 v1.6
 - updated Editor, now in "Window" menu and with more options
 - added "JMO Assets" menu (Window -> JMO Assets), to check for updates or get support

@@ -45,3 +45,6 @@ TagManager:
   - name: WorldUi
     uniqueID: 45043867
     locked: 0
+  - name: Effects
+    uniqueID: 1059959549
+    locked: 0

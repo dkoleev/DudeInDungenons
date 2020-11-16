@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _speedMove: 7
-  _speedRotate: 1000
+  _speedRotate: 6
+  _speedRotateNoMove: 1200
   _startInventory:
   - _item: {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
     _amount: 100

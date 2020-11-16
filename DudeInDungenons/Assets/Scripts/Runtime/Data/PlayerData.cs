@@ -14,6 +14,9 @@ namespace Runtime.Data {
         [SerializeField] 
         [TabGroup("Base")]
         private float _speedRotate;
+        [SerializeField] 
+        [TabGroup("Base")]
+        private float _speedRotateNoMove;
         [SerializeField]
         [TabGroup("Starting Inventory")]
         [TableList]
@@ -22,6 +25,7 @@ namespace Runtime.Data {
         public int MaxHealth => _maxHealth;
         public float SpeedMove => _speedMove;
         public float SpeedRotate => _speedRotate;
+        public float SpeedRotateNoMove => _speedRotateNoMove;
         public ItemStack[] StartInventory => _startInventory;
     }
 }
