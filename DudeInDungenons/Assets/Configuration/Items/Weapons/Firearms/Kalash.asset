@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e2b702acd8645645a213ee3a9e219a5, type: 3}
-  m_Name: Pistol
+  m_Name: Kalash
   m_EditorClassIdentifier: 
-  _id: Pistol
+  _id: Kalash
   _icon: {fileID: 0}
-  _damage: 50
-  _shootDelay: 0.5
+  _animatorId: 2
+  _damage: 25
+  _shootDelay: 0.2
   _range: 8

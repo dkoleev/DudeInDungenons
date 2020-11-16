@@ -10,6 +10,7 @@ namespace Runtime {
         private static readonly int _animationAttack = Animator.StringToHash("Attack");
         private static readonly int _animationTakeDamage= Animator.StringToHash("TakeDamage");
         private static readonly int _animationDead= Animator.StringToHash("Dead");
+        private static readonly int _animationWeaponId = Animator.StringToHash("Weapon_int");
         
         private readonly WorldBar _healthBar;
         private readonly Player _player;
@@ -27,6 +28,8 @@ namespace Runtime {
 
         public void Update() {
             _animator.SetBool(_animationRun, _player.IsMoving);
+            var haveWeapon = _player.AttackComponent != null && _player.AttackComponent.CurrentWeapon != null;
+            _animator.SetInteger(_animationWeaponId,  value: haveWeapon ? _player.AttackComponent.CurrentWeapon.AnimatorId : 0);
         }
 
         public void UpdateVisualByState(IState prevState, IState newState) {

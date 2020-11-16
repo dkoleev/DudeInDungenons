@@ -7,6 +7,7 @@ namespace Runtime.Logic.WeaponSystem {
         
         public float ShootDelay => Data.ShootDelay;
         public float Range => Data.Range;
+        public int AnimatorId => Data.AnimatorId;
 
         protected int Damage => Data.Damage;
         protected IWeaponOwner Owner;
@@ -15,9 +16,6 @@ namespace Runtime.Logic.WeaponSystem {
             Owner = owner;
         }
 
-        public virtual void Shoot(IDamagable target) {
-            target.TakeDamage(Damage);
-        }
-        public abstract void Shoot();
+        public abstract void Shoot(IDamagable target);
     }
 }

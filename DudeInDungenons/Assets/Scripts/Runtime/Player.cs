@@ -47,7 +47,7 @@ namespace Runtime {
 
         private WorldBar _healthBar;
         private MoveByController _mover;
-        private AttackComponent _attackComponent;
+        public AttackComponent AttackComponent { get; private set; }
         private RotateByAxis _rotator;
         private FindTargetByDistance _findTargetByDistance;
         private PlayerVisual _visual;
@@ -74,8 +74,8 @@ namespace Runtime {
 
             var currentWeapon = GetEquippedWeapon();
             if (!string.IsNullOrEmpty(currentWeapon)) {
-                _attackComponent = new AttackComponent(currentWeapon, this);
-                AddComponent(_attackComponent);
+                AttackComponent = new AttackComponent(currentWeapon, this);
+                AddComponent(AttackComponent);
             }
          
             _mover = new MoveByController(this, _data.SpeedMove);
@@ -88,7 +88,7 @@ namespace Runtime {
             _healthBar = GetComponentInChildren<WorldBar>();
             _healthBar.Initialize(_health, _data.MaxHealth);
 
-            _attackComponent?.OnShoot.AddListener(OnShoot);
+            AttackComponent?.OnShoot.AddListener(OnShoot);
         }
 
         private string GetEquippedWeapon() {
@@ -114,12 +114,13 @@ namespace Runtime {
             _stateMachine = new StateMachine();
             var idleState = new PlayerIdleState();
             var moveState = new PlayerMoveState(_rotator, _mover, _findTargetByDistance);
-            _attackState = new PlayerAttackState(_attackComponent, _findTargetByDistance);
+            _attackState = new PlayerAttackState(AttackComponent, _findTargetByDistance);
             
             _stateMachine.SetState(idleState);
-            
+
             To(_attackState, () => !_mover.IsMoving && _findTargetByDistance.CurrentTargetIsAvailable());
             To(moveState, () => _mover.IsMoving);
+            To(idleState, ()=> !_mover.IsMoving && !_findTargetByDistance.CurrentTargetIsAvailable());
             
             void To(IState to, Func<bool> condition) => _stateMachine.AddAnyTransition(to, condition);
             void At(IState from, IState to, Func<bool> condition) => _stateMachine.AddTransition(from, to, condition);
@@ -180,7 +181,7 @@ namespace Runtime {
         }
 
         private void OnDestroy() {
-            _attackComponent.OnShoot.RemoveListener(OnShoot);
+            AttackComponent.OnShoot.RemoveListener(OnShoot);
         }
     }
 }

@@ -17,6 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: abf0eff0a4243574da298dc20986b5eb
   m_SerializeEntries:
+  - m_GUID: 4a3b655ccd0574a45a480caffc5dab3d
+    m_Address: Kalash
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 7c573786b923fd04fbd75968437430c3
     m_Address: MushroomRed
     m_ReadOnly: 0

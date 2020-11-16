@@ -9,8 +9,8 @@ namespace Runtime.Logic.Components {
         public bool CanAttack { get; private set; }
         public Relay OnShoot = new Relay();
         public bool Initialized { get; private set; }
-
-        private Weapon _currentWeapon;
+        public Weapon CurrentWeapon { get; private set; }
+        
         private float _currentShootDelay = 0;
         private IWeaponOwner _owner;
         private const float RotationSpeed = 600;
@@ -33,7 +33,7 @@ namespace Runtime.Logic.Components {
                 return;
             }
 
-            var canAttack = Vector3.Distance(target.MainTransform.position, _owner.RotateTransform.position) <= _currentWeapon.Range;
+            var canAttack = Vector3.Distance(target.MainTransform.position, _owner.RotateTransform.position) <= CurrentWeapon.Range;
             if (!canAttack) {
                 return;
             }
@@ -42,7 +42,7 @@ namespace Runtime.Logic.Components {
 
             _currentShootDelay -= Time.deltaTime;
             if (_currentShootDelay <= 0) {
-                _currentShootDelay = _currentWeapon.ShootDelay;
+                _currentShootDelay = CurrentWeapon.ShootDelay;
                 Shoot(target);
             }
         }
@@ -56,7 +56,7 @@ namespace Runtime.Logic.Components {
         }
 
         private void Shoot(IDamagable target) {
-            _currentWeapon.Shoot(target);
+            CurrentWeapon.Shoot(target);
             OnShoot.Dispatch();
         }
         
@@ -70,8 +70,8 @@ namespace Runtime.Logic.Components {
                 go.transform.localPosition = Vector3.zero;
                 go.transform.localRotation = Quaternion.identity;
 
-                _currentWeapon = weapon;
-                _currentShootDelay = _currentWeapon.ShootDelay;
+                CurrentWeapon = weapon;
+                _currentShootDelay = CurrentWeapon.ShootDelay;
 
                 Initialized = true;
             }
