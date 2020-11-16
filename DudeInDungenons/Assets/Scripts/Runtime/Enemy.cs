@@ -6,6 +6,7 @@ using Runtime.Logic.Components;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 using Runtime.Logic.States;
+using Runtime.Logic.States.Ai;
 using Sigtrap.Relays;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -77,11 +78,11 @@ namespace Runtime {
         private void InitializeFsm() {
             _stateMachine = new StateMachine();
 
-            var idleState = new Idle(_agent);
-            var moveState = new Move(_agent);
-            var deadState = new Dead(_agent);
-            var getDamageState = new TakeDamage(_agent);
-            var attackState = new Attack(_agent);
+            var idleState = new AiIdle(_agent);
+            var moveState = new AiMove(_agent);
+            var deadState = new AiDead(_agent);
+            var getDamageState = new AiTakeDamage(_agent);
+            var attackState = new AiAttack(_agent);
             
             _agent.destination = _player.LocalPosition;
 

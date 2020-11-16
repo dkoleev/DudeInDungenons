@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Avocado.Framework.Patterns.StateMachine;
 using Runtime.Data;
 using Runtime.Data.Items;
 using Runtime.Logic;
@@ -7,6 +8,7 @@ using Runtime.Logic.Components;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 using Runtime.Logic.GameProgress.Progress;
+using Runtime.Logic.States.Player;
 using Runtime.Static;
 using Runtime.Ui.World;
 using Sigtrap.Relays;
@@ -23,16 +25,14 @@ namespace Runtime {
             Attack
         }
         
-        [SerializeField, Required, AssetsOnly] 
-        [InlineEditor(InlineEditorModes.GUIOnly)]
+        [SerializeField, Required, AssetsOnly, InlineEditor] 
         private PlayerData _data;
-
         [SerializeField]
         public EntityTag _attackTarget;
         [SerializeField, Required]
         private Transform _shootRaycastStartPoint;
         
-        public Relay<PlayerState> OnStateChanged = new Relay<PlayerState>();
+        public Relay<IState, IState> OnStateChanged = new Relay<IState, IState>();
 
         public Vector3 LocalPosition {
             get => transform.localPosition;
@@ -42,7 +42,6 @@ namespace Runtime {
         public Transform RaycastStartPoint => _shootRaycastStartPoint;
         public Transform RotateTransform => _rotateTransform;
         public Transform MainTransform => _mainTransform;
-        public PlayerState CurrentState { get; private set; }
         public bool IsMoving => _mover.IsMoving;
 
         private WorldBar _healthBar;
@@ -56,6 +55,10 @@ namespace Runtime {
         private Transform _mainTransform;
         private PlayerProgress PlayerProgress => Progress.Player;
         private int _health;
+
+        private StateMachine _stateMachine;
+        private IState _attackState;
+        
         private bool _initialized;
 
         protected override void Awake() {
@@ -65,7 +68,6 @@ namespace Runtime {
             _health = _data.MaxHealth;
             _mainTransform = transform;
             _rotateTransform = _mainTransform.Find("Root");
-            SetState(PlayerState.Idle);
             
             _visual = new PlayerVisual(this);
             _attackComponent = new AttackComponent("Pistol", this);
@@ -86,9 +88,29 @@ namespace Runtime {
         protected override void Start() {
             base.Start();
             
+            InitializeFsm();
             _visual.Initialize();
             
             _initialized = true;
+        }
+
+        private void InitializeFsm() {
+            _stateMachine = new StateMachine();
+            var idleState = new PlayerIdleState();
+            var moveState = new PlayerMoveState(_rotator, _mover, _findTargetByDistance);
+            _attackState = new PlayerAttackState(_attackComponent, _findTargetByDistance);
+            
+            _stateMachine.SetState(idleState);
+            
+            To(_attackState, () => !_mover.IsMoving && _findTargetByDistance.CurrentTargetIsAvailable());
+            To(moveState, () => _mover.IsMoving);
+            
+            void To(IState to, Func<bool> condition) => _stateMachine.AddAnyTransition(to, condition);
+            void At(IState from, IState to, Func<bool> condition) => _stateMachine.AddTransition(from, to, condition);
+
+            _stateMachine.OnStateChanged += (prevState, newState) => {
+                OnStateChanged.Dispatch(prevState, newState);
+            };
         }
 
         protected override void Update() {
@@ -99,22 +121,16 @@ namespace Runtime {
             }
 
             _mover.Update();
-            if (_mover.IsMoving) {
-                _findTargetByDistance.SetTarget(null);
-                _rotator.Rotate(_mover.MoveAxis);
-            } else {
-                _findTargetByDistance.Update();
-                if (_findTargetByDistance.CurrentTargetIsAvailable()) {
-                    _attackComponent?.Update(_findTargetByDistance.CurrentTarget.Transform.GetComponent<IDamagable>());
-                }
-            }
+            _findTargetByDistance.Update();
+            _stateMachine.Tick();
             _visual.Update();
             
             _mainTransform.localRotation = Quaternion.Euler(new Vector3(0, _mainTransform.localRotation.y, 0));
         }
         
         private void OnShoot() {
-            SetState(PlayerState.Attack, true);
+            _stateMachine.SetState(_attackState);
+            _visual.UpdateVisualByState(null, _attackState);
         }
         
         public void TakeDamage(int damage) {
@@ -144,13 +160,6 @@ namespace Runtime {
                 } else {
                     inventory.Add(id, itemStack.Amount);
                 }
-            }
-        }
-
-        private void SetState(PlayerState state, bool sendSameState = false) {
-            if (CurrentState != state || sendSameState) {
-                CurrentState = state;
-                OnStateChanged.Dispatch(CurrentState);
             }
         }
 

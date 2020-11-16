@@ -1,11 +1,11 @@
 using Avocado.Framework.Patterns.StateMachine;
 using UnityEngine.AI;
 
-namespace Runtime.Logic.States {
-    public class BaseState : IState {
+namespace Runtime.Logic.States.Ai {
+    public class AiBase : IState {
         protected NavMeshAgent Agent;
 
-        protected BaseState(NavMeshAgent agent) {
+        protected AiBase(NavMeshAgent agent) {
             Agent = agent;
         }
 

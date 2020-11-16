@@ -1,8 +1,8 @@
 using UnityEngine.AI;
 
-namespace Runtime.Logic.States {
-    public class TakeDamage : BaseState {
-        public TakeDamage(NavMeshAgent agent) : base(agent) {
+namespace Runtime.Logic.States.Ai {
+    public class AiTakeDamage : AiBase {
+        public AiTakeDamage(NavMeshAgent agent) : base(agent) {
             
         }
 

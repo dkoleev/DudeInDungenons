@@ -1,9 +1,8 @@
 using UnityEngine.AI;
 
-namespace Runtime.Logic.States {
-    public class Idle : BaseState {
-        public Idle(NavMeshAgent agent) : base(agent) {
-        }
+namespace Runtime.Logic.States.Ai {
+    public class AiDead : AiBase {
+        public AiDead(NavMeshAgent agent) : base(agent) { }
 
         public override void Enter() {
             base.Enter();

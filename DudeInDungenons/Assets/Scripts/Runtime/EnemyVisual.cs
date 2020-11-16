@@ -1,6 +1,7 @@
 using System;
 using Avocado.Framework.Patterns.StateMachine;
 using Runtime.Logic.States;
+using Runtime.Logic.States.Ai;
 using Runtime.Ui.World;
 using UnityEngine;
 
@@ -48,7 +49,7 @@ namespace Runtime {
 
         private void UpdateVisualByState(IState prevState, IState newState) {
             SetAnimation(newState);
-            if (newState is Dead) {
+            if (newState is AiDead) {
                 _healthBar.Dispose();
             }
         }
@@ -62,19 +63,19 @@ namespace Runtime {
             _animator.ResetTrigger(_animationTakeDamage);
             _animator.ResetTrigger(_animationDead);
 
-            if (state is Attack) {
+            if (state is AiAttack) {
                 _animator.SetTrigger(_animationAttack);
             }
             
-            if (state is TakeDamage) {
+            if (state is AiTakeDamage) {
                 _animator.SetTrigger(_animationTakeDamage);
             }
             
-            if (state is Dead) {
+            if (state is AiDead) {
                 _animator.SetTrigger(_animationDead);
             }
 
-            _animator.SetBool(_animationRun, state is Move);
+            _animator.SetBool(_animationRun, state is AiMove);
         }
     }
 }

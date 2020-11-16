@@ -1,3 +1,5 @@
+using Avocado.Framework.Patterns.StateMachine;
+using Runtime.Logic.States.Player;
 using Runtime.Ui.World;
 using UnityEngine;
 
@@ -27,9 +29,9 @@ namespace Runtime {
             _animator.SetBool(_animationRun, _player.IsMoving);
         }
 
-        private void UpdateVisualByState(Player.PlayerState state) {
+        public void UpdateVisualByState(IState prevState, IState newState) {
             _animator.ResetTrigger(_animationAttack);
-            if (state == Player.PlayerState.Attack) {
+            if (newState is PlayerAttackState) {
                 _animator.SetTrigger(_animationAttack);
             }
         }
