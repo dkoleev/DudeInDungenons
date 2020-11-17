@@ -51,6 +51,7 @@ namespace Runtime {
         private bool _takeDamage;
         private float _currentTakeDamageDelay;
         private Transform _root;
+        private Soul _soul;
         
         private StateMachine _stateMachine;
         private IState _attackState;
@@ -64,6 +65,7 @@ namespace Runtime {
             _root = Transform.Find("Root") ?? Transform;
             _currentHealth = _data.MaxHealth;
             _agent = GetComponent<NavMeshAgent>();
+            _soul = GetComponentInChildren<Soul>();
             _agent.speed = Data.SpeedMove;
             _agent.angularSpeed = Data.SpeedRotate;
             
@@ -195,6 +197,7 @@ namespace Runtime {
             Destroy(effect, 1.5f);
             _timeManager.Call(1.95f, () => {
                 Instantiate(_dissappearEffect, _afterDeadEffectsParent.position, Quaternion.identity);
+                _soul.Activate();
             });
             
             Destroy(gameObject, 2.0f);

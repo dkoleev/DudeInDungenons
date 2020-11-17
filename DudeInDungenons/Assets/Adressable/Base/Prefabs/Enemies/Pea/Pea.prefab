@@ -654,9 +654,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pea
       objectReference: {fileID: 0}
+    - target: {fileID: 3203887851676186167, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5496379868141616967, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 6225159634826654684, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
       propertyPath: m_RootOrder
@@ -672,7 +676,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6225159634826654684, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 14.47
       objectReference: {fileID: 0}
     - target: {fileID: 6225159634826654684, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
       propertyPath: m_LocalRotation.w
