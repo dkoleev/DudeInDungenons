@@ -47,13 +47,13 @@ namespace Runtime {
         private EnemyVisual _visual;
         private Player _player;
         private AttackComponent _attackComponent;
-        private bool _isAttack;
         private bool _isDead;
         private bool _takeDamage;
         private float _currentTakeDamageDelay;
         private Transform _root;
         
         private StateMachine _stateMachine;
+        private IState _attackState;
         private TimeManager _timeManager;
 
         private bool _initialized;
@@ -82,7 +82,7 @@ namespace Runtime {
             InitializeFsm();
 
             _attackComponent.OnShoot.AddListener(() => {
-                
+                _visual.UpdateVisualByState(null, _attackState);
             });
 
             _initialized = true;
@@ -95,19 +95,17 @@ namespace Runtime {
             var moveState = new AiMove(_agent);
             var deadState = new AiDead(_agent);
             var getDamageState = new AiTakeDamage(_agent);
-            var attackState = new AiAttack(_agent);
+            _attackState = new AiAttack(_agent, _attackComponent, _player);
             
             _agent.destination = _player.LocalPosition;
 
             _stateMachine.SetState(idleState);
             
-            Func<bool> CanMove() => () => !TargetReached() && !_takeDamage && !_isDead;
-            
-            To(moveState, CanMove());
+            To(moveState, CanMove);
             To(deadState, () => _isDead);
-            To(attackState, CanAttack);
+            To(_attackState, CanAttack);
             To(getDamageState, () => !_isDead && _takeDamage);
-            //At(_moveState, _attackState, () => _isAttack);
+            To(idleState, ()=> !CanMove() && !CanAttack() && !GetDamage() && !_isDead);
             
             void To(IState to, Func<bool> condition) => _stateMachine.AddAnyTransition(to, condition);
             void At(IState from, IState to, Func<bool> condition) => _stateMachine.AddTransition(from, to, condition);
@@ -115,6 +113,14 @@ namespace Runtime {
             _stateMachine.OnStateChanged += (prevState, newState) => {
                 OnStateChanged.Dispatch(prevState, newState);
             }; 
+        }
+
+        private bool GetDamage() {
+            return !_isDead && _takeDamage;
+        }
+
+        private bool CanMove() {
+            return !TargetReached() && !_takeDamage && !_isDead;
         }
 
         private bool CanAttack() {
@@ -140,21 +146,8 @@ namespace Runtime {
             }
             
             _agent.destination = _player.LocalPosition;
-            UpdateAttack();
         }
 
-        private void UpdateAttack() {
-            if (CanAttack()) {
-                if (!_isAttack) {
-                    _attackComponent?.Reset();
-                }
-
-                _attackComponent?.Update(_player);
-            }
-
-            _isAttack = CanAttack();
-        }
-        
         public void TakeDamage(int damage) {
             if (_isDead) {
                 return;

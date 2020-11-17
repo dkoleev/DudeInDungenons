@@ -23,6 +23,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 6cdd117e023783f4781a4bf57e165942
+    m_Address: PeaWeapon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 7c573786b923fd04fbd75968437430c3
     m_Address: MushroomRed
     m_ReadOnly: 0

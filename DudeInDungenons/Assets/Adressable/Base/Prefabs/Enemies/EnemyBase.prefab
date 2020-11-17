@@ -152,8 +152,8 @@ MonoBehaviour:
   _shootRaycastStartPoint: {fileID: 3600354452525459052}
   _deadEffectsParent: {fileID: 3324671955949450402}
   _afterDeadEffectsParent: {fileID: 3292275774214023447}
-  _deadEffect: {fileID: 0}
-  _dissappearEffect: {fileID: 0}
+  _deadEffect: {fileID: 7085664633562634172, guid: ac30e363c9aa5e0459cd9fb3fa45617e, type: 3}
+  _dissappearEffect: {fileID: -759900531533031988, guid: d75cd8146c43a1e4f9d34aa664de660b, type: 3}
 --- !u!195 &8832152762032189241
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -282,11 +282,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6722490535974493087, guid: 969c68631a2a25943a160c85349b8f0d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 300
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 6722490535974493087, guid: 969c68631a2a25943a160c85349b8f0d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 80
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6722490535974493087, guid: 969c68631a2a25943a160c85349b8f0d, type: 3}
       propertyPath: m_LocalScale.x

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: Hand
   _icon: {fileID: 0}
-  _damage: 5
+  _animatorId: 0
+  _damage: 20
   _shootDelay: 1
   _range: 3

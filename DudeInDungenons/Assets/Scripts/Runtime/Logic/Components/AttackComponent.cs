@@ -6,7 +6,6 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Runtime.Logic.Components {
     public class AttackComponent : IComponent {
-        public bool CanAttack { get; private set; }
         public Relay OnShoot = new Relay();
         public bool Initialized { get; private set; }
         public Weapon CurrentWeapon { get; private set; }
@@ -35,10 +34,10 @@ namespace Runtime.Logic.Components {
                 return;
             }
 
-            var canAttack = Vector3.Distance(target.MainTransform.position, _owner.RotateTransform.position) <= CurrentWeapon.Range;
+            /*var canAttack = Vector3.Distance(target.MainTransform.position, _owner.RotateTransform.position) <= CurrentWeapon.Range;
             if (!canAttack) {
                 return;
-            }
+            }*/
 
             RotateToTarget(target);
 

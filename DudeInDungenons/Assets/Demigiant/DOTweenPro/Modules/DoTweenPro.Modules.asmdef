@@ -1,0 +1,15 @@
+{
+    "name": "DoTweenPro.Modules",
+    "references": [
+        "GUID:8cfb3ab81a4d4a5489d79352ea2b2c5d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

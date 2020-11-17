@@ -47,7 +47,7 @@ namespace Runtime {
             _healthBar.Dispose();
         }
 
-        private void UpdateVisualByState(IState prevState, IState newState) {
+        public void UpdateVisualByState(IState prevState, IState newState) {
             SetAnimation(newState);
             if (newState is AiDead) {
                 _healthBar.Dispose();
