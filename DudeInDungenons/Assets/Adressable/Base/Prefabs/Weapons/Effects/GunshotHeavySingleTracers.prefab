@@ -9661,6 +9661,7 @@ GameObject:
   - component: {fileID: 8211593394841797304}
   - component: {fileID: 8303070378069020052}
   - component: {fileID: 8304089499770096892}
+  - component: {fileID: -542618446099930556}
   m_Layer: 0
   m_Name: GunshotHeavySingleTracers
   m_TagString: Untagged
@@ -14361,6 +14362,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &-542618446099930556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213659062456571426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce191170ffe4c6fad6eb92b016b3366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8214104560769094282
 GameObject:
   m_ObjectHideFlags: 0

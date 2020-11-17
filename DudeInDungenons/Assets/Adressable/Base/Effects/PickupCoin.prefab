@@ -14621,6 +14621,7 @@ GameObject:
   - component: {fileID: 7381971955222668100}
   - component: {fileID: 7259215523595935946}
   - component: {fileID: 7259758202824129408}
+  - component: {fileID: 2777297099070090518}
   m_Layer: 1
   m_Name: PickupCoin
   m_TagString: Untagged
@@ -19420,3 +19421,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &2777297099070090518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7385829744052237288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce191170ffe4c6fad6eb92b016b3366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

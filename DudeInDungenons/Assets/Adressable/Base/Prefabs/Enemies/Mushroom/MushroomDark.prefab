@@ -1817,7 +1817,7 @@ PrefabInstance:
     - target: {fileID: 8877778953892020640, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
       propertyPath: _deadEffect
       value: 
-      objectReference: {fileID: 265587682204641440, guid: ac30e363c9aa5e0459cd9fb3fa45617e, type: 3}
+      objectReference: {fileID: 7085664633562634172, guid: ac30e363c9aa5e0459cd9fb3fa45617e, type: 3}
     - target: {fileID: 8877778953892020640, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
       propertyPath: _effectsParent
       value: 
@@ -1825,7 +1825,7 @@ PrefabInstance:
     - target: {fileID: 8877778953892020640, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
       propertyPath: _dissappearEffect
       value: 
-      objectReference: {fileID: 2998177809129160501, guid: d75cd8146c43a1e4f9d34aa664de660b, type: 3}
+      objectReference: {fileID: -759900531533031988, guid: d75cd8146c43a1e4f9d34aa664de660b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa690118bcb495f4c932fbc57c3297a0, type: 3}
 --- !u!4 &5670872398213772697 stripped

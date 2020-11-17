@@ -4792,8 +4792,9 @@ GameObject:
   - component: {fileID: 1724940969794230705}
   - component: {fileID: 1522736897479307455}
   - component: {fileID: 1523715462827724075}
+  - component: {fileID: -1685137541896609782}
   m_Layer: 0
-  m_Name: FX_Gunshot_01
+  m_Name: Gunshot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9454,6 +9455,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &-1685137541896609782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721727733596893457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce191170ffe4c6fad6eb92b016b3366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1721975627778461827
 GameObject:
   m_ObjectHideFlags: 0

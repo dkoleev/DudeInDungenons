@@ -77,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 77630409208cd0c439783b1ddad6bb15, type: 2}
   _shootEffectTransform: {fileID: 7330392561667105662}
-  _shootEffect: {fileID: 1721727733596893457, guid: 0e527efe45c97be4c82cc4fa3424165f, type: 3}
+  _shootEffect: {fileID: -1685137541896609782, guid: 0e527efe45c97be4c82cc4fa3424165f, type: 3}
 --- !u!1001 &8750323094647394170
 PrefabInstance:
   m_ObjectHideFlags: 0

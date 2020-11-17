@@ -6,8 +6,8 @@ using Runtime.Logic;
 using Runtime.Logic.Components;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
-using Runtime.Logic.States;
 using Runtime.Logic.States.Ai;
+using Runtime.Visual;
 using Sigtrap.Relays;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -24,9 +24,9 @@ namespace Runtime {
         [SerializeField, Required] 
         private Transform _afterDeadEffectsParent;
         [SerializeField, AssetsOnly]
-        private GameObject _deadEffect;
+        private Effect _deadEffect;
         [SerializeField, AssetsOnly]
-        private GameObject _dissappearEffect;
+        private Effect _dissappearEffect;
         
         public Relay<IState, IState> OnStateChanged = new Relay<IState, IState>();
         public Relay<float> OnHealthChanged = new Relay<float>();
