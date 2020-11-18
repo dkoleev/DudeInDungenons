@@ -3,5 +3,6 @@ namespace Runtime.Static {
         public const string LevelUI = "LevelUI";
         public const string MenuMain = "MenuMain";
         public const string MenuUI = "MenuUI";
+        public const string Loading = "Loading";
     }
 }

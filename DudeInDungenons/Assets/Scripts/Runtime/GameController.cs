@@ -12,7 +12,6 @@ using Runtime.Ui.MainMenu;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 
 namespace Runtime {
@@ -59,6 +58,7 @@ namespace Runtime {
         private void Awake() {
             _progress = LoadGameProgress();
             _inputManager = new InputManager();
+            ShowLoadingScreen();
 
             switch (_runMode) {
                 case RunMode.MainMenu:
@@ -75,7 +75,7 @@ namespace Runtime {
             AddDevCommands();
         }
 
-        private void Start() {
+        private IEnumerator Start() {
             _itemsReference.Initialize();
 
             if (_allScenesLoaded) {
@@ -100,6 +100,18 @@ namespace Runtime {
                         break;
                 }
             }
+            
+            yield return new WaitForSeconds(3.0f);
+            HideLoadingScreen();
+            yield return null;
+        }
+
+        private void ShowLoadingScreen() {
+            StartCoroutine(LoadScene(SceneNames.Loading, LoadSceneMode.Additive));
+        }
+
+        private void HideLoadingScreen() {
+            StartCoroutine(UnloadScene(SceneNames.Loading));
         }
 
         private GameProgress LoadGameProgress() {
@@ -131,6 +143,8 @@ namespace Runtime {
         }
         
         private IEnumerator LoadLevelCor(string levelName) {
+            yield return StartCoroutine(LoadScene(SceneNames.Loading, LoadSceneMode.Additive));
+            
             if (_currentLevel != null) {
                 yield return StartCoroutine(UnloadScene(_currentLevel.LevelName));
             }
@@ -142,6 +156,9 @@ namespace Runtime {
             yield return StartCoroutine(LoadScene(levelName, LoadSceneMode.Additive));
 
             _currentLevel = new Level(this, levelName);
+            
+            yield return new WaitForSeconds(1.0f);
+            yield return StartCoroutine(UnloadScene(SceneNames.Loading));
             
             _allScenesLoaded = true;
             OnAllScenesLoaded?.Invoke();
