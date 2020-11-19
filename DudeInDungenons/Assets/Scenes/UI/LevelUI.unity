@@ -717,6 +717,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 503060433424963284}
     m_Modifications:
+    - target: {fileID: 1634392684305259123, guid: e6ac153b82cd7f64d9342ada0c676d74, type: 3}
+      propertyPath: m_TagString
+      value: Joystick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678284642578337130, guid: e6ac153b82cd7f64d9342ada0c676d74, type: 3}
+      propertyPath: m_TagString
+      value: Joystick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678284643212817684, guid: e6ac153b82cd7f64d9342ada0c676d74, type: 3}
+      propertyPath: m_TagString
+      value: Joystick
+      objectReference: {fileID: 0}
     - target: {fileID: 4678284643497765300, guid: e6ac153b82cd7f64d9342ada0c676d74, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -804,6 +816,26 @@ PrefabInstance:
     - target: {fileID: 4678284643497765303, guid: e6ac153b82cd7f64d9342ada0c676d74, type: 3}
       propertyPath: m_Name
       value: Mover
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678284643497765303, guid: e6ac153b82cd7f64d9342ada0c676d74, type: 3}
+      propertyPath: m_TagString
+      value: Joystick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678284643557132820, guid: e6ac153b82cd7f64d9342ada0c676d74, type: 3}
+      propertyPath: m_TagString
+      value: Joystick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678284643574957337, guid: e6ac153b82cd7f64d9342ada0c676d74, type: 3}
+      propertyPath: m_TagString
+      value: Joystick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678284644330500001, guid: e6ac153b82cd7f64d9342ada0c676d74, type: 3}
+      propertyPath: m_TagString
+      value: Joystick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678284644510054120, guid: e6ac153b82cd7f64d9342ada0c676d74, type: 3}
+      propertyPath: m_TagString
+      value: Joystick
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6ac153b82cd7f64d9342ada0c676d74, type: 3}

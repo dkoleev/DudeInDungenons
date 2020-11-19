@@ -37,11 +37,6 @@ namespace Runtime {
             foreach (var enemy in _allEnemies) {
                 enemy.OnDead.AddOnce(() => {
                     _deadEnemiesCount++;
-                    _levelCleaned = _deadEnemiesCount == _allEnemies.Count;
-                    if (_levelCleaned) {
-                        ActivatePortal();
-                        CollectSouls();
-                    }
                 });
             }
         }
@@ -67,11 +62,13 @@ namespace Runtime {
         }
 
         public void OnEvent(OnSoulCreated e) {
+            _souls.Add(e.Soul);
+            _levelCleaned = _souls.Count == _allEnemies.Count;
+
             if (_levelCleaned) {
-                e.Soul.MoveTo(_player.MainTransform);
+                ActivatePortal();
+                CollectSouls();
                 Dispose();
-            } else {
-                _souls.Add(e.Soul);
             }
         }
 
