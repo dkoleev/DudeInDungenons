@@ -18,7 +18,7 @@ namespace Runtime {
         }
 
         public void MoveTo(Transform target) {
-            _moveTweener = transform.DOMove(target.position, 0.5f).SetEase(Ease.InBack);
+            _moveTweener = transform.DOMove(target.position, 0.5f).SetEase(Ease.InCubic);
             _moveTweener.onComplete += DoDestroy;
         }
 

@@ -214,5 +214,9 @@ namespace Runtime {
             
             Destroy(gameObject, 2.0f);
         }
+
+        private void OnDestroy() {
+            _timeManager.Dispose();
+        }
     }
 }

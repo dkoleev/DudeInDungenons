@@ -91,6 +91,10 @@ namespace Runtime {
             AttackComponent?.OnShoot.AddListener(OnShoot);
         }
 
+        public void Resurrect() {
+            _health = _data.MaxHealth;
+        }
+
         private string GetEquippedWeapon() {
             foreach (var itemStack in _data.StartInventory) {
                 if (itemStack.Equipped && itemStack.Item is WeaponData) {
@@ -161,7 +165,7 @@ namespace Runtime {
         }
 
         private void Dead() {
-            Debug.Log("Player dead");
+           EventBus.Raise(new OnPlayerDead());
         }
 
         public void OnEvent(OnEnemyDead e) {

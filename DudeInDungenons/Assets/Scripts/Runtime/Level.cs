@@ -9,7 +9,8 @@ using Object = UnityEngine.Object;
 namespace Runtime {
     public class Level : 
         IEventReceiver<OnSoulCreated>,
-        IEventReceiver<OnExitLevelClick> {
+        IEventReceiver<OnExitLevelClick>,
+        IEventReceiver<OnContinueLevelClick> {
         public string LevelName { get; private set; }
 
         private GameController _gameController;
@@ -68,6 +69,10 @@ namespace Runtime {
             return  _worldData.Levels.FindIndex(0, _worldData.Levels.Count, value => value.Value == LevelName);
         }
 
+        private void Resurrect() {
+            _player.Resurrect();
+        }
+
         public void OnEvent(OnSoulCreated e) {
             _souls.Add(e.Soul);
             _levelCleaned = _souls.Count == _allEnemies.Count;
@@ -81,6 +86,10 @@ namespace Runtime {
         
         public void OnEvent(OnExitLevelClick e) {
             _gameController.LoadMainMenu(LevelName);
+        }
+        
+        public void OnEvent(OnContinueLevelClick e) {
+            Resurrect();
         }
 
         private void Dispose() {
