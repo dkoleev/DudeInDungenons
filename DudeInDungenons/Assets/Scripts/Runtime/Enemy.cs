@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Avocado.Framework.Patterns.StateMachine;
 using Avocado.UnityToolbox.Timer;
 using Runtime.Data;
@@ -52,6 +54,7 @@ namespace Runtime {
         private float _currentTakeDamageDelay;
         private Transform _root;
         private Soul _soul;
+        private Collider[] _colliders;
         
         private StateMachine _stateMachine;
         private IState _attackState;
@@ -65,6 +68,7 @@ namespace Runtime {
             _root = Transform.Find("Root") ?? Transform;
             _currentHealth = _data.MaxHealth;
             _agent = GetComponent<NavMeshAgent>();
+            _colliders = GetComponentsInChildren<Collider>();
             _soul = GetComponentInChildren<Soul>();
             _agent.speed = Data.SpeedMove;
             _agent.angularSpeed = Data.SpeedRotate;
@@ -165,14 +169,6 @@ namespace Runtime {
             
             OnHealthChanged.Dispatch(_currentHealth);
         }
-
-        private void Death() {
-            _isDead = true;
-            EventBus<OnEnemyDead>.Raise(new OnEnemyDead(this));
-            OnDead.Dispatch();
-            
-            PlayDeadEffect();
-        }
         
         private bool TargetReached() {
             if (!_agent.pathPending) {
@@ -184,6 +180,22 @@ namespace Runtime {
             }
 
             return false;
+        }
+
+        private void Death() {
+            _isDead = true;
+            DisableCollider();
+            
+            EventBus<OnEnemyDead>.Raise(new OnEnemyDead(this));
+            OnDead.Dispatch();
+            
+            PlayDeadEffect();
+        }
+
+        private void DisableCollider() {
+            foreach (var col in _colliders) {
+                col.enabled = false;
+            }
         }
 
         private void PlayDeadEffect() {

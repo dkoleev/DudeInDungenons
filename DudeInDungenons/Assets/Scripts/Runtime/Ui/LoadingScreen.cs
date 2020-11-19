@@ -31,7 +31,7 @@ namespace Runtime.Ui {
         
         IEnumerator StartLoading()
         {
-            int maxSize = 64;
+            int maxSize = 12;
             int value = 0;
 
             _loadingBar.InIt(maxSize);
@@ -44,7 +44,7 @@ namespace Runtime.Ui {
                 yield return new WaitForSeconds(0.01f);
             }
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             _loadingBar.Hide();
         }
     }
