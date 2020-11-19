@@ -101,6 +101,10 @@ namespace Avocado.DeveloperCheatConsole.Scripts.Core {
         }
 
         public string GetBufferCommand(bool next) {
+            if (_commandsBuffer.Count == 0) {
+                return string.Empty;
+            }
+
             if (next) {
                 _currentIndexBufferCommand++;
             } else {

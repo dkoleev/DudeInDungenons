@@ -3,10 +3,13 @@ using System.Linq;
 using Runtime.Data;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
+using Runtime.Logic.Events.Ui;
 using Object = UnityEngine.Object;
 
 namespace Runtime {
-    public class Level : IEventReceiver<OnSoulCreated> {
+    public class Level : 
+        IEventReceiver<OnSoulCreated>,
+        IEventReceiver<OnExitLevelClick> {
         public string LevelName { get; private set; }
 
         private GameController _gameController;
@@ -53,12 +56,16 @@ namespace Runtime {
         }
 
         public void LoadNextLevel() {
-            var myIndex = _worldData.Levels.FindIndex(0, _worldData.Levels.Count, value => value.Value == LevelName);
+            var myIndex = GetCurrentLevelIndex();
             if (myIndex < _worldData.Levels.Count-1) {
                 _gameController.LoadLevel(_worldData.Levels[myIndex+1].Value);
             } else {
                 _gameController.LoadMainMenu(_worldData.Levels[myIndex].Value);
             }
+        }
+
+        private int GetCurrentLevelIndex() {
+            return  _worldData.Levels.FindIndex(0, _worldData.Levels.Count, value => value.Value == LevelName);
         }
 
         public void OnEvent(OnSoulCreated e) {
@@ -70,6 +77,10 @@ namespace Runtime {
                 CollectSouls();
                 Dispose();
             }
+        }
+        
+        public void OnEvent(OnExitLevelClick e) {
+            _gameController.LoadMainMenu(LevelName);
         }
 
         private void Dispose() {
