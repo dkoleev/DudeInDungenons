@@ -1,5 +1,6 @@
 ﻿using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
+using Runtime.Logic.Events.Ui;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,9 +12,16 @@ namespace Runtime.Input {
             MainControl = new Controls();
             MainControl.Player.Move.performed += MoveOnPerformed;
             MainControl.Player.Move.canceled += MoveOnCanceled;
+            
+            MainControl.UI.Click.performed += ClickOnPerformed;
+            
             MainControl.Enable();
         }
-        
+
+        private void ClickOnPerformed(InputAction.CallbackContext context) {
+            EventBus<OnClick>.Raise(new OnClick());
+        }
+
         private void MoveOnCanceled(InputAction.CallbackContext context) {
             EventBus<OnMoveCancelled>.Raise(new OnMoveCancelled());
         }
