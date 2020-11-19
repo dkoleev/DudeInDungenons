@@ -3,7 +3,7 @@ using System.Linq;
 using Runtime.Data;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
-using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Runtime {
     public class Level : IEventReceiver<OnSoulCreated> {
@@ -33,6 +33,7 @@ namespace Runtime {
             _player = Object.FindObjectOfType<Player>();
             
             _allEnemies = Object.FindObjectsOfType<Enemy>().ToList();
+            
             foreach (var enemy in _allEnemies) {
                 enemy.OnDead.AddOnce(() => {
                     _deadEnemiesCount++;
@@ -68,9 +69,14 @@ namespace Runtime {
         public void OnEvent(OnSoulCreated e) {
             if (_levelCleaned) {
                 e.Soul.MoveTo(_player.MainTransform);
+                Dispose();
             } else {
                 _souls.Add(e.Soul);
             }
+        }
+
+        private void Dispose() {
+            EventBus.UnRegister(this);
         }
     }
 }
