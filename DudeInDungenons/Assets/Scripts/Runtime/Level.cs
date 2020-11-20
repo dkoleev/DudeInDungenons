@@ -80,11 +80,12 @@ namespace Runtime {
             if (_levelCleaned) {
                 ActivatePortal();
                 CollectSouls();
-                Dispose();
+                Leave();
             }
         }
         
         public void OnEvent(OnExitLevelClick e) {
+            Leave();
             _gameController.LoadMainMenu(LevelName);
         }
         
@@ -92,7 +93,7 @@ namespace Runtime {
             Resurrect();
         }
 
-        private void Dispose() {
+        private void Leave() {
             EventBus.UnRegister(this);
         }
     }
