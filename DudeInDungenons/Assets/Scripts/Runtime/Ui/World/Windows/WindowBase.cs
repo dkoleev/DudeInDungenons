@@ -8,7 +8,7 @@ namespace Runtime.Ui.World.Windows {
         
         public void Show() {
             gameObject.SetActive(true);
-            Time.timeScale = 0f;
+          //  Time.timeScale = 0f;
             
             OnShow.Dispatch();
         }
