@@ -165,7 +165,7 @@ namespace Runtime {
         }
 
         private void Dead() {
-           EventBus.Raise(new OnPlayerDead());
+           EventBus<OnPlayerDead>.Raise(new OnPlayerDead());
         }
 
         public void OnEvent(OnEnemyDead e) {

@@ -89,9 +89,9 @@ namespace Runtime.Logic.Core.EventBus {
             }
         }
         
-        [UsedImplicitly]
+        /*[UsedImplicitly]
         public static void Raise(IEvent ev) {
             cached_raise[ev.GetType()](ev);
-        }
+        }*/
     }
 }

@@ -21,11 +21,11 @@ namespace Runtime.Ui.World.Windows {
         }
 
         private void LeaveLevel() {
-            EventBus.Raise(new OnExitLevelClick());
+            EventBus<OnExitLevelClick>.Raise(new OnExitLevelClick());
         }
 
         private void ContinueLevel() {
-            EventBus.Raise(new OnContinueLevelClick());
+            EventBus<OnContinueLevelClick>.Raise(new OnContinueLevelClick());
             Hide();
         }
     }

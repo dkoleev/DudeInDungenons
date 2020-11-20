@@ -18,7 +18,7 @@ namespace Runtime.Ui.World.Windows {
 
         private void ExitLevel() {
             Time.timeScale = 1.0f;
-            EventBus.Raise(new OnExitLevelClick());
+            EventBus<OnExitLevelClick>.Raise(new OnExitLevelClick());
         }
     }
 }
