@@ -60,7 +60,9 @@ namespace Runtime.SFXManager {
         }
 
         private void SelectSFX() {
+#if UNITY_EDITOR
             UnityEditor.Selection.activeObject = sfxToPlay;
+#endif
         }
 
         private List<SFXClip> SFXType() {

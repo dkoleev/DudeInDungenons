@@ -80,6 +80,15 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.purchasing": {
+      "version": "2.2.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.quicksearch": {
       "version": "1.5.4",
       "depth": 0,
