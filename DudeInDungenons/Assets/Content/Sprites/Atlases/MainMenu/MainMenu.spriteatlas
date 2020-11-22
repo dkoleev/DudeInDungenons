@@ -48,10 +48,15 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 2969678862317009722, guid: 68b35d2059b8c46e0a98e53628e9b3af, type: 3}
   - {fileID: 21300000, guid: a85dc3606842848f894379292101f3fe, type: 3}
   - {fileID: 21300000, guid: ffcd51701d8b94bc3ab284d79ba1cc56, type: 3}
+  - {fileID: 21300000, guid: c45f4e805a75b4de4a1c5bf3471587dc, type: 3}
   - {fileID: 5548292070574288395, guid: 03a507e0a3ea6477fb265eab8b0aa093, type: 3}
   - {fileID: -6184587674099409298, guid: 0beaeee02658e46829bc62ef06102b24, type: 3}
+  - {fileID: 21300000, guid: b8e2a211143e84776bb8ea1730115895, type: 3}
+  - {fileID: 8038653950898823980, guid: bf59ce9145cd842ffb1a897977f5200f, type: 3}
+  - {fileID: 21300000, guid: 4ad15db1aebb749f5b1846fbbfa25de7, type: 3}
   - {fileID: 21300000, guid: 11fdf602c22a84221b741456fd3add49, type: 3}
   - {fileID: 21300000, guid: c6d3e4b2b6e2f41aeac6a89560ff7f28, type: 3}
   - {fileID: 21300000, guid: 07c9f3a307404400d887f7776f4cfe46, type: 3}
@@ -62,12 +67,22 @@ SpriteAtlas:
   - {fileID: 1602085488016458816, guid: 36f6d527895d64d56918a3385c073cb6, type: 3}
   - {fileID: -6275191271189760509, guid: 0b29ca37e82c442a58508328c4509fea, type: 3}
   - {fileID: 21300000, guid: a642057723f31420da7f53ab699529ce, type: 3}
+  - {fileID: -4189922956459317181, guid: ae9f8677ca3c24a7c80d7217a941f886, type: 3}
   - {fileID: 21300000, guid: 628fb358393e6492eb92424c9f20a05a, type: 3}
+  - {fileID: 6616375705706489589, guid: 6900647849bf74c2daec9082ae11cc1c, type: 3}
   - {fileID: 21300000, guid: e0f7a888d4b294e2c86f84cd2dbeec8a, type: 3}
+  - {fileID: 21300000, guid: 91e63ba8a3e074c49914de9bd3c3e995, type: 3}
   - {fileID: 21300000, guid: 7152e3d85e91040eba5e4b50208b2761, type: 3}
+  - {fileID: 2665930108083454080, guid: 6a63ef398306547be8cad5f83b8994a3, type: 3}
+  - {fileID: 346016010000759473, guid: 2dd4604925f264cb1990818641361190, type: 3}
   - {fileID: -365888374976168327, guid: bc977179137164c22a061f571c0ef07e, type: 3}
+  - {fileID: 6559573953508838307, guid: 8c291789626564f05ab21623737d19dd, type: 3}
   - {fileID: 21300000, guid: 3dcef7993fcff41cda1f895b7cb4b248, type: 3}
+  - {fileID: 2071342517933136681, guid: 53103da9ba51c48348bca95936a9750d, type: 3}
+  - {fileID: 384262645948542492, guid: 38bdd50ae121147ddbc4fb9bc6d728c4, type: 3}
   - {fileID: 21300000, guid: 99a84f1ac346b40418e9c4b49aeb7b94, type: 3}
+  - {fileID: 1480961996498039030, guid: 6f2505aafe1be4eebaef05cf00b2966a, type: 3}
+  - {fileID: 8907393020666943449, guid: 19a745caa897a41759d4b8b5d0b482f2, type: 3}
   - {fileID: 21300000, guid: df9785ea452cd4306ab69c75b5c69737, type: 3}
   - {fileID: 1102511138014544295, guid: 4a1cd64bfef544134884a5a0d55d6542, type: 3}
   - {fileID: 21300000, guid: bd0a3f8b6f28f406dad6db82e03648ef, type: 3}
@@ -79,15 +94,23 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 926ae38ddd0f547598d6f56be7384fc5, type: 3}
   - {fileID: 21300000, guid: 7b63dead1d8dc4b7ea48867b93168795, type: 3}
   - {fileID: 6663523481116068875, guid: b9bff0ed54b784f74bdf8214858a2948, type: 3}
+  - {fileID: -1220990825568754350, guid: 6f5cc40e4a1cd458c9901849a7f52a07, type: 3}
+  - {fileID: 21300000, guid: 65f42b8e2924f4e26adf8ce8fb34fcdf, type: 3}
   - {fileID: -7205862678162377740, guid: 7c9169de7543a47c7a1a49f13864a321, type: 3}
   - {fileID: 21300000, guid: e574163f0e2b64395978e4003890b462, type: 3}
   - {fileID: -7153910212444640112, guid: f9e1fe3f7c5164c8a99bd0fb1329c48a, type: 3}
+  - {fileID: 21300000, guid: a37ec89f5ca17463ea97a831015fd5a1, type: 3}
   - {fileID: 21300000, guid: 8e480bafdc60ef241a47e58493ea7aef, type: 3}
   m_PackedSpriteNamesToIndex:
+  - common_btn_bluegray_0
   - home_menu_inventory
   - package_icon_piggy
+  - common_circle_purple
   - user_level_bar_back_0
   - package_badge_red_0
+  - common_effect
+  - common_btn_dark_0
+  - common_circle_green
   - home_button_play_icon
   - home_menu_lock
   - top_btn_setting
@@ -98,12 +121,22 @@ SpriteAtlas:
   - user_level_bar_bg_0
   - home_button_play_0
   - gem_icon
+  - common_btn_yellow_0
   - home_menu_boss
+  - common_btn_blue_0
   - shome_sub_icon_ranking
+  - common_circle_dark
   - package_icon_gem
+  - common_btn_green_0
+  - common_btn_gray_0
   - package_bg_0
+  - common_btn_purple_0
   - shome_sub_icon_calendar
+  - common_btn_mint_0
+  - common_btn_small_bg_0
   - home_menu_heroes
+  - common_btn_brown_0
+  - common_btn_disable_0
   - home_menu_guild
   - home_submenu_bg_0
   - shome_sub_icon_friend
@@ -115,9 +148,12 @@ SpriteAtlas:
   - shome_sub_icon_chest
   - exp_icon
   - package_badge_orange_0
+  - common_btn_red_0
+  - common_circle_red
   - home_menu_btn_0
   - home_menu_upgrade
   - user_level_bar_blue_0
+  - common_circle_blue
   - energy_icon
   m_Tag: MainMenu
   m_IsVariant: 0
