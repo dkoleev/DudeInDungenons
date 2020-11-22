@@ -1,5 +1,4 @@
 using Runtime.Logic;
-using Runtime.Logic.GameProgress;
 using Runtime.UI.Base;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -16,13 +15,13 @@ namespace Runtime.UI.MainMenu {
         [SerializeField, Required]
         private TextMeshProUGUI _expAmount;
         
-        public override void Initialize(GameProgress progress, ItemsReference itemsReference) {
-            base.Initialize(progress, itemsReference);
+        public override void Initialize(GameController gameController, ItemsReference itemsReference) {
+            base.Initialize(gameController, itemsReference);
 
-            _gemAmount.text = Progress.Player.GetResourceAmount(ResourceId.Gem).ToString();
-            _goldAmount.text = Progress.Player.GetResourceAmount(ResourceId.Gold).ToString();
-            _energyAmount.text = Progress.Player.GetResourceAmount(ResourceId.Energy).ToString();
-            _expAmount.text = Progress.Player.GetResourceAmount(ResourceId.Exp).ToString();
+            _gemAmount.text = GameController.Inventory.GetResourceAmount(ResourceId.Gem).ToString();
+            _goldAmount.text = GameController.Inventory.GetResourceAmount(ResourceId.Gold).ToString();
+            _energyAmount.text = GameController.Inventory.GetResourceAmount(ResourceId.Energy).ToString();
+            _expAmount.text = GameController.Inventory.GetResourceAmount(ResourceId.Exp).ToString();
         }
     }
 }

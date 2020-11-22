@@ -32,15 +32,15 @@ namespace Runtime.UI.MainMenu {
 
         private MenuCategory _currentCategory = MenuCategory.Equipment;
 
-        public override void Initialize(GameProgress progress, ItemsReference itemsReference) {
-            base.Initialize(progress, itemsReference);
+        public override void Initialize(GameController gameController, ItemsReference itemsReference) {
+            base.Initialize(gameController, itemsReference);
             
-            _resourcesPanel.Initialize(Progress, ItemsReference);
+            _resourcesPanel.Initialize(GameController, ItemsReference);
             
             SelectCategory(MenuCategory.World);
             InitializeMainButtons();
             
-            _inventory.Initialize(Progress, ItemsReference);
+            _inventory.Initialize(GameController, ItemsReference);
             _playButton.onClick.AddListener(() => {
                 OnPlayClick.Dispatch();
             });

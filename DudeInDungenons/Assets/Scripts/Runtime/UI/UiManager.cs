@@ -1,4 +1,3 @@
-using Runtime.Logic.GameProgress;
 using Runtime.Ui.World;
 using UnityEngine;
 
@@ -8,14 +7,15 @@ namespace Runtime.UI {
         private Hud _hud;
         private MainMenu.MainMenu _mainMenu;
 
-        public void Initialize(GameProgress  progress, ItemsReference itemsReference, GameMode gameMode) {
+        public void Initialize(GameController gameController, ItemsReference itemsReference, GameMode gameMode) {
             switch (gameMode) {
                 case GameMode.MainMenu:
                     _mainMenu = FindObjectOfType<MainMenu.MainMenu>();
-                    _mainMenu.Initialize(progress, itemsReference);
+                    _mainMenu.Initialize(gameController, itemsReference);
                     break;
                 case GameMode.Level:
                     _hud = FindObjectOfType<Hud>();
+                    _hud.Initialize(gameController, itemsReference);
                     break;
             }
         }

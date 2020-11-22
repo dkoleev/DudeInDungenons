@@ -16,6 +16,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
+using Inventory = Runtime.Logic.Inventory.Inventory;
 
 namespace Runtime {
     public enum GameMode {
@@ -32,24 +33,24 @@ namespace Runtime {
 
         [SerializeField]
         private RunMode _runMode;
-
         [SerializeField]
         [ShowIf("_runMode", RunMode.Level)]
         private string _levelToLoad;
         [SerializeField]
         [ShowIf("_runMode", RunMode.Level)]
         private WorldData _worldData;
-
         [SerializeField, Required]
         private ItemsReference _itemsReference;
         [SerializeField, Required]
         private UiManager _uiManager;
         
         public WorldData CurrentWorldData { get; private set; }
-        
+        public Inventory Inventory => _inventory;
+
         private SaveEngine<GameProgress> _saveEngine;
         private InputManager _inputManager;
         private Player _player;
+        private Inventory _inventory;
         private GameProgress _progress;
         private bool _allScenesLoaded;
         private Action OnAllScenesLoaded;
@@ -60,6 +61,7 @@ namespace Runtime {
 
         private void Awake() {
             _progress = LoadGameProgress();
+            _inventory = new Inventory(_progress);
             _inputManager = new InputManager();
             ShowLoadingScreen();
 
@@ -88,7 +90,7 @@ namespace Runtime {
             }
 
             void InitMode() {
-                _uiManager.Initialize(_progress, _itemsReference, _gameMode);
+                _uiManager.Initialize(this, _itemsReference, _gameMode);
 
                 switch (_gameMode) {
                     case GameMode.MainMenu:
@@ -210,7 +212,7 @@ namespace Runtime {
                     
                     var enumId = (ResourceId) Enum.Parse(typeof(ResourceId), list[0]);
 
-                    _progress.Player.AddResource(enumId, Int32.Parse(list[1]));
+                    Inventory.AddResource(enumId, Int32.Parse(list[1]));
                 }));
         }
     }

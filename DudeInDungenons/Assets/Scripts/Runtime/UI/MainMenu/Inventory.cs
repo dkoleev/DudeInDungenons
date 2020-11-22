@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Runtime.Logic;
 using Runtime.Logic.GameProgress;
 using Runtime.UI.Base;
 using Sirenix.OdinInspector;
@@ -16,11 +15,11 @@ namespace Runtime.UI.MainMenu {
 
         private List<InventoryItem> _items;
 
-        public override void Initialize(GameProgress progress, ItemsReference itemsReference) {
-            base.Initialize(progress, itemsReference);
+        public override void Initialize(GameController gameController, ItemsReference itemsReference) {
+            base.Initialize(gameController, itemsReference);
             
             _items = new List<InventoryItem>();
-            foreach (var item in Progress.Player.Inventory) {
+            foreach (var item in GameController.Inventory.Get()) {
                 var itemData = ItemsReference.GetItemById(item.Key);
                 var inventoryItem = Instantiate(_itemPrefab, _inventoryGrid.transform);
                 inventoryItem.Initialize(itemData.Icon, item.Value.ToString());

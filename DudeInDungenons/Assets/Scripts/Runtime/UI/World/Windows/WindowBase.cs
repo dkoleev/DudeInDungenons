@@ -1,8 +1,9 @@
+using Runtime.UI.Base;
 using Sigtrap.Relays;
 using UnityEngine;
 
 namespace Runtime.Ui.World.Windows {
-    public class WindowBase : MonoBehaviour {
+    public class WindowBase : UiBase {
         public Relay OnHide = new Relay();
         public Relay OnShow = new Relay();
         

@@ -315,6 +315,8 @@ GameObject:
   - component: {fileID: 3330589254960846890}
   - component: {fileID: 3330589254960846891}
   - component: {fileID: 3330589254960846888}
+  - component: {fileID: 9099479333497562756}
+  - component: {fileID: 5710267582775438164}
   m_Layer: 5
   m_Name: Button_ColorTextIcon_Base
   m_TagString: Untagged
@@ -423,3 +425,43 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9099479333497562756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3330589254960847062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aba771e0f9a6664cbdc8c796d6a8f35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _easyIn: 9
+  _inDuration: 0.1
+  _inScale: 0.85
+  _easyOut: 27
+  _outDuration: 0.3
+  _selfTarget: 1
+  _target: {fileID: 0}
+--- !u!114 &5710267582775438164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3330589254960847062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8480a5b5bb147839c037cd82d000fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfx:
+    sfxType: 0
+    sfxToPlay: {fileID: 11400000, guid: e610ffa2a8df4f54da70e7893be3872f, type: 2}
+    showSettings: 0
+    editSettings: 0
+    _sfxBase: {fileID: 11400000, guid: e610ffa2a8df4f54da70e7893be3872f, type: 2}
+    waitToPlay: 1
+    useDefault: 1
+    audiosource: {fileID: 0}
