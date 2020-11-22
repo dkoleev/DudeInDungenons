@@ -61,6 +61,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1d16d8b6b9a0d40aa9a78e09ab0b4be1, type: 3}
   - {fileID: 1602085488016458816, guid: 36f6d527895d64d56918a3385c073cb6, type: 3}
   - {fileID: -6275191271189760509, guid: 0b29ca37e82c442a58508328c4509fea, type: 3}
+  - {fileID: 21300000, guid: a642057723f31420da7f53ab699529ce, type: 3}
   - {fileID: 21300000, guid: 628fb358393e6492eb92424c9f20a05a, type: 3}
   - {fileID: 21300000, guid: e0f7a888d4b294e2c86f84cd2dbeec8a, type: 3}
   - {fileID: 21300000, guid: 7152e3d85e91040eba5e4b50208b2761, type: 3}
@@ -71,6 +72,7 @@ SpriteAtlas:
   - {fileID: 1102511138014544295, guid: 4a1cd64bfef544134884a5a0d55d6542, type: 3}
   - {fileID: 21300000, guid: bd0a3f8b6f28f406dad6db82e03648ef, type: 3}
   - {fileID: 21300000, guid: 1681cd1c1893a48cb9f2bea5bbb8bece, type: 3}
+  - {fileID: 21300000, guid: 8f0b673c5a37642dc899ed7d25b0ab49, type: 3}
   - {fileID: 21300000, guid: 7effad5cd0ddf4f3692773445504dd61, type: 3}
   - {fileID: 21300000, guid: 85c1297c9e76a4266a651ce28c37efe5, type: 3}
   - {fileID: 21300000, guid: 9a75923d32717430b834f2afc6328cbd, type: 3}
@@ -80,6 +82,7 @@ SpriteAtlas:
   - {fileID: -7205862678162377740, guid: 7c9169de7543a47c7a1a49f13864a321, type: 3}
   - {fileID: 21300000, guid: e574163f0e2b64395978e4003890b462, type: 3}
   - {fileID: -7153910212444640112, guid: f9e1fe3f7c5164c8a99bd0fb1329c48a, type: 3}
+  - {fileID: 21300000, guid: 8e480bafdc60ef241a47e58493ea7aef, type: 3}
   m_PackedSpriteNamesToIndex:
   - home_menu_inventory
   - package_icon_piggy
@@ -94,6 +97,7 @@ SpriteAtlas:
   - shome_sub_icon_commnity
   - user_level_bar_bg_0
   - home_button_play_0
+  - gem_icon
   - home_menu_boss
   - shome_sub_icon_ranking
   - package_icon_gem
@@ -104,6 +108,7 @@ SpriteAtlas:
   - home_submenu_bg_0
   - shome_sub_icon_friend
   - shome_sub_icon_scroll
+  - gold_icon
   - home_mission_list_icon
   - home_menu_store
   - notification_small_icon
@@ -113,5 +118,6 @@ SpriteAtlas:
   - home_menu_btn_0
   - home_menu_upgrade
   - user_level_bar_blue_0
+  - energy_icon
   m_Tag: MainMenu
   m_IsVariant: 0
