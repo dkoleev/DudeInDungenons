@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Runtime.Ui.Animations {
+    [DisallowMultipleComponent]
     public class ScaleTapAnimation : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
         [SerializeField]
         private Ease _easyIn = Ease.Linear;
