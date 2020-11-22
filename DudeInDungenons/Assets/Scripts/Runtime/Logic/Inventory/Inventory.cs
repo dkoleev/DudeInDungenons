@@ -9,7 +9,7 @@ namespace Runtime.Logic.Inventory {
             _inventory = new Dictionary<ResourceId, int>();
             _gameProgress = gameProgress;
             
-            _inventory = _gameProgress.Player.Inventory;
+           // _inventory = _gameProgress.Player.Inventory;
         }
     }
 }

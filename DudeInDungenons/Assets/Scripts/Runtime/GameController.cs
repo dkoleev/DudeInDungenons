@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Avocado.DeveloperCheatConsole.Scripts.Core;
 using Avocado.DeveloperCheatConsole.Scripts.Core.Commands;
 using Runtime.Data;
 using Runtime.Input;
+using Runtime.Logic;
 using Runtime.Logic.Core.SaveEngine;
 using Runtime.Logic.GameProgress;
 using Runtime.Static;
@@ -191,9 +194,24 @@ namespace Runtime {
         }
 
         private void AddDevCommands() {
-            DeveloperConsole.Instance.AddCommand(new DevCommand("spawn", "Spawn object on scene", delegate(string entityId) {
-                Addressables.InstantiateAsync(entityId, Vector3.zero, Quaternion.identity);
-            }));
+            DeveloperConsole.Instance.AddCommand(new DevCommand("spawn", "Spawn object on scene",
+                delegate(string entityId) {
+                    Addressables.InstantiateAsync(entityId, Vector3.zero, Quaternion.identity);
+                }));
+
+            DeveloperConsole.Instance.AddCommand(new DevCommand("add",
+                "Add resource to inventory: add [resource_id] [amount]"
+                , delegate(List<string> list) {
+                    var ids = Enum.GetNames(typeof(ResourceId)).ToList();
+                    if (!ids.Contains(list[0])) {
+                        Debug.LogError("not found resource with id " + list[0]);
+                        return;
+                    }
+                    
+                    var enumId = (ResourceId) Enum.Parse(typeof(ResourceId), list[0]);
+
+                    _progress.Player.AddResource(enumId, Int32.Parse(list[1]));
+                }));
         }
     }
 }
