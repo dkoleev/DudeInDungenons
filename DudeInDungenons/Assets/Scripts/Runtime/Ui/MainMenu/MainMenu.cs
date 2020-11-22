@@ -12,6 +12,8 @@ namespace Runtime.Ui.MainMenu {
         }
 
         [SerializeField, Required]
+        private ResourcesPanel _resourcesPanel;
+        [SerializeField, Required]
         private GameObject _worldCategory;
         [SerializeField, Required]
         private GameObject _equipmentCategory;
@@ -31,6 +33,8 @@ namespace Runtime.Ui.MainMenu {
 
         public override void Initialize(GameProgress progress, ItemsReference itemsReference) {
             base.Initialize(progress, itemsReference);
+            
+            _resourcesPanel.Initialize(Progress, ItemsReference);
             
             SelectCategory(MenuCategory.World);
             InitializeMainButtons();

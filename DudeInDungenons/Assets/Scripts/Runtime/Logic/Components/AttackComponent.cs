@@ -15,7 +15,7 @@ namespace Runtime.Logic.Components {
         private readonly float _rotationSpeed;
         private bool _isRotating;
         
-        public AttackComponent(string weaponId, IWeaponOwner owner, float rotationSpeed = 600) {
+        public AttackComponent(ResourceId weaponId, IWeaponOwner owner, float rotationSpeed = 600) {
             _owner = owner;
             _rotationSpeed = rotationSpeed;
             CreateWeapon(weaponId);
@@ -65,9 +65,9 @@ namespace Runtime.Logic.Components {
             OnShoot.Dispatch();
         }
         
-        private void CreateWeapon(string weaponId) {
+        private void CreateWeapon(ResourceId weaponId) {
             var weaponPlacer = _owner.MainTransform.GetComponentInChildren<WeaponPlacer>();
-            Addressables.InstantiateAsync(weaponId, weaponPlacer.transform).Completed += OnLoad;
+            Addressables.InstantiateAsync(weaponId.ToString(), weaponPlacer.transform).Completed += OnLoad;
             void OnLoad(AsyncOperationHandle<GameObject> handle) {
                 var go = handle.Result;
                 var weapon = go.GetComponent<Weapon>();

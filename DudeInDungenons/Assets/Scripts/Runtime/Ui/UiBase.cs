@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Runtime.Ui {
     public class UiBase : MonoBehaviour {
+        protected GameController GameController;
         protected GameProgress Progress;
         protected ItemsReference ItemsReference;
 

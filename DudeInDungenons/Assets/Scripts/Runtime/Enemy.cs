@@ -76,7 +76,7 @@ namespace Runtime {
             _timeManager = new TimeManager();
             _visual = new EnemyVisual(this);
 
-            _attackComponent = new AttackComponent(_data.Weapon.name, this);
+            _attackComponent = new AttackComponent(_data.Weapon.Id, this);
             AddComponent(_attackComponent);
         }
 

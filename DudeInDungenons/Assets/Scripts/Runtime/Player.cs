@@ -73,7 +73,7 @@ namespace Runtime {
             _visual = new PlayerVisual(this);
 
             var currentWeapon = GetEquippedWeapon();
-            if (!string.IsNullOrEmpty(currentWeapon)) {
+            if (currentWeapon != ResourceId.None) {
                 AttackComponent = new AttackComponent(currentWeapon, this, _data.SpeedRotateNoMove);
                 AddComponent(AttackComponent);
             }
@@ -95,14 +95,14 @@ namespace Runtime {
             _health = _data.MaxHealth;
         }
 
-        private string GetEquippedWeapon() {
+        private ResourceId GetEquippedWeapon() {
             foreach (var itemStack in _data.StartInventory) {
                 if (itemStack.Equipped && itemStack.Item is WeaponData) {
                     return itemStack.Item.Id;
                 }
             }
             
-            return String.Empty;
+            return ResourceId.None;
         }
 
         protected override void Start() {

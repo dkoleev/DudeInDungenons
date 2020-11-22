@@ -113,7 +113,7 @@ SpriteAtlas:
   - home_menu_store
   - notification_small_icon
   - shome_sub_icon_chest
-  - user_level_bg
+  - exp_icon
   - package_badge_orange_0
   - home_menu_btn_0
   - home_menu_upgrade
