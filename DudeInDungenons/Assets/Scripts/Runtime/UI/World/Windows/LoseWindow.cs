@@ -28,6 +28,7 @@ namespace Runtime.Ui.World.Windows {
         }
 
         private void LeaveLevel() {
+            Hide();
             EventBus<OnExitLevelClick>.Raise(new OnExitLevelClick());
         }
 

@@ -6100,7 +6100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1611730428
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8132,31 +8132,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3330589253057783641, guid: 364d21075d1bc284da35bf4e9d5dd078, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3330589253057783641, guid: 364d21075d1bc284da35bf4e9d5dd078, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3330589253057783641, guid: 364d21075d1bc284da35bf4e9d5dd078, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3330589253057783641, guid: 364d21075d1bc284da35bf4e9d5dd078, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -41.97209
       objectReference: {fileID: 0}
     - target: {fileID: 3330589253746414200, guid: 364d21075d1bc284da35bf4e9d5dd078, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3330589253746414200, guid: 364d21075d1bc284da35bf4e9d5dd078, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3330589253746414200, guid: 364d21075d1bc284da35bf4e9d5dd078, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 50.81
       objectReference: {fileID: 0}
     - target: {fileID: 3330589253746414200, guid: 364d21075d1bc284da35bf4e9d5dd078, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -8164,11 +8164,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3330589253746414200, guid: 364d21075d1bc284da35bf4e9d5dd078, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -41.97209
       objectReference: {fileID: 0}
     - target: {fileID: 3330589254256054569, guid: 364d21075d1bc284da35bf4e9d5dd078, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 110.81
       objectReference: {fileID: 0}
     - target: {fileID: 3330589254960846889, guid: 364d21075d1bc284da35bf4e9d5dd078, type: 3}
       propertyPath: m_Pivot.x
