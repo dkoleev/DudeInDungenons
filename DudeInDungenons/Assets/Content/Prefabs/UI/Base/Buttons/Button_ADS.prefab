@@ -433,6 +433,7 @@ GameObject:
   - component: {fileID: 457451389475849004}
   - component: {fileID: 7804823593899448812}
   - component: {fileID: 8851801169466706117}
+  - component: {fileID: 8799017787033473459}
   m_Layer: 5
   m_Name: Button_ADS
   m_TagString: Untagged
@@ -583,3 +584,18 @@ MonoBehaviour:
     waitToPlay: 1
     useDefault: 1
     audiosource: {fileID: 0}
+--- !u!114 &8799017787033473459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457451389475849002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7accedae526a4afd9df144ee9619259c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _background: {fileID: 457451389475849005}
+  _enabledBackground: {fileID: -4189922956459317181, guid: ae9f8677ca3c24a7c80d7217a941f886, type: 3}
+  _disableBackground: {fileID: 8907393020666943449, guid: 19a745caa897a41759d4b8b5d0b482f2, type: 3}

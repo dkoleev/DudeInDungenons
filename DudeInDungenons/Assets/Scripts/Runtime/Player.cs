@@ -9,7 +9,6 @@ using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 using Runtime.Logic.GameProgress.Progress;
 using Runtime.Logic.States.Player;
-using Runtime.Logic.WeaponSystem;
 using Runtime.Static;
 using Runtime.Ui.World;
 using Sigtrap.Relays;
@@ -92,7 +91,7 @@ namespace Runtime {
         }
 
         public void Resurrect() {
-            _health = _data.MaxHealth;
+            AddHealth(_data.MaxHealth);
         }
 
         private ResourceId GetEquippedWeapon() {
@@ -164,12 +163,17 @@ namespace Runtime {
             _healthBar.SetProgress(_health);
         }
 
-        private void Dead() {
-           EventBus<OnPlayerDead>.Raise(new OnPlayerDead());
+        public void AddHealth(int amount) {
+            _health += amount;
+            if (_health > _data.MaxHealth) {
+                _health = _data.MaxHealth;
+            }
+            
+            _healthBar.SetProgress(_health);
         }
 
-        public void OnEvent(OnEnemyDead e) {
-            AddToInventory(e.Enemy.Data.Drop);
+        private void Dead() {
+           EventBus<OnPlayerDead>.Raise(new OnPlayerDead());
         }
 
         private void AddToInventory(List<ItemStack> drop) {
@@ -182,6 +186,10 @@ namespace Runtime {
                     inventory.Add(id, itemStack.Amount);
                 }
             }
+        }
+        
+        public void OnEvent(OnEnemyDead e) {
+            AddToInventory(e.Enemy.Data.Drop);
         }
 
         private void OnDestroy() {

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Runtime.UI.Base {
+    [RequireComponent (typeof (Button))]
     public class UiButton : MonoBehaviour {
         [SerializeField, Required]
         private Image _background;
@@ -11,15 +12,15 @@ namespace Runtime.UI.Base {
         [SerializeField, Required, AssetsOnly]
         private Sprite _disableBackground;
 
-        private Button _button;
-        
-        private void Awake() {
-            _button = GetComponent<Button>();
+        public Button Button { get; private set; }
+
+        protected virtual void Awake() {
+            Button = GetComponent<Button>();
             SetEnabled(true);
         }
 
         public void SetEnabled(bool isEnabled) {
-            _button.interactable = isEnabled;
+            Button.interactable = isEnabled;
             _background.sprite = isEnabled ? _enabledBackground : _disableBackground;
         }
     }
