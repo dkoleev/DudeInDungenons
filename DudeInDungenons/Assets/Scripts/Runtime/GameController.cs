@@ -60,6 +60,7 @@ namespace Runtime {
         private GameMode _gameMode = GameMode.MainMenu;
 
         private void Awake() {
+            AdsManager.Instance.Initialize();
             _progress = LoadGameProgress();
             _inventory = new Inventory(_progress);
             _inputManager = new InputManager();

@@ -10,17 +10,26 @@ namespace Runtime {
         
         private string _rewardedVideoPlacementId = "rewardedVideo";
         private string _videoPlacementId = "video";
+
+        private bool _initialized;
             
         private AdsManager() {
+            if (!_initialized) {
+                Initialize();
+            }
+        }
+
+        public void Initialize() {
             Advertisement.AddListener(this);
 
 #if UNITY_EDITOR
-        Advertisement.Initialize("3911161", true);
+            Advertisement.Initialize("3911161", true);
 #elif UNITY_ANDROID
             Advertisement.Initialize("3911161", false);
 #elif UNITY_IOS
             Advertisement.Initialize("3911160", false);
 #endif
+            _initialized = true;
         }
 
         public void ShowRewardedVideo() {

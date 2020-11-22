@@ -17,7 +17,8 @@ namespace Runtime {
         // when defining the Product Identifiers on the store. Except, for illustration purposes, the 
         // kProductIDSubscription - it has custom Apple and Google identifiers. We declare their store-
         // specific mapping to Unity Purchasing's AddProduct, below.
-        public static string kProductIDConsumable = "consumable";
+        public static string _product_gem_0 = "gem_0";
+        public static string _product_gem_1 = "gem_1";
         public static string kProductIDNonConsumable = "nonconsumable";
         public static string kProductIDSubscription = "subscription";
 
@@ -47,7 +48,8 @@ namespace Runtime {
 
             // Add a product to sell / restore by way of its identifier, associating the general identifier
             // with its store-specific identifiers.
-            builder.AddProduct(kProductIDConsumable, ProductType.Consumable);
+            builder.AddProduct(_product_gem_0, ProductType.Consumable);
+            builder.AddProduct(_product_gem_1, ProductType.Consumable);
 
             /*// Continue adding the non-consumable product.
             builder.AddProduct(kProductIDNonConsumable, ProductType.NonConsumable);
@@ -71,10 +73,10 @@ namespace Runtime {
             return m_StoreController != null && m_StoreExtensionProvider != null;
         }
 
-        public void BuyConsumable() {
+        public void BuyConsumable(string productId) {
             // Buy the consumable product using its general identifier. Expect a response either 
             // through ProcessPurchase or OnPurchaseFailed asynchronously.
-            BuyProductID(kProductIDConsumable);
+            BuyProductID(productId);
         }
 
 
@@ -182,7 +184,8 @@ namespace Runtime {
 
         public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) {
             // A consumable product has been purchased by this user.
-            if (String.Equals(args.purchasedProduct.definition.id, kProductIDConsumable, StringComparison.Ordinal)) {
+            if (String.Equals(args.purchasedProduct.definition.id, _product_gem_0, StringComparison.Ordinal) ||
+                String.Equals(args.purchasedProduct.definition.id, _product_gem_1, StringComparison.Ordinal)) {
                 Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
                 // The consumable item has been successfully purchased, add 100 coins to the player's in-game score.
                 //ScoreManager.score += 100;
