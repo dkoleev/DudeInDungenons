@@ -1,4 +1,5 @@
 using System;
+using Runtime.Logic;
 using UnityEngine;
 using UnityEngine.Purchasing;
 
@@ -28,12 +29,18 @@ namespace Runtime {
         // Google Play Store-specific product identifier subscription product.
         private static string kProductNameGooglePlaySubscription = "com.unity3d.subscription.original";
 
+        private GameController _gameController;
+
         void Start() {
             // If we haven't set up the Unity Purchasing reference
             if (m_StoreController == null) {
                 // Begin to configure our connection to Purchasing
                 InitializePurchasing();
             }
+        }
+
+        public void Initialize(GameController gameController) {
+            _gameController = gameController;
         }
 
         public void InitializePurchasing() {
@@ -189,6 +196,7 @@ namespace Runtime {
                 Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
                 // The consumable item has been successfully purchased, add 100 coins to the player's in-game score.
                 //ScoreManager.score += 100;
+                _gameController.Inventory.AddResource(ResourceId.Gem, 80);
             }
             // Or ... a non-consumable product has been purchased by this user.
             else if (String.Equals(args.purchasedProduct.definition.id, kProductIDNonConsumable,

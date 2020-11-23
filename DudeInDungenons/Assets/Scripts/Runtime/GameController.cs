@@ -43,9 +43,12 @@ namespace Runtime {
         private ItemsReference _itemsReference;
         [SerializeField, Required]
         private UiManager _uiManager;
+        [SerializeField, Required]
+        private BillingManager _billingManager;
         
         public WorldData CurrentWorldData { get; private set; }
         public Inventory Inventory => _inventory;
+        public BillingManager Billing => _billingManager;
 
         private SaveEngine<GameProgress> _saveEngine;
         private InputManager _inputManager;
@@ -60,7 +63,6 @@ namespace Runtime {
         private GameMode _gameMode = GameMode.MainMenu;
 
         private void Awake() {
-            AdsManager.Instance.Initialize();
             _progress = LoadGameProgress();
             _inventory = new Inventory(_progress);
             _inputManager = new InputManager();
@@ -83,6 +85,8 @@ namespace Runtime {
 
         private IEnumerator Start() {
             _itemsReference.Initialize();
+            AdsManager.Instance.Initialize();
+            _billingManager.Initialize(this);
 
             if (_allScenesLoaded) {
                 InitMode();
