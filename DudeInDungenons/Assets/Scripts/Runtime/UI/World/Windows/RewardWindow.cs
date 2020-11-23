@@ -46,14 +46,13 @@ namespace Runtime.Ui.World.Windows {
         }
 
         private void CollectReward() {
-            GameController.Inventory.Add(GameController.Player.Drop);
+            GameController.CurrentLevel.MoveDropToInventory();
             Hide();
             EventBus<OnRewardCollected>.Raise(new OnRewardCollected());
         }
         
         private void CollectRewardX2() {
-            GameController.Inventory.Add(GameController.Player.Drop);
-            GameController.Inventory.Add(GameController.Player.Drop);
+            GameController.CurrentLevel.MoveDropToInventoryX2();
             Hide();
             EventBus<OnRewardCollected>.Raise(new OnRewardCollected());
         }

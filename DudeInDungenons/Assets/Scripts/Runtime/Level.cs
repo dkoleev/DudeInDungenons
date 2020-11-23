@@ -59,14 +59,18 @@ namespace Runtime {
 
         public void LoadNextLevel() {
             var myIndex = GetCurrentLevelIndex();
-            if (myIndex < _worldData.Levels.Count-1) {
+            if (IsLastStage()) {
+                EventBus<OnLevelCompleted>.Raise(new OnLevelCompleted());
+            } else {
                 Dispose();
                 _gameController.LoadLevel(_worldData.Levels[myIndex+1].Value);
-            } else {
-                EventBus<OnLevelCompleted>.Raise(new OnLevelCompleted());
             }
         }
-        
+
+        private bool IsLastStage() {
+            return GetCurrentLevelIndex() >= _worldData.Levels.Count - 1;
+        }
+
         private int GetCurrentLevelIndex() {
             return  _worldData.Levels.FindIndex(0, _worldData.Levels.Count, value => value.Value == LevelName);
         }
@@ -78,6 +82,17 @@ namespace Runtime {
         public void LoadMainMenu() {
             Dispose();
             _gameController.LoadMainMenu(LevelName);
+        }
+
+        public void MoveDropToInventory() {
+            _gameController.Inventory.Add(_player.Drop);
+            _player.Drop.Clear();
+        }
+        
+        public void MoveDropToInventoryX2() {
+            _gameController.Inventory.Add(_player.Drop);
+            _gameController.Inventory.Add(_player.Drop);
+            _player.Drop.Clear();
         }
 
         public void OnEvent(OnSoulCreated e) {

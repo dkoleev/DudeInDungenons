@@ -43,6 +43,8 @@ namespace Runtime {
         public Transform RotateTransform => _rotateTransform;
         public Transform MainTransform => _mainTransform;
         public bool IsMoving => _mover.IsMoving;
+        public Dictionary<ResourceId, int> Drop => _drop;
+
 
         private WorldBar _healthBar;
         private MoveByController _mover;
@@ -58,6 +60,7 @@ namespace Runtime {
 
         private StateMachine _stateMachine;
         private IState _attackState;
+        private Dictionary<ResourceId, int> _drop = new Dictionary<ResourceId, int>();
         
         private bool _initialized;
 
@@ -171,14 +174,7 @@ namespace Runtime {
             
             _healthBar.SetProgress(_health);
         }
-
-        private void Dead() {
-           EventBus<OnPlayerDead>.Raise(new OnPlayerDead());
-        }
-
-        public Dictionary<ResourceId, int> Drop => _drop;
-        private Dictionary<ResourceId, int> _drop = new Dictionary<ResourceId, int>();
-
+        
         private void AddDrop(List<ItemStack> drop) {
             foreach (var itemStack in drop) {
                 var id = itemStack.Item.Id;
@@ -188,6 +184,10 @@ namespace Runtime {
                     _drop.Add(id, itemStack.Amount);
                 }
             }
+        }
+
+        private void Dead() {
+           EventBus<OnPlayerDead>.Raise(new OnPlayerDead());
         }
         
         public void OnEvent(OnEnemyDead e) {
