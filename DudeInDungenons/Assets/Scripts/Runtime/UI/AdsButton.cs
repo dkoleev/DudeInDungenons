@@ -1,3 +1,4 @@
+using System;
 using Runtime.UI.Base;
 using Sigtrap.Relays;
 using UnityEngine.Advertisements;
@@ -19,11 +20,17 @@ namespace Runtime.UI {
                 SetEnabled(true);
             });
 
-            AdsManager.Instance.OnAdsFinished.AddListener(result => {
-                if (result == ShowResult.Finished) {
-                    OnAdsCompleted.Dispatch();
-                }
-            });
+            AdsManager.Instance.OnAdsFinished.AddListener(AdsFinished);
+        }
+
+        private void AdsFinished(ShowResult result) {
+            if (result == ShowResult.Finished) {
+                OnAdsCompleted.Dispatch();
+            }
+        }
+
+        private void OnDestroy() {
+            AdsManager.Instance.OnAdsFinished.RemoveListener(AdsFinished);
         }
     }
 }

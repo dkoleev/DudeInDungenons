@@ -26,6 +26,9 @@ namespace Runtime.UI.MainMenu {
         private Inventory _inventory;
         [SerializeField, Required]
         private Button _playButton;
+
+        [SerializeField, Required]
+        private Button _testPurchaseButton;
         
         
         public Relay OnPlayClick = new Relay();
@@ -43,6 +46,10 @@ namespace Runtime.UI.MainMenu {
             _inventory.Initialize(GameController, ItemsReference);
             _playButton.onClick.AddListener(() => {
                 OnPlayClick.Dispatch();
+            });
+            
+            _testPurchaseButton.onClick.AddListener(() => {
+                GameController.Billing.BuyConsumable(BillingManager._product_gem_0);
             });
         }
 
