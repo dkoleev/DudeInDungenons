@@ -7,14 +7,14 @@ namespace Runtime.Ui.World.Windows {
         public Relay OnHide = new Relay();
         public Relay OnShow = new Relay();
         
-        public void Show() {
+        public virtual void Show() {
             gameObject.SetActive(true);
             Time.timeScale = 0f;
             
             OnShow.Dispatch();
         }
 
-        protected void Hide() {
+        protected virtual void Hide() {
             gameObject.SetActive(false);
             Time.timeScale = 1f;
             

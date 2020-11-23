@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Runtime.Logic.Inventory {
     public class Inventory {
@@ -18,6 +17,16 @@ namespace Runtime.Logic.Inventory {
                 _inventory[id] += amount;
             } else {
                 _inventory.Add(id, amount);
+            }
+        }
+        
+        public void AddResource(KeyValuePair<ResourceId, int> item) {
+            AddResource(item.Key, item.Value);
+        }
+
+        public void Add(Dictionary<ResourceId, int> drop) {
+            foreach (var dropItem in drop) {
+                AddResource(dropItem);
             }
         }
 

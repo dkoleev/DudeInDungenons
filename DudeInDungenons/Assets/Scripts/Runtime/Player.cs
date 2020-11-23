@@ -176,20 +176,22 @@ namespace Runtime {
            EventBus<OnPlayerDead>.Raise(new OnPlayerDead());
         }
 
-        private void AddToInventory(List<ItemStack> drop) {
-            var inventory = PlayerProgress.Inventory;
+        public Dictionary<ResourceId, int> Drop => _drop;
+        private Dictionary<ResourceId, int> _drop = new Dictionary<ResourceId, int>();
+
+        private void AddDrop(List<ItemStack> drop) {
             foreach (var itemStack in drop) {
                 var id = itemStack.Item.Id;
-                if (inventory.ContainsKey(id)) {
-                    inventory[id] += itemStack.Amount;
+                if (_drop.ContainsKey(id)) {
+                    _drop[id] += itemStack.Amount;
                 } else {
-                    inventory.Add(id, itemStack.Amount);
+                    _drop.Add(id, itemStack.Amount);
                 }
             }
         }
         
         public void OnEvent(OnEnemyDead e) {
-            AddToInventory(e.Enemy.Data.Drop);
+            AddDrop(e.Enemy.Data.Drop);
         }
 
         private void OnDestroy() {

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Runtime.Logic;
 using Runtime.UI.Base;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -17,9 +19,18 @@ namespace Runtime.UI {
         [SerializeField, Required]
         private TextMeshProUGUI _amount;
 
-        public override void Initialize(GameController gameController, ItemsReference itemsReference) {
-            base.Initialize(gameController, itemsReference);
+        public bool IsActive { get; private set; }
+
+        public void SetContent(KeyValuePair<ResourceId, int> dropItem) {
+            var itemData = ItemsReference.GetItemById(dropItem.Key);
             
+            _icon.sprite = Sprite.Create(itemData.Icon, new Rect(0, 0, itemData.Icon.width, itemData.Icon.height), Vector2.one / 2f);
+            _amount.text = dropItem.Value.ToString();
+        }
+
+        public void SetActive(bool isActive) {
+            IsActive = isActive;
+            gameObject.SetActive(IsActive);
         }
     }
 }

@@ -15,6 +15,6 @@ MonoBehaviour:
   _id: 8
   _icon: {fileID: 0}
   _animatorId: 2
-  _damage: 75
+  _damage: 200
   _shootDelay: 0.2
   _range: 8

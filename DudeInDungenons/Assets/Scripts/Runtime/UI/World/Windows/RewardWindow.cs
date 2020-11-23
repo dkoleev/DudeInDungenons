@@ -12,20 +12,55 @@ namespace Runtime.Ui.World.Windows {
         private List<UiItem> _itemTemplates;
         [SerializeField, Required]
         private Button _collectButton;
+        [SerializeField, Required]
+        private AdsButton _collectAdsButton;
 
         public override void Initialize(GameController gameController, ItemsReference itemsReference) {
             base.Initialize(gameController, itemsReference);
-            
+
+            foreach (var uiItem in _itemTemplates) {
+                uiItem.Initialize(GameController, ItemsReference);
+            }
+
             _collectButton.onClick.AddListener(CollectReward);
+            _collectAdsButton.OnAdsCompleted.AddListener(CollectRewardX2);
+        }
+
+        public override void Show() {
+            base.Show();
+
+            InitializeReward();
+        }
+
+        private void InitializeReward() {
+            foreach (var uiItem in _itemTemplates) {
+                uiItem.SetActive(false);
+            }
+
+            var i = 0;
+            foreach (var drop in GameController.Player.Drop) {
+                _itemTemplates[i].SetContent(drop);
+                _itemTemplates[i].SetActive(true);
+                i++;
+            }
         }
 
         private void CollectReward() {
+            GameController.Inventory.Add(GameController.Player.Drop);
+            Hide();
+            EventBus<OnRewardCollected>.Raise(new OnRewardCollected());
+        }
+        
+        private void CollectRewardX2() {
+            GameController.Inventory.Add(GameController.Player.Drop);
+            GameController.Inventory.Add(GameController.Player.Drop);
             Hide();
             EventBus<OnRewardCollected>.Raise(new OnRewardCollected());
         }
 
         private void OnDestroy() {
             _collectButton.onClick.RemoveListener(CollectReward);
+            _collectAdsButton.OnAdsCompleted.RemoveListener(CollectRewardX2);
         }
     }
 }

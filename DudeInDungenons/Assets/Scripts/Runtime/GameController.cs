@@ -49,6 +49,7 @@ namespace Runtime {
         public WorldData CurrentWorldData { get; private set; }
         public Inventory Inventory => _inventory;
         public BillingManager Billing => _billingManager;
+        public Player Player => _player;
 
         private SaveEngine<GameProgress> _saveEngine;
         private InputManager _inputManager;
