@@ -157,6 +157,7 @@ namespace Runtime {
             
             if (_currentLevel != null) {
                 yield return StartCoroutine(UnloadScene(_currentLevel.LevelName));
+                _currentLevel = null;
             }
 
             yield return StartCoroutine(UnloadScene(SceneNames.MenuMain));
@@ -176,10 +177,7 @@ namespace Runtime {
 
         private IEnumerator LoadScene(string sceneName, LoadSceneMode mode) {
             if (!SceneManager.GetSceneByName(sceneName).isLoaded) {
-                var asyncLoad = SceneManager.LoadSceneAsync(sceneName, mode);
-                while (!asyncLoad.isDone) {
-                    yield return null;
-                }
+                yield return SceneManager.LoadSceneAsync(sceneName, mode);
             }
 
             yield return null;
@@ -187,10 +185,7 @@ namespace Runtime {
 
         private IEnumerator UnloadScene(string sceneName) {
             if (SceneManager.GetSceneByName(sceneName).isLoaded) {
-                var asyncLoad = SceneManager.UnloadSceneAsync(sceneName);
-                while (!asyncLoad.isDone) {
-                    yield return null;
-                }
+                yield return SceneManager.UnloadSceneAsync(sceneName);
             }
 
             yield return null;

@@ -51,6 +51,8 @@ namespace Runtime.UI.MainMenu {
             _testPurchaseButton.onClick.AddListener(() => {
                 GameController.Billing.BuyConsumable(BillingManager._product_gem_0);
             });
+
+            Initialized = true;
         }
 
         private void InitializeMainButtons() {

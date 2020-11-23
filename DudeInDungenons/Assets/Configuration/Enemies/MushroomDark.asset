@@ -21,3 +21,6 @@ MonoBehaviour:
   - _item: {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
     _amount: 50
     _equipped: 0
+  - _item: {fileID: 11400000, guid: 4df6660ed1683424e9fc54f406a4bf66, type: 2}
+    _amount: 20
+    _equipped: 0

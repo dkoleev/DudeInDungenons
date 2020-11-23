@@ -10,7 +10,8 @@ namespace Runtime {
     public class Level : 
         IEventReceiver<OnSoulCreated>,
         IEventReceiver<OnExitLevelClick>,
-        IEventReceiver<OnContinueLevelClick> {
+        IEventReceiver<OnContinueLevelClick>,
+        IEventReceiver<OnRewardCollected> {
         public string LevelName { get; private set; }
 
         private GameController _gameController;
@@ -59,18 +60,24 @@ namespace Runtime {
         public void LoadNextLevel() {
             var myIndex = GetCurrentLevelIndex();
             if (myIndex < _worldData.Levels.Count-1) {
+                Dispose();
                 _gameController.LoadLevel(_worldData.Levels[myIndex+1].Value);
             } else {
-                _gameController.LoadMainMenu(_worldData.Levels[myIndex].Value);
+                EventBus<OnLevelCompleted>.Raise(new OnLevelCompleted());
             }
         }
-
+        
         private int GetCurrentLevelIndex() {
             return  _worldData.Levels.FindIndex(0, _worldData.Levels.Count, value => value.Value == LevelName);
         }
 
         private void Resurrect() {
             _player.Resurrect();
+        }
+
+        public void LoadMainMenu() {
+            Dispose();
+            _gameController.LoadMainMenu(LevelName);
         }
 
         public void OnEvent(OnSoulCreated e) {
@@ -80,20 +87,22 @@ namespace Runtime {
             if (_levelCleaned) {
                 ActivatePortal();
                 CollectSouls();
-                Leave();
             }
         }
         
         public void OnEvent(OnExitLevelClick e) {
-            Leave();
-            _gameController.LoadMainMenu(LevelName);
+            EventBus<OnLevelCompleted>.Raise(new OnLevelCompleted());
         }
         
         public void OnEvent(OnContinueLevelClick e) {
             Resurrect();
         }
+        
+        public void OnEvent(OnRewardCollected e) {
+            LoadMainMenu();
+        }
 
-        private void Leave() {
+        private void Dispose() {
             EventBus.UnRegister(this);
         }
     }
