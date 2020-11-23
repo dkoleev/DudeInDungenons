@@ -59,6 +59,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 4ad15db1aebb749f5b1846fbbfa25de7, type: 3}
   - {fileID: 21300000, guid: 11fdf602c22a84221b741456fd3add49, type: 3}
   - {fileID: 21300000, guid: c6d3e4b2b6e2f41aeac6a89560ff7f28, type: 3}
+  - {fileID: 21300000, guid: 50db6d4361dcfb94eb9c35c0d4f55e83, type: 3}
   - {fileID: 21300000, guid: 07c9f3a307404400d887f7776f4cfe46, type: 3}
   - {fileID: 21300000, guid: 5ba360d43b6004d658b94577fa3ce6a0, type: 3}
   - {fileID: -3630186977461526580, guid: b01ce6f4cff734d8cb0b335461311e65, type: 3}
@@ -113,6 +114,7 @@ SpriteAtlas:
   - common_circle_green
   - home_button_play_icon
   - home_menu_lock
+  - common_item_gold
   - top_btn_setting
   - package_icon_free
   - package_badge_pink_0
