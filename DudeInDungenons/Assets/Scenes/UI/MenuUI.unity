@@ -985,7 +985,8 @@ MonoBehaviour:
   _gemAmount: {fileID: 1287768685}
   _goldAmount: {fileID: 325810656}
   _energyAmount: {fileID: 193644167}
-  _expAmount: {fileID: 5914019161020579534}
+  _levelAmount: {fileID: 5914019161020579534}
+  _expProgress: {fileID: 5914019161020579535}
 --- !u!223 &475567756263178078
 Canvas:
   m_ObjectHideFlags: 0
@@ -4271,13 +4272,24 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &5914019161020579534 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3354910169704128405, guid: e20ea170751a62348a6546dab6f45a0c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3354910168909113373, guid: e20ea170751a62348a6546dab6f45a0c, type: 3}
   m_PrefabInstance: {fileID: 5914019161020579532}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5914019161020579535 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3354910168832675293, guid: e20ea170751a62348a6546dab6f45a0c, type: 3}
+  m_PrefabInstance: {fileID: 5914019161020579532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6265229839003085199

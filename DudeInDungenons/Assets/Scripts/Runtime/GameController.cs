@@ -42,11 +42,14 @@ namespace Runtime {
         [SerializeField, Required]
         private ItemsReference _itemsReference;
         [SerializeField, Required]
+        private SettingsReference _settingsReference;
+        [SerializeField, Required]
         private UiManager _uiManager;
         [SerializeField, Required]
         private BillingManager _billingManager;
         
         public WorldData CurrentWorldData { get; private set; }
+        public SettingsReference SettingsReference => _settingsReference;
         public Inventory Inventory => _inventory;
         public BillingManager Billing => _billingManager;
         public Player Player => _player;
@@ -64,10 +67,14 @@ namespace Runtime {
 
         private GameMode _gameMode = GameMode.MainMenu;
 
+        private ResourceConverter _expToLevelConverter;
+
         private void Awake() {
             _progress = LoadGameProgress();
             _inventory = new Inventory(_progress);
             _inputManager = new InputManager();
+            _expToLevelConverter = new ResourceConverter(ResourceId.Exp, ResourceId.Level, _settingsReference.LevelUp.LevelByExp, _inventory);
+            
             ShowLoadingScreen();
 
             switch (_runMode) {
@@ -192,7 +199,11 @@ namespace Runtime {
 
             yield return null;
         }
-        
+
+        private void OnDestroy() {
+            _expToLevelConverter.Dispose();
+        }
+
         private void OnApplicationQuit() {
             _saveEngine.SaveProgress();
         }

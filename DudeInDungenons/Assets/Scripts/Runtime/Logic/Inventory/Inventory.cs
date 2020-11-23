@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Runtime.Logic.Core.EventBus;
+using Runtime.Logic.Events;
 
 namespace Runtime.Logic.Inventory {
     public class Inventory {
@@ -18,6 +20,8 @@ namespace Runtime.Logic.Inventory {
             } else {
                 _inventory.Add(id, amount);
             }
+            
+            EventBus<OnAddResourceToInventory>.Raise(new OnAddResourceToInventory(id, amount));
         }
         
         public void AddResource(KeyValuePair<ResourceId, int> item) {
