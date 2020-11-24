@@ -10,8 +10,7 @@ using UnityEngine.UI;
 namespace Runtime.Ui.World {
     public class Hud : UiBase,
             IEventReceiver<OnPlayerDead>,
-            IEventReceiver<OnLevelCompleted>,
-            IEventReceiver<OnLevelCanceled> {
+            IEventReceiver<OnLevelCompleted> {
         
         [SerializeField, Required]
         private Button _pauseButton;
@@ -71,10 +70,6 @@ namespace Runtime.Ui.World {
         }
         
         public void OnEvent(OnLevelCompleted e) {
-            ShowRewardWindow();
-        }
-
-        public void OnEvent(OnLevelCanceled e) {
             ShowRewardWindow();
         }
 

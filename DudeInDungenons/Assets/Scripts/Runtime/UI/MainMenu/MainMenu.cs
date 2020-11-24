@@ -1,4 +1,3 @@
-using Runtime.Logic.GameProgress;
 using Runtime.UI.Base;
 using Sigtrap.Relays;
 using Sirenix.OdinInspector;
@@ -9,7 +8,8 @@ namespace Runtime.UI.MainMenu {
     public class MainMenu : UiBase {
         private enum MenuCategory {
             World,
-            Equipment
+            Equipment,
+            Shop
         }
 
         [SerializeField, Required]
@@ -19,9 +19,13 @@ namespace Runtime.UI.MainMenu {
         [SerializeField, Required]
         private GameObject _equipmentCategory;
         [SerializeField, Required]
+        private GameObject _shopCategory;
+        [SerializeField, Required]
         private Button _worldButton;
         [SerializeField, Required]
         private Button _equipementButton;
+        [SerializeField, Required]
+        private Button _shopButton;
         [SerializeField, Required]
         private Inventory _inventory;
         [SerializeField, Required]
@@ -63,6 +67,10 @@ namespace Runtime.UI.MainMenu {
             _equipementButton.onClick.AddListener(() => {
                 SelectCategory(MenuCategory.Equipment);
             });
+            
+            _shopButton.onClick.AddListener(() => {
+                SelectCategory(MenuCategory.Shop);
+            });
         }
 
         private void SelectCategory(MenuCategory category) {
@@ -74,6 +82,7 @@ namespace Runtime.UI.MainMenu {
             
             _worldCategory.SetActive(_currentCategory == MenuCategory.World);
             _equipmentCategory.SetActive(_currentCategory == MenuCategory.Equipment);
+            _shopCategory.SetActive(_currentCategory == MenuCategory.Shop);
         }
     }
 }

@@ -81,6 +81,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 7152e3d85e91040eba5e4b50208b2761, type: 3}
   - {fileID: 2665930108083454080, guid: 6a63ef398306547be8cad5f83b8994a3, type: 3}
   - {fileID: 346016010000759473, guid: 2dd4604925f264cb1990818641361190, type: 3}
+  - {fileID: 21300000, guid: 98a9d26901e06f549b3bdf96306a18d5, type: 3}
   - {fileID: -365888374976168327, guid: bc977179137164c22a061f571c0ef07e, type: 3}
   - {fileID: 6559573953508838307, guid: 8c291789626564f05ab21623737d19dd, type: 3}
   - {fileID: 21300000, guid: 3dcef7993fcff41cda1f895b7cb4b248, type: 3}
@@ -92,6 +93,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: df9785ea452cd4306ab69c75b5c69737, type: 3}
   - {fileID: 1102511138014544295, guid: 4a1cd64bfef544134884a5a0d55d6542, type: 3}
   - {fileID: 21300000, guid: bd0a3f8b6f28f406dad6db82e03648ef, type: 3}
+  - {fileID: 21300000, guid: 8a8ab5ab32d9c634aac250e8999b527f, type: 3}
   - {fileID: 21300000, guid: 4c845caba84fa44749a6755368a59a03, type: 3}
   - {fileID: 21300000, guid: 1681cd1c1893a48cb9f2bea5bbb8bece, type: 3}
   - {fileID: 21300000, guid: 8f0b673c5a37642dc899ed7d25b0ab49, type: 3}
@@ -143,6 +145,7 @@ SpriteAtlas:
   - package_icon_gem
   - common_btn_green_0
   - common_btn_gray_0
+  - common_bg_empty
   - package_bg_0
   - common_btn_purple_0
   - shome_sub_icon_calendar
@@ -154,6 +157,7 @@ SpriteAtlas:
   - home_menu_guild
   - home_submenu_bg_0
   - shome_sub_icon_friend
+  - common_whitebox
   - pause_btn_icon_setting
   - shome_sub_icon_scroll
   - gold_icon

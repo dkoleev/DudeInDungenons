@@ -1,0 +1,101 @@
+{
+    "m_SelectedDeviceId": "010c2faf9805",
+    "m_SelectedPackage": {
+        "deviceId": "010c2faf9805",
+        "name": "com.avocado.did",
+        "processId": 21890,
+        "exited": true
+    },
+    "m_SelectedPriority": 0,
+    "m_KnownPackagesForSerialization": [
+        {
+            "deviceId": "010c2faf9805",
+            "name": "com.mi.android.globalFileexplorer",
+            "processId": 8380,
+            "exited": true
+        },
+        {
+            "deviceId": "010c2faf9805",
+            "name": "com.android.vending",
+            "processId": 5157,
+            "exited": true
+        },
+        {
+            "deviceId": "010c2faf9805",
+            "name": "com.avocado.did",
+            "processId": 8903,
+            "exited": true
+        },
+        {
+            "deviceId": "010c2faf9805",
+            "name": "com.avocado.did",
+            "processId": 15407,
+            "exited": true
+        },
+        {
+            "deviceId": "010c2faf9805",
+            "name": "com.avocado.did",
+            "processId": 18607,
+            "exited": true
+        },
+        {
+            "deviceId": "010c2faf9805",
+            "name": "com.avocado.did",
+            "processId": 21890,
+            "exited": true
+        }
+    ],
+    "m_Tags": {
+        "m_Entries": [
+            {
+                "m_Name": "Filter by all listed tags",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "No Filter",
+                "m_Selected": true
+            },
+            {
+                "m_Name": "",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "Tag Control...",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "Unity",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "CRASH",
+                "m_Selected": false
+            }
+        ]
+    },
+    "m_MemoryViewerState": {
+        "MemoryWindowHeight": 300.0,
+        "MemoryWindowWidth": 170.0,
+        "MemoryTypeEnabled": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "MemoryGroup": 1,
+        "Behavior": 1
+    },
+    "m_Filter": "",
+    "m_FilterIsRegularExpression": false,
+    "m_SymbolPaths": []
+}
