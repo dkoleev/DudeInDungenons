@@ -1,10 +1,21 @@
 using System;
 using Runtime.Logic;
+using Runtime.Logic.Core.EventBus;
+using Runtime.Logic.Events;
 using UnityEngine;
 using UnityEngine.Purchasing;
 
 namespace Runtime {
     public class BillingManager : MonoBehaviour, IStoreListener {
+        public enum PurchaseProducts {
+            gem_0 = 0,
+            gem_1 = 1,
+            gem_2 = 2,
+            gem_3 = 3,
+            gem_4 = 4,
+            gem_5 = 5
+        }
+        
         private static IStoreController m_StoreController;
         private static IExtensionProvider m_StoreExtensionProvider;
 
@@ -18,8 +29,6 @@ namespace Runtime {
         // when defining the Product Identifiers on the store. Except, for illustration purposes, the 
         // kProductIDSubscription - it has custom Apple and Google identifiers. We declare their store-
         // specific mapping to Unity Purchasing's AddProduct, below.
-        public static string _product_gem_0 = "gem_0";
-        public static string _product_gem_1 = "gem_1";
         public static string kProductIDNonConsumable = "nonconsumable";
         public static string kProductIDSubscription = "subscription";
 
@@ -55,8 +64,10 @@ namespace Runtime {
 
             // Add a product to sell / restore by way of its identifier, associating the general identifier
             // with its store-specific identifiers.
-            builder.AddProduct(_product_gem_0, ProductType.Consumable);
-            builder.AddProduct(_product_gem_1, ProductType.Consumable);
+            var productIds = Enum.GetNames(typeof(PurchaseProducts));
+            foreach (var productId in productIds) {
+                builder.AddProduct(productId, ProductType.Consumable);
+            }
 
             /*// Continue adding the non-consumable product.
             builder.AddProduct(kProductIDNonConsumable, ProductType.NonConsumable);
@@ -76,7 +87,7 @@ namespace Runtime {
         }
 
 
-        private bool IsInitialized() {
+        public bool IsInitialized() {
             return m_StoreController != null && m_StoreExtensionProvider != null;
         }
 
@@ -180,8 +191,9 @@ namespace Runtime {
             m_StoreController = controller;
             // Store specific subsystem, for accessing device-specific store features.
             m_StoreExtensionProvider = extensions;
+            
+            EventBus<OnBillingInitialized>.Raise(new OnBillingInitialized());
         }
-
 
         public void OnInitializeFailed(InitializationFailureReason error) {
             // Purchasing set-up has not succeeded. Check error for reason. Consider sharing this reason with the user.
@@ -190,13 +202,31 @@ namespace Runtime {
 
 
         public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) {
+            var reward = 0;
+            var id = args.purchasedProduct.definition.id;
+            if (id == PurchaseProducts.gem_0.ToString()) {
+                reward = 80;
+            } else if (id == PurchaseProducts.gem_1.ToString()) {
+                reward = 200;
+            } else if (id == PurchaseProducts.gem_2.ToString()) {
+                reward = 500;
+            } else if (id == PurchaseProducts.gem_3.ToString()) {
+                reward = 1200;
+            } else if (id == PurchaseProducts.gem_4.ToString()) {
+                reward = 2500;
+            }else if (id == PurchaseProducts.gem_5.ToString()) {
+                reward = 6500;
+            }
+
+            _gameController.Inventory.AddResource(ResourceId.Gem, reward);
+
+            /*
             // A consumable product has been purchased by this user.
             if (String.Equals(args.purchasedProduct.definition.id, _product_gem_0, StringComparison.Ordinal) ||
                 String.Equals(args.purchasedProduct.definition.id, _product_gem_1, StringComparison.Ordinal)) {
                 Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
                 // The consumable item has been successfully purchased, add 100 coins to the player's in-game score.
                 //ScoreManager.score += 100;
-                _gameController.Inventory.AddResource(ResourceId.Gem, 80);
             }
             // Or ... a non-consumable product has been purchased by this user.
             else if (String.Equals(args.purchasedProduct.definition.id, kProductIDNonConsumable,
@@ -215,6 +245,7 @@ namespace Runtime {
                 Debug.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'",
                     args.purchasedProduct.definition.id));
             }
+            */
 
             // Return a flag indicating whether this product has completely been received, or if the application needs 
             // to be reminded of this purchase at next app launch. Use PurchaseProcessingResult.Pending when still 
@@ -228,6 +259,19 @@ namespace Runtime {
             // this reason with the user to guide their troubleshooting actions.
             Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}",
                 product.definition.storeSpecificId, failureReason));
+        }
+        
+        public string GetPriceString(string productId) {
+#if !UNITY_EDITOR
+            if (IsInitialized()) {
+                if (string.IsNullOrEmpty(productId)){
+                    return string.Empty;
+                }
+
+                return m_StoreController.products.WithID(productId)?.metadata.localizedPriceString;
+            }
+#endif
+            return string.Empty;
         }
     }
 }

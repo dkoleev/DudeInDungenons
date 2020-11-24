@@ -11040,7 +11040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6522843943002352506}
   - component: {fileID: 968937424496482019}
-  - component: {fileID: 4620958957082193845}
+  - component: {fileID: -8615775849410731742}
   m_Layer: 5
   m_Name: ShopItemMediumBase
   m_TagString: Untagged
@@ -11076,7 +11076,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7447612572113313503}
   m_CullTransparentMesh: 0
---- !u!114 &4620958957082193845
+--- !u!114 &-8615775849410731742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11085,27 +11085,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7447612572113313503}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: c44f88db69bdb08499cf3a84d41fcfbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  _productId: 0
+  _price: {fileID: 3595963259496404915}
+  _buyButton: {fileID: 7404605331689553314}
 --- !u!1 &8692064289687860680
 GameObject:
   m_ObjectHideFlags: 0

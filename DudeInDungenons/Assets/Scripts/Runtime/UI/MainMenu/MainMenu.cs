@@ -17,6 +17,8 @@ namespace Runtime.UI.MainMenu {
         [SerializeField, Required]
         private HomeButtonsMenu _menuButtons;
         [SerializeField, Required]
+        private Shop _shop;
+        [SerializeField, Required]
         private GameObject _worldCategory;
         [SerializeField, Required]
         private GameObject _equipmentCategory;
@@ -45,6 +47,7 @@ namespace Runtime.UI.MainMenu {
             base.Initialize(gameController, itemsReference);
             
             _resourcesPanel.Initialize(GameController, ItemsReference);
+            _shop.Initialize(GameController, ItemsReference);
             _menuButtons.Initialize(this);
             
             SelectCategory(MenuCategory.World);
@@ -56,7 +59,7 @@ namespace Runtime.UI.MainMenu {
             });
             
             _testPurchaseButton.onClick.AddListener(() => {
-                GameController.Billing.BuyConsumable(BillingManager._product_gem_0);
+                GameController.Billing.BuyConsumable(BillingManager.PurchaseProducts.gem_0.ToString());
             });
 
             Initialized = true;
