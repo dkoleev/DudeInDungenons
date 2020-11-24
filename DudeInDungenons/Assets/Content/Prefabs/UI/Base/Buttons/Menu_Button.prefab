@@ -456,10 +456,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sfx:
     sfxType: 0
-    sfxToPlay: {fileID: 11400000, guid: 5437e38103e9fcc42b4390e0d9252628, type: 2}
+    sfxToPlay: {fileID: 11400000, guid: c07e21d789d17d141ba63616891c31c3, type: 2}
     showSettings: 0
     editSettings: 0
-    _sfxBase: {fileID: 11400000, guid: 5437e38103e9fcc42b4390e0d9252628, type: 2}
+    _sfxBase: {fileID: 11400000, guid: c07e21d789d17d141ba63616891c31c3, type: 2}
     waitToPlay: 1
     useDefault: 1
     audiosource: {fileID: 0}

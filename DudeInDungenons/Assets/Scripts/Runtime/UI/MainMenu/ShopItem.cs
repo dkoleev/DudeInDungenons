@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Runtime.UI.MainMenu {
-    public class ShopItem : UiBase, IEventReceiver<OnBillingInitialized>, IPointerDownHandler, IPointerUpHandler {
+    public class ShopItem : UiBase, IEventReceiver<OnBillingInitialized> {
         [SerializeField]
         private BillingManager.PurchaseProducts _productId;
         [SerializeField, Required]
@@ -44,14 +44,6 @@ namespace Runtime.UI.MainMenu {
         private void OnDestroy() {
             _buyButton.onClick.RemoveListener(ByProduct);
             EventBus.UnRegister(this);
-        }
-
-        public void OnPointerDown(PointerEventData eventData) {
-            
-        }
-
-        public void OnPointerUp(PointerEventData eventData) {
-            ByProduct();
         }
     }
 }

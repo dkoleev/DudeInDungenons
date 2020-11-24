@@ -525,6 +525,7 @@ MonoBehaviour:
   uiSFX:
   - {fileID: 11400000, guid: e610ffa2a8df4f54da70e7893be3872f, type: 2}
   - {fileID: 11400000, guid: 5437e38103e9fcc42b4390e0d9252628, type: 2}
+  - {fileID: 11400000, guid: c07e21d789d17d141ba63616891c31c3, type: 2}
   _audioSourceAmbient: {fileID: 458520191}
   ambientSFX:
   - {fileID: 11400000, guid: 63151d2a80a2e3e449bcd0874c4f1ba6, type: 2}
