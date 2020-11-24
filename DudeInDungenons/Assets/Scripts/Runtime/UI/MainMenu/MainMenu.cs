@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Runtime.UI.MainMenu {
     public class MainMenu : UiBase {
-        private enum MenuCategory {
+        public enum MenuCategory {
             World,
             Equipment,
             Shop
@@ -14,6 +14,8 @@ namespace Runtime.UI.MainMenu {
 
         [SerializeField, Required]
         private ResourcesPanel _resourcesPanel;
+        [SerializeField, Required]
+        private HomeButtonsMenu _menuButtons;
         [SerializeField, Required]
         private GameObject _worldCategory;
         [SerializeField, Required]
@@ -43,6 +45,7 @@ namespace Runtime.UI.MainMenu {
             base.Initialize(gameController, itemsReference);
             
             _resourcesPanel.Initialize(GameController, ItemsReference);
+            _menuButtons.Initialize(this);
             
             SelectCategory(MenuCategory.World);
             InitializeMainButtons();
@@ -73,7 +76,7 @@ namespace Runtime.UI.MainMenu {
             });
         }
 
-        private void SelectCategory(MenuCategory category) {
+        public void SelectCategory(MenuCategory category) {
             if (_currentCategory == category) {
                 return;
             }
