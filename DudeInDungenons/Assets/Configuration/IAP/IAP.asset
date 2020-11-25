@@ -26,44 +26,46 @@ MonoBehaviour:
     _price: 0
     _reward:
       _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
-      _amount: 100
+      _amount: 80
   - _title: Pile of Gems
     _price: 1
     _reward:
       _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
-      _amount: 200
+      _amount: 500
   - _title: Pouch of Gems
     _price: 2
     _reward:
       _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
-      _amount: 400
+      _amount: 1200
   - _title: Bucket of Gems
     _price: 3
     _reward:
       _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
-      _amount: 800
+      _amount: 2500
   - _title: Chest of Gems
     _price: 4
     _reward:
       _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
-      _amount: 1200
+      _amount: 6500
   - _title: Gold Chest of Gems
     _price: 5
     _reward:
       _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
-      _amount: 2000
+      _amount: 14000
   _resourceItems:
-  - _title: Pouch of Gems
+  - _id: gold_0
+    _title: Pouch of Gold
     _price:
       _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
-      _amount: 10
+      _amount: 30
     _reward:
       _item: {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
-      _amount: 100
-  - _title: Bucket of Gems
+      _amount: 900
+  - _id: gold_1
+    _title: Bucket of Gold
     _price:
       _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
-      _amount: 20
+      _amount: 80
     _reward:
       _item: {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
-      _amount: 200
+      _amount: 4320

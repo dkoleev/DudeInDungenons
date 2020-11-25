@@ -23,6 +23,8 @@ namespace Runtime.Data {
     [Serializable]
     public class IAPItemDataResource {
         [SerializeField]
+        private string _id;
+        [SerializeField]
         private string _title;
         [SerializeField]
         private ItemStack _price;
@@ -32,6 +34,7 @@ namespace Runtime.Data {
         public ItemStack Price => _price;
         public ItemStack Reward => _reward;
         public string Title => _title;
+        public string Id => _id;
     }
     
     [Serializable]

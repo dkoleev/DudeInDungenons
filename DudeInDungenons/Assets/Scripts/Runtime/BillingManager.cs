@@ -267,7 +267,7 @@ namespace Runtime {
                 return m_StoreController.products.WithID(productId)?.metadata.localizedPriceString;
             }
 #endif
-            return string.Empty;
+            return $"$ 0.99";
         }
     }
 }

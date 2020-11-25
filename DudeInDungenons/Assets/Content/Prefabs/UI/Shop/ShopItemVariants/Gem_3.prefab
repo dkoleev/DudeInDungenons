@@ -19480,6 +19480,10 @@ PrefabInstance:
       propertyPath: _productId
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -8615775849410731742, guid: 7f6a985499ea93b4c8092b4978749f85, type: 3}
+      propertyPath: _storeProduct
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 62107636278249927, guid: 7f6a985499ea93b4c8092b4978749f85, type: 3}
       propertyPath: m_SizeDelta.x
       value: 457.96

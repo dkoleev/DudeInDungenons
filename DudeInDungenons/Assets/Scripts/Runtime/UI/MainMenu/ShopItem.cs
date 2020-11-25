@@ -9,17 +9,25 @@ using UnityEngine.UI;
 
 namespace Runtime.UI.MainMenu {
     public class ShopItem : UiBase, IEventReceiver<OnBillingInitialized> {
-        [SerializeField, Required]
-        private TextMeshProUGUI _title;
         [SerializeField]
+        private bool _storeProduct = true;
+        [SerializeField]
+        [HideIf("_storeProduct")]
+        private string _id;
+        [SerializeField]
+        [ShowIf("_storeProduct")]
         private BillingManager.PurchaseProducts _productId;
         [SerializeField, Required]
+        private TextMeshProUGUI _title;
+        [SerializeField, Required]
         private Text _price;
+        [SerializeField]
+        private TextMeshProUGUI _priceResource;
         [SerializeField, Required]
         private TextMeshProUGUI _reward;
         [SerializeField, Required]
         private Button _buyButton;
-
+        
         void Start() {
             EventBus.Register(this);
             
@@ -33,17 +41,34 @@ namespace Runtime.UI.MainMenu {
                 SetPrice();
             }
 
-            var itemData = GameController.Billing.Data.StoreItems.First(store => store.Price == _productId);
-            _reward.text = itemData.Reward.Amount.ToString();
-            _title.text = itemData.Title;
+            if (_storeProduct) {
+                var itemData = GameController.Billing.Data.StoreItems.First(store => store.Price == _productId);
+                _reward.text = itemData.Reward.Amount.ToString();
+                _title.text = itemData.Title;
+            } else {
+                var itemData = GameController.Billing.Data.ResourceItems.First(store => store.Id == _id);
+                _reward.text = itemData.Reward.Amount.ToString();
+                _title.text = itemData.Title;
+            }
         }
 
         private void SetPrice() {
-            _price.text = GameController.Billing.GetPriceString(_productId.ToString());
+            if (_storeProduct) {
+                _price.text = GameController.Billing.GetPriceString(_productId.ToString());
+            } else {
+                var itemData = GameController.Billing.Data.ResourceItems.First(store => store.Id == _id);
+                _priceResource.text = itemData.Price.Amount.ToString();
+            }
         }
 
         private void ByProduct() {
-           GameController.Billing.BuyConsumable(_productId.ToString());
+            if (_storeProduct) {
+                GameController.Billing.BuyConsumable(_productId.ToString());
+            } else {
+                var itemData = GameController.Billing.Data.ResourceItems.First(store => store.Id == _id);
+                GameController.Inventory.SpendResource(itemData.Price.Item.Id, itemData.Price.Amount);
+                GameController.Inventory.AddResource(itemData.Reward.Item.Id, itemData.Reward.Amount);
+            }
         }
 
         public void OnEvent(OnBillingInitialized e) {
