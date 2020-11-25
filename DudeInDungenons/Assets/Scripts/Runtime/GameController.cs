@@ -49,6 +49,7 @@ namespace Runtime {
         private BillingManager _billingManager;
         
         public WorldData CurrentWorldData { get; private set; }
+        public WorldVisual CurrentWorld { get; private set; }
         public SettingsReference SettingsReference => _settingsReference;
         public Inventory Inventory => _inventory;
         public BillingManager Billing => _billingManager;
@@ -104,11 +105,11 @@ namespace Runtime {
             }
 
             void InitMode() {
-                _uiManager.Initialize(this, _itemsReference, _gameMode);
-
                 switch (_gameMode) {
                     case GameMode.MainMenu:
-                        CurrentWorldData = FindObjectOfType<WorldVisual>().Data;
+                        CurrentWorld = FindObjectOfType<WorldVisual>();
+                        CurrentWorldData = CurrentWorld.Data;
+                        _uiManager.Initialize(this, _itemsReference, _gameMode);
                         _uiManager.MainMenu.OnPlayClick.AddListener(() => {
                             LoadLevel(CurrentWorldData.Levels[0].Value);
                         });
@@ -116,8 +117,10 @@ namespace Runtime {
                     case GameMode.Level:
                         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
                         _player.Initialize(_progress);
+                        _uiManager.Initialize(this, _itemsReference, _gameMode);
                         break;
                 }
+                
             }
             
             yield return new WaitForSeconds(1.0f);
