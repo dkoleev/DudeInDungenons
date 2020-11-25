@@ -12,11 +12,8 @@ namespace Runtime.Data.Items {
         private Item _item;
         [SerializeField, PropertyOrder(3)]
         private int _amount;
-        [SerializeField, TableColumnWidth(50, false), PropertyOrder(4)]
-        private bool _equipped;
 
         public Item Item => _item;
         public int Amount => _amount;
-        public bool Equipped => _equipped;
     }
 }

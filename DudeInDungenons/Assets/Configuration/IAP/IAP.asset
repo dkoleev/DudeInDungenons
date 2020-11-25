@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d03f18bf99e4af7a66a61e18011a117, type: 3}
+  m_Name: IAP
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _storeItems:
+  - _title: Bunch of Gems
+    _price: 0
+    _reward:
+      _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
+      _amount: 100
+  - _title: Pile of Gems
+    _price: 1
+    _reward:
+      _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
+      _amount: 200
+  - _title: Pouch of Gems
+    _price: 2
+    _reward:
+      _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
+      _amount: 400
+  - _title: Bucket of Gems
+    _price: 3
+    _reward:
+      _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
+      _amount: 800
+  - _title: Chest of Gems
+    _price: 4
+    _reward:
+      _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
+      _amount: 1200
+  - _title: Gold Chest of Gems
+    _price: 5
+    _reward:
+      _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
+      _amount: 2000
+  _resourceItems:
+  - _title: Pouch of Gems
+    _price:
+      _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
+      _amount: 10
+    _reward:
+      _item: {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
+      _amount: 100
+  - _title: Bucket of Gems
+    _price:
+      _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
+      _amount: 20
+    _reward:
+      _item: {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
+      _amount: 200

@@ -1,7 +1,10 @@
 using System;
+using System.Linq;
+using Runtime.Data;
 using Runtime.Logic;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Purchasing;
 
@@ -15,6 +18,11 @@ namespace Runtime {
             gem_4 = 4,
             gem_5 = 5
         }
+
+        public IAPData Data => _data;
+
+        [SerializeField, Required]
+        private IAPData _data;
         
         private static IStoreController m_StoreController;
         private static IExtensionProvider m_StoreExtensionProvider;
@@ -202,23 +210,7 @@ namespace Runtime {
 
 
         public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) {
-            var reward = 0;
-            var id = args.purchasedProduct.definition.id;
-            if (id == PurchaseProducts.gem_0.ToString()) {
-                reward = 80;
-            } else if (id == PurchaseProducts.gem_1.ToString()) {
-                reward = 200;
-            } else if (id == PurchaseProducts.gem_2.ToString()) {
-                reward = 500;
-            } else if (id == PurchaseProducts.gem_3.ToString()) {
-                reward = 1200;
-            } else if (id == PurchaseProducts.gem_4.ToString()) {
-                reward = 2500;
-            }else if (id == PurchaseProducts.gem_5.ToString()) {
-                reward = 6500;
-            }
-
-            _gameController.Inventory.AddResource(ResourceId.Gem, reward);
+            Award(args.purchasedProduct.definition.id);
 
             /*
             // A consumable product has been purchased by this user.
@@ -253,6 +245,10 @@ namespace Runtime {
             return PurchaseProcessingResult.Complete;
         }
 
+        private void Award(string productId) {
+            var item = _data.StoreItems.First(store => store.Price.ToString() == productId);
+            _gameController.Inventory.AddResource(ResourceId.Gem, item.Reward.Amount);
+        }
 
         public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason) {
             // A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing 

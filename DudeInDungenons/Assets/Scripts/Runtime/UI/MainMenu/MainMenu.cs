@@ -11,7 +11,11 @@ namespace Runtime.UI.MainMenu {
             Equipment,
             Shop
         }
-
+        
+        [Title("Cameras")]
+        [SerializeField, Required]
+        private Camera _worldCamera;
+        [Title("Panels")]
         [SerializeField, Required]
         private ResourcesPanel _resourcesPanel;
         [SerializeField, Required]
@@ -89,6 +93,8 @@ namespace Runtime.UI.MainMenu {
             _worldCategory.SetActive(_currentCategory == MenuCategory.World);
             _equipmentCategory.SetActive(_currentCategory == MenuCategory.Equipment);
             _shopCategory.SetActive(_currentCategory == MenuCategory.Shop);
+
+            _worldCamera.enabled = _currentCategory != MenuCategory.Shop;
         }
     }
 }

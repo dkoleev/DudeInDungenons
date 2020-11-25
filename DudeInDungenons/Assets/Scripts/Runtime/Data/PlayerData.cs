@@ -20,12 +20,12 @@ namespace Runtime.Data {
         [SerializeField]
         [TabGroup("Starting Inventory")]
         [TableList]
-        private ItemStack[] _startInventory;
+        private PLayerStartInventoryItemStack[] _startInventory;
 
         public int MaxHealth => _maxHealth;
         public float SpeedMove => _speedMove;
         public float SpeedRotate => _speedRotate;
         public float SpeedRotateNoMove => _speedRotateNoMove;
-        public ItemStack[] StartInventory => _startInventory;
+        public PLayerStartInventoryItemStack[] StartInventory => _startInventory;
     }
 }

@@ -47,7 +47,7 @@ namespace Runtime {
         private UiManager _uiManager;
         [SerializeField, Required]
         private BillingManager _billingManager;
-        
+
         public WorldData CurrentWorldData { get; private set; }
         public WorldVisual CurrentWorld { get; private set; }
         public SettingsReference SettingsReference => _settingsReference;
@@ -55,7 +55,7 @@ namespace Runtime {
         public BillingManager Billing => _billingManager;
         public Player Player => _player;
         public Level CurrentLevel => _currentLevel;
-
+        
         private SaveEngine<GameProgress> _saveEngine;
         private InputManager _inputManager;
         private Player _player;

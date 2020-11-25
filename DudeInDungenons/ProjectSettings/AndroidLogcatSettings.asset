@@ -3,8 +3,8 @@
     "m_SelectedPackage": {
         "deviceId": "010c2faf9805",
         "name": "com.avocado.did",
-        "processId": 21890,
-        "exited": true
+        "processId": 10071,
+        "exited": false
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
@@ -43,6 +43,12 @@
             "name": "com.avocado.did",
             "processId": 21890,
             "exited": true
+        },
+        {
+            "deviceId": "010c2faf9805",
+            "name": "com.avocado.did",
+            "processId": 10071,
+            "exited": false
         }
     ],
     "m_Tags": {
@@ -78,7 +84,7 @@
         ]
     },
     "m_MemoryViewerState": {
-        "MemoryWindowHeight": 300.0,
+        "MemoryWindowHeight": 288.0,
         "MemoryWindowWidth": 170.0,
         "MemoryTypeEnabled": [
             true,

@@ -1,17 +1,22 @@
-﻿using Runtime.Logic.Core.EventBus;
+﻿using System.Linq;
+using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 using Runtime.UI.Base;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Runtime.UI.MainMenu {
     public class ShopItem : UiBase, IEventReceiver<OnBillingInitialized> {
+        [SerializeField, Required]
+        private TextMeshProUGUI _title;
         [SerializeField]
         private BillingManager.PurchaseProducts _productId;
         [SerializeField, Required]
         private Text _price;
+        [SerializeField, Required]
+        private TextMeshProUGUI _reward;
         [SerializeField, Required]
         private Button _buyButton;
 
@@ -27,6 +32,10 @@ namespace Runtime.UI.MainMenu {
             if (GameController.Billing.IsInitialized()) {
                 SetPrice();
             }
+
+            var itemData = GameController.Billing.Data.StoreItems.First(store => store.Price == _productId);
+            _reward.text = itemData.Reward.Amount.ToString();
+            _title.text = itemData.Title;
         }
 
         private void SetPrice() {
