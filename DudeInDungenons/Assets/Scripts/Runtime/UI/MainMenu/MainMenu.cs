@@ -14,6 +14,8 @@ namespace Runtime.UI.MainMenu {
         
         [Title("Cameras")]
         [SerializeField, Required]
+        private Camera _mainCamera;
+        [SerializeField, Required]
         private Camera _worldCamera;
         [Title("Panels")]
         [SerializeField, Required]
@@ -95,6 +97,9 @@ namespace Runtime.UI.MainMenu {
             _shopCategory.SetActive(_currentCategory == MenuCategory.Shop);
 
             _worldCamera.enabled = _currentCategory != MenuCategory.Shop;
+            _mainCamera.clearFlags = _currentCategory == MenuCategory.Shop
+                ? CameraClearFlags.Nothing
+                : CameraClearFlags.Skybox;
         }
     }
 }

@@ -66,8 +66,11 @@ namespace Runtime.UI.MainMenu {
                 GameController.Billing.BuyConsumable(_productId.ToString());
             } else {
                 var itemData = GameController.Billing.Data.ResourceItems.First(store => store.Id == _id);
-                GameController.Inventory.SpendResource(itemData.Price.Item.Id, itemData.Price.Amount);
-                GameController.Inventory.AddResource(itemData.Reward.Item.Id, itemData.Reward.Amount);
+
+                if (GameController.Inventory.SpendResource(itemData.Price.Item.Id, itemData.Price.Amount) ==
+                    Logic.Inventory.Inventory.InventoryOperationResult.Success) {
+                    GameController.Inventory.AddResource(itemData.Reward.Item.Id, itemData.Reward.Amount);
+                }
             }
         }
 

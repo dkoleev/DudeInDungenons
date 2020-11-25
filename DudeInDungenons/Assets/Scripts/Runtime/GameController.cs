@@ -152,6 +152,8 @@ namespace Runtime {
         }
         
         private IEnumerator LoadMainMenuCor(string currentLevel) {
+            yield return StartCoroutine(LoadScene(SceneNames.Loading, LoadSceneMode.Additive));
+            
             yield return StartCoroutine(UnloadScene(SceneNames.LevelUI));
             if (!string.IsNullOrEmpty(currentLevel)) {
                 yield return StartCoroutine(UnloadScene(currentLevel));
@@ -159,6 +161,9 @@ namespace Runtime {
 
             yield return StartCoroutine(LoadScene(SceneNames.MenuMain, LoadSceneMode.Additive));
             yield return StartCoroutine(LoadScene(SceneNames.MenuUI, LoadSceneMode.Additive));
+            
+            yield return new WaitForSeconds(0.3f);
+            yield return StartCoroutine(UnloadScene(SceneNames.Loading));
             
             _allScenesLoaded = true;
             OnAllScenesLoaded?.Invoke();
