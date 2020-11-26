@@ -4,10 +4,11 @@ using Runtime.Data;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 using Runtime.Logic.Events.Ui;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Runtime {
-    public class Level : 
+namespace Runtime.Logic {
+    public class Stage : 
         IEventReceiver<OnSoulCreated>,
         IEventReceiver<OnExitLevelClick>,
         IEventReceiver<OnContinueLevelClick>,
@@ -23,19 +24,18 @@ namespace Runtime {
         private Player _player;
         private List<Soul> _souls;
          
-        public Level(GameController gameController, string levelName) {
+        public Stage(string levelName, GameController gameController, Player player) {
             _gameController = gameController;
             _worldData = _gameController.CurrentWorldData;
             LevelName = levelName;
-            
+            _player = player;
+
             EventBus.Register(this);
             
             _souls = new List<Soul>();
 
             _portal = Object.FindObjectOfType<Portal>();
             _portal.SetContent(this);
-
-            _player = Object.FindObjectOfType<Player>();
             
             _allEnemies = Object.FindObjectsOfType<Enemy>().ToList();
             
@@ -84,17 +84,6 @@ namespace Runtime {
             _gameController.LoadMainMenu(LevelName);
         }
 
-        public void MoveDropToInventory() {
-            _gameController.Inventory.Add(_player.Drop);
-            _player.Drop.Clear();
-        }
-        
-        public void MoveDropToInventoryX2() {
-            _gameController.Inventory.Add(_player.Drop);
-            _gameController.Inventory.Add(_player.Drop);
-            _player.Drop.Clear();
-        }
-
         public void OnEvent(OnSoulCreated e) {
             _souls.Add(e.Soul);
             _levelCleaned = _souls.Count == _allEnemies.Count;
@@ -117,7 +106,7 @@ namespace Runtime {
             LoadMainMenu();
         }
 
-        private void Dispose() {
+        public void Dispose() {
             EventBus.UnRegister(this);
         }
     }

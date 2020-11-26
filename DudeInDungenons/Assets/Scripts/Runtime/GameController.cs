@@ -49,12 +49,12 @@ namespace Runtime {
         private BillingManager _billingManager;
 
         public WorldData CurrentWorldData { get; private set; }
-        public WorldVisual CurrentWorld { get; private set; }
+        public World СurrentWorld => _currentWorld;
+        public WorldVisual CurrentWorldVisual { get; private set; }
         public SettingsReference SettingsReference => _settingsReference;
         public Inventory Inventory => _inventory;
         public BillingManager Billing => _billingManager;
         public Player Player => _player;
-        public Level CurrentLevel => _currentLevel;
         
         private SaveEngine<GameProgress> _saveEngine;
         private InputManager _inputManager;
@@ -64,11 +64,10 @@ namespace Runtime {
         private bool _allScenesLoaded;
         private Action OnAllScenesLoaded;
 
-        private Level _currentLevel;
+        private World _currentWorld;
+        private ResourceConverter _expToLevelConverter;
 
         private GameMode _gameMode = GameMode.MainMenu;
-
-        private ResourceConverter _expToLevelConverter;
 
         private void Awake() {
             _progress = LoadGameProgress();
@@ -107,12 +106,10 @@ namespace Runtime {
             void InitMode() {
                 switch (_gameMode) {
                     case GameMode.MainMenu:
-                        CurrentWorld = FindObjectOfType<WorldVisual>();
-                        CurrentWorldData = CurrentWorld.Data;
+                        CurrentWorldVisual = FindObjectOfType<WorldVisual>();
+                        CurrentWorldData = CurrentWorldVisual.Data;
                         _uiManager.Initialize(this, _itemsReference, _gameMode);
-                        _uiManager.MainMenu.OnPlayClick.AddListener(() => {
-                            LoadLevel(CurrentWorldData.Levels[0].Value);
-                        });
+                        _uiManager.MainMenu.OnPlayClick.AddListener(LoadWorld);
                         break;
                     case GameMode.Level:
                         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -141,23 +138,30 @@ namespace Runtime {
             return _saveEngine.LoadProgress();
         }
 
-        public void LoadLevel(string levelName) {
+        private void LoadWorld() {
+            LoadLevel(CurrentWorldData.Levels[0].Value, true);
+        }
+
+        public void LoadLevel(string levelName, bool isFirstStage = false) {
             _gameMode = GameMode.Level;
-            StartCoroutine(LoadLevelCor(levelName));
+            StartCoroutine(LoadLevelCor(levelName, isFirstStage));
         }
 
         public void LoadMainMenu(string levelToUnloadName) {
             _gameMode = GameMode.MainMenu;
             StartCoroutine(LoadMainMenuCor(levelToUnloadName));
         }
-        
+
         private IEnumerator LoadMainMenuCor(string currentLevel) {
             yield return StartCoroutine(LoadScene(SceneNames.Loading, LoadSceneMode.Additive));
             
-            yield return StartCoroutine(UnloadScene(SceneNames.LevelUI));
+            yield return new WaitForSeconds(0.5f);
+            
+            yield return StartCoroutine(UnloadScene(SceneNames.WorldUI));
             if (!string.IsNullOrEmpty(currentLevel)) {
                 yield return StartCoroutine(UnloadScene(currentLevel));
             }
+            yield return StartCoroutine(UnloadScene(SceneNames.WorldBase));
 
             yield return StartCoroutine(LoadScene(SceneNames.MenuMain, LoadSceneMode.Additive));
             yield return StartCoroutine(LoadScene(SceneNames.MenuUI, LoadSceneMode.Additive));
@@ -169,21 +173,26 @@ namespace Runtime {
             OnAllScenesLoaded?.Invoke();
         }
         
-        private IEnumerator LoadLevelCor(string levelName) {
+        private IEnumerator LoadLevelCor(string stageToLoad, bool isFirstStage = false) {
             yield return StartCoroutine(LoadScene(SceneNames.Loading, LoadSceneMode.Additive));
             
-            if (_currentLevel != null) {
-                yield return StartCoroutine(UnloadScene(_currentLevel.LevelName));
-                _currentLevel = null;
+            if (isFirstStage) {
+                yield return StartCoroutine(LoadScene(SceneNames.WorldBase, LoadSceneMode.Additive));
+                _currentWorld = new World(this);
+            } else {
+                yield return StartCoroutine(UnloadScene(_currentWorld.CurrentStage.LevelName));
+                
+                _currentWorld.DisposeStage();
+                _currentWorld.StartSetup();
             }
 
             yield return StartCoroutine(UnloadScene(SceneNames.MenuMain));
             yield return StartCoroutine(UnloadScene(SceneNames.MenuUI));
             
-            yield return StartCoroutine(LoadScene(SceneNames.LevelUI, LoadSceneMode.Additive));
-            yield return StartCoroutine(LoadScene(levelName, LoadSceneMode.Additive));
-
-            _currentLevel = new Level(this, levelName);
+            yield return StartCoroutine(LoadScene(SceneNames.WorldUI, LoadSceneMode.Additive));
+            yield return StartCoroutine(LoadScene(stageToLoad, LoadSceneMode.Additive));
+            
+            _currentWorld.CreateStage(stageToLoad);
             
             yield return new WaitForSeconds(0.3f);
             yield return StartCoroutine(UnloadScene(SceneNames.Loading));

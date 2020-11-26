@@ -1,8 +1,9 @@
 namespace Runtime.Static {
     public static class SceneNames {
-        public const string LevelUI = "LevelUI";
-        public const string MenuMain = "MenuMain";
-        public const string MenuUI = "MenuUI";
+        public const string WorldUI = "World_UI";
+        public const string WorldBase = "World_Base";
+        public const string MenuMain = "Menu_World";
+        public const string MenuUI = "Menu_UI";
         public const string Loading = "Loading";
     }
 }

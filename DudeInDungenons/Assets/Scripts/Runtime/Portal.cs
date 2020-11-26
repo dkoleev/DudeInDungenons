@@ -1,10 +1,11 @@
-﻿using Runtime.Static;
+﻿using Runtime.Logic;
+using Runtime.Static;
 using UnityEngine;
 
 namespace Runtime {
     public class Portal : Entity {
         private ParticleSystem _effect;
-        private Level _level;
+        private Stage _stage;
         private BoxCollider _collider;
 
         protected override void Start() {
@@ -15,8 +16,8 @@ namespace Runtime {
             Disable();
         }
 
-        public void SetContent(Level level) {
-            _level = level;
+        public void SetContent(Stage stage) {
+            _stage = stage;
         }
 
         public void Activate() {
@@ -32,7 +33,7 @@ namespace Runtime {
 
         private void OnTriggerEnter(Collider other) {
             if (other.gameObject.CompareTag(EntityTag.Player.ToString())) {
-                _level.LoadNextLevel();
+                _stage.LoadNextLevel();
             }
         }
     }
