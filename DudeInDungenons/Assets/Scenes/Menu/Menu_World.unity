@@ -349,25 +349,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 979663421, guid: faa9a772b0c540c4b88f2ea249902dc6, type: 3}
-      propertyPath: _worldCamera
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3384391383343395450, guid: faa9a772b0c540c4b88f2ea249902dc6, type: 3}
       propertyPath: m_Name
       value: World_0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5581332829130315646, guid: faa9a772b0c540c4b88f2ea249902dc6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 5581332829130315646, guid: faa9a772b0c540c4b88f2ea249902dc6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 5581332829130607454, guid: faa9a772b0c540c4b88f2ea249902dc6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8795990678012099213, guid: faa9a772b0c540c4b88f2ea249902dc6, type: 3}
       propertyPath: m_RootOrder
