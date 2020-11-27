@@ -23,9 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Worlds/World_0/Levels/World_0_Level_0.unity
     guid: 3397645177c34574489052ee7ce1f1ab
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Worlds/World_0/Levels/World_0_Level_1.unity
+    guid: 01ab0941faf76004eaed6ea5763a16e2
   - enabled: 1
     path: Assets/Scenes/Loading.unity
     guid: 722be161b03c6504a98297cb68451ab9
