@@ -70,6 +70,8 @@ namespace Runtime {
         private GameMode _gameMode = GameMode.MainMenu;
 
         private void Awake() {
+            Application.targetFrameRate = 60;
+            
             _progress = LoadGameProgress();
             _inventory = new Inventory(_progress);
             _inputManager = new InputManager();
