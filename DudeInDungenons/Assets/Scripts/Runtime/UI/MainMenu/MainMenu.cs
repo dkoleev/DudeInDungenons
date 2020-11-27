@@ -17,6 +17,8 @@ namespace Runtime.UI.MainMenu {
         private Camera _mainCamera;
         [SerializeField, Required]
         private Camera _worldCamera;
+        [SerializeField, Required]
+        private Camera _heroCamera;
         [Title("Panels")]
         [SerializeField, Required]
         private ResourcesPanel _resourcesPanel;
@@ -96,10 +98,11 @@ namespace Runtime.UI.MainMenu {
             _equipmentCategory.SetActive(_currentCategory == MenuCategory.Equipment);
             _shopCategory.SetActive(_currentCategory == MenuCategory.Shop);
 
-            _worldCamera.enabled = _currentCategory != MenuCategory.Shop;
-            _mainCamera.clearFlags = _currentCategory == MenuCategory.Shop
-                ? CameraClearFlags.Nothing
-                : CameraClearFlags.Skybox;
+            _worldCamera.enabled = _currentCategory == MenuCategory.World;
+            _heroCamera.enabled = _currentCategory == MenuCategory.Equipment;
+            _mainCamera.clearFlags = _currentCategory == MenuCategory.World
+                ? CameraClearFlags.Skybox
+                : CameraClearFlags.Nothing;
         }
     }
 }
