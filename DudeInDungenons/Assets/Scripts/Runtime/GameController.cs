@@ -179,6 +179,10 @@ namespace Runtime {
         private IEnumerator LoadLevelCor(string stageToLoad, bool isFirstStage = false) {
             yield return StartCoroutine(LoadScene(SceneNames.Loading, LoadSceneMode.Additive));
             
+            yield return StartCoroutine(UnloadScene(SceneNames.MenuWorld));
+            yield return StartCoroutine(UnloadScene(SceneNames.MenuHero));
+            yield return StartCoroutine(UnloadScene(SceneNames.MenuUI));
+            
             if (isFirstStage) {
                 yield return StartCoroutine(LoadScene(SceneNames.WorldBase, LoadSceneMode.Additive));
                 _currentWorld = new World(this);
@@ -188,10 +192,6 @@ namespace Runtime {
                 _currentWorld.DisposeStage();
                 _currentWorld.StartSetup();
             }
-
-            yield return StartCoroutine(UnloadScene(SceneNames.MenuWorld));
-            yield return StartCoroutine(UnloadScene(SceneNames.MenuHero));
-            yield return StartCoroutine(UnloadScene(SceneNames.MenuUI));
             
             yield return StartCoroutine(LoadScene(SceneNames.WorldUI, LoadSceneMode.Additive));
             yield return StartCoroutine(LoadScene(stageToLoad, LoadSceneMode.Additive));

@@ -13,13 +13,11 @@ namespace Runtime.Ui.World {
         }
         
         private void AlignCamera() {
-            if (_mainCamera != null) {
-                var camXform = _mainCamera.transform;
-                var forward = transform.position - camXform.position;
-                forward.Normalize();
-                var up = Vector3.Cross(forward, camXform.right);
-                transform.rotation = Quaternion.LookRotation(forward, up);
-            }
+            var camXform = _mainCamera.transform;
+            var forward = transform.position - camXform.position;
+            forward.Normalize();
+            var up = Vector3.Cross(forward, camXform.right);
+            transform.rotation = Quaternion.LookRotation(forward, up);
         }
     }
 }
