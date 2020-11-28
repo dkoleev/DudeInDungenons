@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/Menu_World.unity
     guid: 94df49231b43d0c409010d2117874fe4
   - enabled: 1
+    path: Assets/Scenes/Menu/Menu_Hero.unity
+    guid: 151b15fa239b3b443905cd3d0c3e5ba2
+  - enabled: 1
     path: Assets/Scenes/Menu/Menu_UI.unity
     guid: 8fd7b43184d538a44a1f39f886ec82ea
   - enabled: 1

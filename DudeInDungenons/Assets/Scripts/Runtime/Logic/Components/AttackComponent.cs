@@ -14,7 +14,11 @@ namespace Runtime.Logic.Components {
         private IWeaponOwner _owner;
         private readonly float _rotationSpeed;
         private bool _isRotating;
-        
+
+        public AttackComponent() {
+            
+        }
+
         public AttackComponent(ResourceId weaponId, IWeaponOwner owner, float rotationSpeed = 600) {
             _owner = owner;
             _rotationSpeed = rotationSpeed;

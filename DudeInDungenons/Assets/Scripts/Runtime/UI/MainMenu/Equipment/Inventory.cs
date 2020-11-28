@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Runtime.Logic.GameProgress;
+﻿using System.Collections.Generic;
 using Runtime.UI.Base;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Runtime.UI.MainMenu {
+namespace Runtime.UI.MainMenu.Equipment {
     public class Inventory : UiBase {
         [SerializeField, AssetsOnly, Required]
         private InventoryItem _itemPrefab;

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Joystick
+  - Camera_Hero_Menu
   layers:
   - Default
   - TransparentFX

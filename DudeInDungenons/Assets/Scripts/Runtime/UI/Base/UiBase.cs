@@ -11,5 +11,13 @@ namespace Runtime.UI.Base {
             GameController = gameController;
             ItemsReference = itemsReference;
         }
+
+        public virtual void SetActive(bool isActive) {
+            if (gameObject.activeSelf == isActive) {
+                return;
+            }
+
+            gameObject.SetActive(isActive);
+        }
     }
 }

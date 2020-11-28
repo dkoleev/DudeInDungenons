@@ -29,9 +29,7 @@ namespace Runtime.UI.MainMenu {
         [SerializeField, Required]
         private GameObject _worldCategory;
         [SerializeField, Required]
-        private GameObject _equipmentCategory;
-        [SerializeField, Required]
-        private GameObject _shopCategory;
+        private Equipment.Equipment _equipment;
         [SerializeField, Required]
         private Button _worldButton;
         [SerializeField, Required]
@@ -39,10 +37,7 @@ namespace Runtime.UI.MainMenu {
         [SerializeField, Required]
         private Button _shopButton;
         [SerializeField, Required]
-        private Inventory _inventory;
-        [SerializeField, Required]
         private Button _playButton;
-
         [SerializeField, Required]
         private Button _testPurchaseButton;
         
@@ -59,13 +54,14 @@ namespace Runtime.UI.MainMenu {
             _worldCameraCullingMask = _worldCamera.cullingMask;
             
             _resourcesPanel.Initialize(GameController, ItemsReference);
-            _shop.Initialize(GameController, ItemsReference);
             _menuButtons.Initialize(this);
+            
+            _shop.Initialize(GameController, ItemsReference);
+            _equipment.Initialize(GameController, ItemsReference);
             
             SelectCategory(MenuCategory.World);
             InitializeMainButtons();
             
-            _inventory.Initialize(GameController, ItemsReference);
             _playButton.onClick.AddListener(() => {
                 OnPlayClick.Dispatch();
             });
@@ -99,8 +95,8 @@ namespace Runtime.UI.MainMenu {
             _currentCategory = category;
             
             _worldCategory.SetActive(_currentCategory == MenuCategory.World);
-            _equipmentCategory.SetActive(_currentCategory == MenuCategory.Equipment);
-            _shopCategory.SetActive(_currentCategory == MenuCategory.Shop);
+            _equipment.SetActive(_currentCategory == MenuCategory.Equipment);
+            _shop.SetActive(_currentCategory == MenuCategory.Shop);
 
             _worldCamera.cullingMask = _currentCategory == MenuCategory.World ? _worldCameraCullingMask : 0;
             _heroCamera.enabled = _currentCategory == MenuCategory.Equipment;

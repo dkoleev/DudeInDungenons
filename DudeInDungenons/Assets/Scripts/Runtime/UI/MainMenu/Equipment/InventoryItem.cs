@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Runtime.UI.MainMenu {
+namespace Runtime.UI.MainMenu.Equipment {
     public class InventoryItem : MonoBehaviour {
         [SerializeField, Required]
         private Image _icon;

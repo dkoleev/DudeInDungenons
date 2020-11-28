@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Runtime {
     public class Entity : MonoBehaviour {
-        [ShowInInspector]
+        [ShowInInspector, ReadOnly]
         protected readonly List<IComponent> Components = new List<IComponent>();
         protected GameProgress Progress;
 
