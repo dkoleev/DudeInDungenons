@@ -56,12 +56,16 @@ namespace Runtime.UI.MainMenu {
             _sequence = DOTween.Sequence();
             if (_isActive) {
                 _sequence.Insert(0,_description.DOFade(1, withAnimation ? delay : 0)).SetEase(Ease.OutCubic);
+                _sequence.Insert(0,_description.transform.DOScale(1.0f, withAnimation ? delay : 0)).SetEase(Ease.OutBack);
+                
                 _sequence.Insert(0,_icon.transform.DOLocalMoveY(50, withAnimation ? delay : 0)).SetEase(Ease.OutCubic);
                 _sequence.Insert(0,_icon.transform.DOScale(1.2f, withAnimation ? delay : 0)).SetEase(Ease.OutElastic);
                 _sequence.Insert(0,_rect.DOSizeDelta(new Vector2(300, _rectStartSize.y), withAnimation ? delay : 0)).SetEase(Ease.OutCubic);
             } else {
-                _sequence.Insert(0,_description.DOFade(0, withAnimation ? delay : 0)).SetEase(Ease.OutCubic);
-                _sequence.Insert(0,_icon.transform.DOLocalMoveY(10f, withAnimation ? delay : 0)).SetEase(Ease.OutCubic);
+                _sequence.Insert(0,_description.DOFade(0, withAnimation ? 0.25f : 0)).SetEase(Ease.OutCubic);
+                _sequence.Insert(0,_description.transform.DOScale(0.5f, withAnimation ? delay : 0)).SetEase(Ease.OutCubic);
+                
+                _sequence.Insert(0,_icon.transform.DOLocalMoveY(10f, withAnimation ? delay/2 : 0)).SetEase(Ease.OutCubic);
                 _sequence.Insert(0,_icon.transform.DOScale(1.0f, withAnimation ? delay : 0)).SetEase(Ease.OutCubic);
                 _sequence.Insert(0,_rect.DOSizeDelta(new Vector2(_rectStartSize.x, _rectStartSize.y), withAnimation ? delay : 0)).SetEase(Ease.OutCubic);
             }

@@ -23,7 +23,7 @@ namespace Runtime.UI.Animations {
         private Transform _target;
 
         private Transform _currentTarget;
-        private Vector3 _startScale;
+        private float _defaultScale;
 
         private void Awake() {
             if (_target == null) {
@@ -32,7 +32,11 @@ namespace Runtime.UI.Animations {
                 _currentTarget = _target;
             }
 
-            _startScale = _currentTarget.localScale;
+            SetDefaultScale(_currentTarget.localScale.x);
+        }
+
+        public void SetDefaultScale(float scale) {
+            _defaultScale = scale;
         }
 
         public void OnPointerDown(PointerEventData eventData) {
@@ -40,7 +44,7 @@ namespace Runtime.UI.Animations {
         }
 
         public void OnPointerUp(PointerEventData eventData) {
-            _currentTarget.DOScale(_startScale, _outDuration).SetEase(_easyOut);
+            _currentTarget.DOScale(_defaultScale, _outDuration).SetEase(_easyOut);
         }
     }
 }
