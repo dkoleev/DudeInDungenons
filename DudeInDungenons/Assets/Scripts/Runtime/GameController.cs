@@ -166,7 +166,6 @@ namespace Runtime {
             yield return StartCoroutine(UnloadScene(SceneNames.WorldBase));
 
             yield return StartCoroutine(LoadScene(SceneNames.MenuWorld, LoadSceneMode.Additive));
-            yield return StartCoroutine(LoadScene(SceneNames.MenuHero, LoadSceneMode.Additive));
             yield return StartCoroutine(LoadScene(SceneNames.MenuUI, LoadSceneMode.Additive));
             
             yield return new WaitForSeconds(0.3f);
@@ -190,7 +189,6 @@ namespace Runtime {
             }
 
             yield return StartCoroutine(UnloadScene(SceneNames.MenuWorld));
-            yield return StartCoroutine(UnloadScene(SceneNames.MenuHero));
             yield return StartCoroutine(UnloadScene(SceneNames.MenuUI));
             
             yield return StartCoroutine(LoadScene(SceneNames.WorldUI, LoadSceneMode.Additive));

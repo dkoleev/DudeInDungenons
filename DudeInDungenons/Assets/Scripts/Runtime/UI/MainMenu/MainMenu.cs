@@ -11,7 +11,7 @@ namespace Runtime.UI.MainMenu {
             Equipment,
             Shop
         }
-        
+
         [Title("Cameras")]
         [SerializeField, Required]
         private Camera _mainCamera;
@@ -51,8 +51,12 @@ namespace Runtime.UI.MainMenu {
 
         private MenuCategory _currentCategory = MenuCategory.Equipment;
 
+        private int _worldCameraCullingMask;
+
         public override void Initialize(GameController gameController, ItemsReference itemsReference) {
             base.Initialize(gameController, itemsReference);
+
+            _worldCameraCullingMask = _worldCamera.cullingMask;
             
             _resourcesPanel.Initialize(GameController, ItemsReference);
             _shop.Initialize(GameController, ItemsReference);
@@ -98,9 +102,10 @@ namespace Runtime.UI.MainMenu {
             _equipmentCategory.SetActive(_currentCategory == MenuCategory.Equipment);
             _shopCategory.SetActive(_currentCategory == MenuCategory.Shop);
 
-            _worldCamera.enabled = _currentCategory == MenuCategory.World;
+            _worldCamera.cullingMask = _currentCategory == MenuCategory.World ? _worldCameraCullingMask : 0;
             _heroCamera.enabled = _currentCategory == MenuCategory.Equipment;
-            _mainCamera.clearFlags = _currentCategory == MenuCategory.World
+            
+            _mainCamera.clearFlags = _currentCategory != MenuCategory.Shop
                 ? CameraClearFlags.Skybox
                 : CameraClearFlags.Nothing;
         }
