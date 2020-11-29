@@ -17,7 +17,10 @@ namespace Runtime.UI.MainMenu.Equipment {
         private Image _defaultBack;
         [SerializeField, Required]
         private Image _selectedBack;
-        
+
+        public bool IsSelected { get; private set; }
+        public PetData Data => _petData;
+
         public Relay<PetShopItem> OnSelected = new Relay<PetShopItem>();
 
         private PetData _petData;
@@ -35,10 +38,12 @@ namespace Runtime.UI.MainMenu.Equipment {
         }
 
         public void SetSelected(bool isSelected) {
-            _selectedBack.enabled = isSelected;
-            _defaultBack.enabled = !isSelected;
+            IsSelected = isSelected;
+            
+            _selectedBack.enabled = IsSelected;
+            _defaultBack.enabled = !IsSelected;
         }
-
+        
         private void SelectPet() {
             //SetSelected(true);
             OnSelected.Dispatch(this);

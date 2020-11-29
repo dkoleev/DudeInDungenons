@@ -8,8 +8,6 @@ namespace Runtime.Data {
         [SerializeField]
         private AssetReference _asset;
         [SerializeField]
-        private string _id;
-        [SerializeField]
         private float _speedMove;
         [SerializeField]
         private float _damage;
@@ -18,7 +16,6 @@ namespace Runtime.Data {
         [SerializeField]
         private Texture2D _icon;
 
-        public string Id => _id;
         public Texture2D Icon => _icon;
         public float SpeedMove => _speedMove;
         public float Damage => _damage;
