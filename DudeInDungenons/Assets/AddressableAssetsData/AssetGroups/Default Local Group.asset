@@ -17,12 +17,18 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: abf0eff0a4243574da298dc20986b5eb
   m_SerializeEntries:
-  - m_GUID: 4a3b655ccd0574a45a480caffc5dab3d
-    m_Address: Kalash
+  - m_GUID: 10eb0b6b544a597448ce5855cb3a2955
+    m_Address: Doberman
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 4a3b655ccd0574a45a480caffc5dab3d
+    m_Address: Kalash
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2729572062571122813, guid: 4a3b655ccd0574a45a480caffc5dab3d, type: 3}
+    m_TargetAsset: {fileID: 2729572062571122813, guid: 4a3b655ccd0574a45a480caffc5dab3d, type: 3}
   - m_GUID: 6cdd117e023783f4781a4bf57e165942
     m_Address: PeaWeapon
     m_ReadOnly: 0

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Pets
+  m_EditorClassIdentifier: 
+  m_GroupName: Pets
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 73840aca34e12fd478b926427108a150
+  m_SerializeEntries:
+  - m_GUID: 1919dca27b8e1f24eb7b28340aa88029
+    m_Address: Beagle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 8385335782972711164, guid: 1919dca27b8e1f24eb7b28340aa88029, type: 3}
+    m_TargetAsset: {fileID: 8385335782972711164, guid: 1919dca27b8e1f24eb7b28340aa88029, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f58ba2e77fdda0f4897abc610fa0dffd, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 0082d3fece0a36740a6427568619a47c, type: 2}
+    - {fileID: 11400000, guid: e40c5ab5e0dfd4f4c9895730274f28c7, type: 2}

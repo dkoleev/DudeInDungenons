@@ -15,7 +15,7 @@ namespace Runtime.UI.MainMenu.Equipment {
         [SerializeField, Required]
         private Inventory _inventory;
         [SerializeField, Required]
-        private Pets _pets;
+        private PetsShop _petsShop;
         [SerializeField, Required]
         private Skins _skins;
         [SerializeField, Required]
@@ -37,14 +37,14 @@ namespace Runtime.UI.MainMenu.Equipment {
             _camera = GameObject.FindWithTag("Camera_Hero_Menu").GetComponent<Camera>();
             
             _inventory.Initialize(GameController, ItemsReference);
-            _pets.Initialize(GameController, ItemsReference);
+            _petsShop.Initialize(GameController, ItemsReference);
             _skins.Initialize(GameController, ItemsReference);
             
             SelectCategory(EquipmentCategory.Inventory);
             
             _changePetButton.onClick.AddListener(OpenPetsScene);
             _changeSkinButton.onClick.AddListener(OpenSkinsScene);
-            _pets.OnBackClick.AddListener(OnCloseSubMenu);
+            _petsShop.OnBackClick.AddListener(OnCloseSubMenu);
             _skins.OnBackClick.AddListener(OnCloseSubMenu);
         }
 
@@ -54,7 +54,7 @@ namespace Runtime.UI.MainMenu.Equipment {
 
         private void SelectCategory(EquipmentCategory category) {
             _inventory.SetActive(category == EquipmentCategory.Inventory);
-            _pets.SetActive(category == EquipmentCategory.Pets);
+            _petsShop.SetActive(category == EquipmentCategory.Pets);
             _skins.SetActive(category == EquipmentCategory.Skins);
 
             MoveCamera(category);
@@ -88,7 +88,7 @@ namespace Runtime.UI.MainMenu.Equipment {
         private void OnDestroy() {
             _changePetButton.onClick.RemoveListener(OpenPetsScene);
             _changeSkinButton.onClick.RemoveListener(OpenSkinsScene);
-            _pets.OnBackClick.RemoveListener(OnCloseSubMenu);
+            _petsShop.OnBackClick.RemoveListener(OnCloseSubMenu);
             _skins.OnBackClick.RemoveListener(OnCloseSubMenu);
         }
     }

@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Runtime.Utilities;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ namespace Runtime.UI.MainMenu.Equipment {
         private TextMeshProUGUI _amount;
 
         public void Initialize(Texture2D icon, string amount) {
-            _icon.sprite = Sprite.Create(icon, new Rect(0, 0, icon.width, icon.height), Vector2.one / 2f);
+            _icon.sprite = LoadHelper.CreateSprite(icon);
             _amount.text = amount;
         }
     }

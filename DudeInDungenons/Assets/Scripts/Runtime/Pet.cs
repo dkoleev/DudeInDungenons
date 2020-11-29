@@ -1,8 +1,16 @@
 using System.Collections;
+using Runtime.Data;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Runtime {
     public class Pet : Entity {
+        [SerializeField, Required]
+        private PetData _data;
+
+        public AssetReference Asset => _data.Asset;
+        
         private Animator _animator;
         private static readonly int Sitting = Animator.StringToHash("Sitting");
 
@@ -23,7 +31,7 @@ namespace Runtime {
 
         private IEnumerator ChangeState() {
             while (true) {
-                var wait = _isSitting ? Random.Range(3, 5) : Random.Range(10, 20);
+                var wait = _isSitting ? Random.Range(5, 7) : Random.Range(10, 20);
                 yield return new WaitForSeconds(wait);
 
                 _isSitting = !_isSitting;

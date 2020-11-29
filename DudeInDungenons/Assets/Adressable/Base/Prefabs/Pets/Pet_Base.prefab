@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7682289731345520747}
   - component: {fileID: -2493743969111079387}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pet_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,3 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5404f5229bae41f5a8052b7b845e7f04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _data: {fileID: 0}
