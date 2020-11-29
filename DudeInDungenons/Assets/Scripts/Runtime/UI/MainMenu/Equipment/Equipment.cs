@@ -1,5 +1,7 @@
 ﻿using DG.Tweening;
+using Runtime.Logic;
 using Runtime.UI.Base;
+using Sigtrap.Relays;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +11,8 @@ namespace Runtime.UI.MainMenu.Equipment {
         private enum EquipmentCategory {
             Inventory,
             Pets,
-            Skins
+            Skins,
+            None
         }
         
         [SerializeField, Required]
@@ -28,8 +31,11 @@ namespace Runtime.UI.MainMenu.Equipment {
         private Ease _moveEase;
         [SerializeField]
         private float _moveDuration = 1.0f;
+        
+        public Relay<ResourceId> OnNeedResources = new Relay<ResourceId>();
 
         private Camera _camera;
+        private EquipmentCategory _currentCategory;
 
         public override void Initialize(GameController gameController, ItemsReference itemsReference) {
             base.Initialize(gameController, itemsReference);
@@ -45,7 +51,12 @@ namespace Runtime.UI.MainMenu.Equipment {
             _changePetButton.onClick.AddListener(OpenPetsScene);
             _changeSkinButton.onClick.AddListener(OpenSkinsScene);
             _petsShop.OnBackClick.AddListener(OnCloseSubMenu);
+            _petsShop.OnNeedResources.AddListener(NoResources);
             _skins.OnBackClick.AddListener(OnCloseSubMenu);
+        }
+
+        private void NoResources(ResourceId resourceId) {
+            OnNeedResources.Dispatch(resourceId);
         }
 
         private void OnCloseSubMenu() {
@@ -53,6 +64,10 @@ namespace Runtime.UI.MainMenu.Equipment {
         }
 
         private void SelectCategory(EquipmentCategory category) {
+            if (category != EquipmentCategory.None) {
+                _currentCategory = category;
+            }
+            
             _inventory.SetActive(category == EquipmentCategory.Inventory);
             _petsShop.SetActive(category == EquipmentCategory.Pets);
             _skins.SetActive(category == EquipmentCategory.Skins);
@@ -85,10 +100,15 @@ namespace Runtime.UI.MainMenu.Equipment {
             SelectCategory(EquipmentCategory.Skins);
         }
 
+        private void OpenShop() {
+            SelectCategory(EquipmentCategory.None);
+        }
+
         private void OnDestroy() {
             _changePetButton.onClick.RemoveListener(OpenPetsScene);
             _changeSkinButton.onClick.RemoveListener(OpenSkinsScene);
             _petsShop.OnBackClick.RemoveListener(OnCloseSubMenu);
+            _petsShop.OnNeedResources.RemoveListener(NoResources);
             _skins.OnBackClick.RemoveListener(OnCloseSubMenu);
         }
     }

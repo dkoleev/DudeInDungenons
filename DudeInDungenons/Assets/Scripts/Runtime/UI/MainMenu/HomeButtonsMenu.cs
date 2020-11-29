@@ -15,11 +15,11 @@ namespace Runtime.UI.MainMenu {
             foreach (var button in _buttons) {
                 button.Initialize();
                 button.SetActive(button.Category == MainMenu.MenuCategory.World, false);
-                button.OnClick.AddListener(OnClickButton);
+                button.OnClick.AddListener(SelectCategory);
             }
         }
 
-        private void OnClickButton(MainMenu.MenuCategory category) {
+        public void SelectCategory(MainMenu.MenuCategory category) {
             _menu.SelectCategory(category);
             SelectButton(category);
         }

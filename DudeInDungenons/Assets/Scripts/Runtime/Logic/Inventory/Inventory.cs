@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Runtime.Data.Items;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 
@@ -42,6 +43,10 @@ namespace Runtime.Logic.Inventory {
             _inventory[id] -= amount;
 
             return InventoryOperationResult.Success;
+        }
+        
+        public InventoryOperationResult SpendResource(ItemStack item) {
+            return SpendResource(item.Item.Id, item.Amount);
         }
 
         public int GetResourceAmount(ResourceId resourceId) {

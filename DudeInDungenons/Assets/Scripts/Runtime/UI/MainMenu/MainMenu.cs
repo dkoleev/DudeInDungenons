@@ -70,6 +70,8 @@ namespace Runtime.UI.MainMenu {
                 GameController.Billing.BuyConsumable(BillingManager.PurchaseProducts.gem_0.ToString());
             });
 
+            _equipment.OnNeedResources.AddListener(id => _menuButtons.SelectCategory(MenuCategory.Shop));
+
             Initialized = true;
         }
 

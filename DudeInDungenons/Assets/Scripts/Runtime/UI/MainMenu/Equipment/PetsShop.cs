@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Runtime.Data;
 using Runtime.Data.Settings;
+using Runtime.Logic;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events.Ui.Menu;
 using Runtime.UI.Base;
@@ -24,6 +25,7 @@ namespace Runtime.UI.MainMenu.Equipment {
         private Button _backButton;
         
         public Relay OnBackClick = new Relay();
+        public Relay<ResourceId> OnNeedResources = new Relay<ResourceId>();
         
         private List<PetShopItem> _scrollItems = new List<PetShopItem>();
         private PetShopItem _selectedItem;
@@ -72,6 +74,8 @@ namespace Runtime.UI.MainMenu.Equipment {
                 } else {
                     scrollItem.SetContent(petData, false);
                 }
+                
+                scrollItem.SetCurrent(selected);
 
                 _scrollItems.Add(scrollItem);
             }
@@ -83,10 +87,11 @@ namespace Runtime.UI.MainMenu.Equipment {
 
         private void UpdateView() {
             var selectedId = _selectedItem.Data.Asset.AssetGUID;
-            var currentPetIsBought =
-                GameController.Progress.Player.UnlockedPets.Contains(selectedId);
-            var petIsCurrentSelected = selectedId == GameController.Progress.Player.CurrentPet;
+            var currentPetIsBought = GameController.Progress.Player.UnlockedPets.Contains(selectedId);
+            var currentPet = GameController.Progress.Player.CurrentPet;
+            var petIsCurrentSelected = selectedId == currentPet;
             
+            _scrollItems.ForEach(item => item.SetCurrent(currentPet));
             _selectButton.gameObject.SetActive(currentPetIsBought && !petIsCurrentSelected);
             _buyButton.gameObject.SetActive(!currentPetIsBought);
             _buyButton.SetIcon(_selectedItem.Data.Price.Item.Icon);
@@ -94,9 +99,14 @@ namespace Runtime.UI.MainMenu.Equipment {
         }
 
         private void BuyPet() {
-            GameController.Progress.Player.UnlockedPets.Add(_selectedItem.Data.Asset.AssetGUID);
-            GameController.Progress.Player.CurrentPet = _selectedItem.Data.Asset.AssetGUID;
-            
+            if (GameController.Inventory.SpendResource(_selectedItem.Data.Price) ==
+                Logic.Inventory.Inventory.InventoryOperationResult.Success) {
+                GameController.Progress.Player.UnlockedPets.Add(_selectedItem.Data.Asset.AssetGUID);
+                GameController.Progress.Player.CurrentPet = _selectedItem.Data.Asset.AssetGUID;
+            } else {
+                OnNeedResources.Dispatch(_selectedItem.Data.Price.Item.Id);
+            }
+
             UpdateView();
         }
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Runtime.Data;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events.Ui.Menu;
@@ -14,9 +15,11 @@ namespace Runtime.UI.MainMenu.Equipment {
         [SerializeField, Required]
         private Image _icon;
         [SerializeField, Required]
-        private Image _defaultBack;
+        private Image _currentFocus;
         [SerializeField, Required]
-        private Image _selectedBack;
+        private List<Image> _defaultBack;
+        [SerializeField, Required]
+        private List<Image> _selectedBack;
 
         public bool IsSelected { get; private set; }
         public PetData Data => _petData;
@@ -37,11 +40,15 @@ namespace Runtime.UI.MainMenu.Equipment {
             _icon.sprite = LoadHelper.CreateSprite(petData.Icon);
         }
 
+        public void SetCurrent(string currentPetId) {
+            _currentFocus.enabled = _petData.Asset.AssetGUID == currentPetId;
+        }
+
         public void SetSelected(bool isSelected) {
             IsSelected = isSelected;
             
-            _selectedBack.enabled = IsSelected;
-            _defaultBack.enabled = !IsSelected;
+            _selectedBack.ForEach(image => image.enabled = IsSelected);
+            _defaultBack.ForEach(image => image.enabled = !IsSelected);
         }
         
         private void SelectPet() {
