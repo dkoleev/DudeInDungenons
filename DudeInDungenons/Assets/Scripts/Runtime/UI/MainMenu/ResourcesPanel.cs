@@ -9,7 +9,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace Runtime.UI.MainMenu {
-    public class ResourcesPanel : UiBase, IEventReceiver<OnAddResourceToInventory> {
+    public class ResourcesPanel : UiBase, 
+        IEventReceiver<OnAddResourceToInventory>,
+        IEventReceiver<OnSpendResources> {
         [SerializeField, Required]
         private TextMeshProUGUI _gemAmount;
         [SerializeField, Required]
@@ -49,6 +51,10 @@ namespace Runtime.UI.MainMenu {
         }
 
         public void OnEvent(OnAddResourceToInventory e) {
+            UpdateView();
+        }
+        
+        public void OnEvent(OnSpendResources e) {
             UpdateView();
         }
 

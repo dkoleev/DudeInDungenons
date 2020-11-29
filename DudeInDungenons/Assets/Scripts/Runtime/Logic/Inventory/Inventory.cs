@@ -41,6 +41,8 @@ namespace Runtime.Logic.Inventory {
             }
 
             _inventory[id] -= amount;
+            
+            EventBus<OnSpendResources>.Raise(new OnSpendResources(id, amount));
 
             return InventoryOperationResult.Success;
         }
