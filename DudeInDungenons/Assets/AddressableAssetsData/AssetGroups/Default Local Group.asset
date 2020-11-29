@@ -27,8 +27,8 @@ MonoBehaviour:
     m_Address: Kalash
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 2729572062571122813, guid: 4a3b655ccd0574a45a480caffc5dab3d, type: 3}
-    m_TargetAsset: {fileID: 2729572062571122813, guid: 4a3b655ccd0574a45a480caffc5dab3d, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 6cdd117e023783f4781a4bf57e165942
     m_Address: PeaWeapon
     m_ReadOnly: 0
@@ -37,6 +37,12 @@ MonoBehaviour:
     m_TargetAsset: {fileID: 0}
   - m_GUID: 7c573786b923fd04fbd75968437430c3
     m_Address: MushroomRed
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 8041fe7c05b58c94aaa0ef349db54466
+    m_Address: Chihuahua
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}

@@ -1,6 +1,7 @@
 namespace Runtime.Static {
     public enum EntityTag {
         Enemy,
-        Player
+        Player,
+        GameController
     }
 }

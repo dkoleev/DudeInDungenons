@@ -18,7 +18,6 @@ namespace Runtime.UI.MainMenu.Equipment {
             EventBus.Register(this);
         }
 
-
         public void OnEvent(OnCurrentPetChangedInShop e) {
             if (_currentPet == null || _currentPet.Asset.AssetGUID != e.PetAsset.AssetGUID) {
                 LoadPet(e.PetAsset);
