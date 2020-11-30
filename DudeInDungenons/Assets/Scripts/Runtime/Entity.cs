@@ -10,21 +10,34 @@ namespace Runtime {
     public class Entity : MonoBehaviour {
         [ShowInInspector, ReadOnly]
         protected readonly List<IComponent> Components = new List<IComponent>();
-        protected GameProgress Progress;
+        protected GameController GameController;
+        protected GameProgress Progress => GameController.Progress;
+
+        protected bool Initialized { get; private set; }
 
         protected virtual void Awake() {
         }
 
         protected virtual void Start() {
+            InitializeComponents();
+        }
+        
+        public virtual void Initialize(GameController gameController) {
+            GameController = gameController;
+        }
+
+        protected void InitializeComponents() {
+            if (Initialized) {
+                return;
+            }
+
             foreach (var component in Components) {
                 component.Initialize();
             }
             
             EventBus<OnEntityCreated>.Raise(new OnEntityCreated(this));
-        }
-        
-        public void Initialize(GameProgress progress) {
-            Progress = progress;
+
+            Initialized = true;
         }
 
         protected virtual void Update() {

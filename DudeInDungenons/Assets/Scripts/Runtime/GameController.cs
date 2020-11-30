@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Avocado.DeveloperCheatConsole.Scripts.Core;
 using Avocado.DeveloperCheatConsole.Scripts.Core.Commands;
 using Runtime.Data;
@@ -117,7 +115,7 @@ namespace Runtime {
                         break;
                     case GameMode.Level:
                         _player = GameObject.FindWithTag("Player").GetComponent<Player>();
-                        _player.Initialize(_progress);
+                        _player.Initialize(this);
                         _uiManager.Initialize(this, _itemsReference, _gameMode);
                         break;
                 }

@@ -1066,6 +1066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelUp: {fileID: 11400000, guid: 49020f2aae67e214b8de1162ead91854, type: 2}
   _pets: {fileID: 11400000, guid: dfc781a9d96468e4ab915d431387babf, type: 2}
+  _player: {fileID: 11400000, guid: e496d2a59bc290b409fe07c366ff9ca4, type: 2}
 --- !u!4 &3467870936596861893
 Transform:
   m_ObjectHideFlags: 0

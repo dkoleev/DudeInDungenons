@@ -17,12 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: abf0eff0a4243574da298dc20986b5eb
   m_SerializeEntries:
-  - m_GUID: 620d3a75107ecf046ac4b93fb1a8105d
-    m_Address: Exp
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
   - m_GUID: 7c573786b923fd04fbd75968437430c3
     m_Address: MushroomRed
     m_ReadOnly: 0

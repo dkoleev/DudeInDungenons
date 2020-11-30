@@ -35,6 +35,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 1717544434526737157, guid: 2803fe4f89ea6c24eb1430a192e01e09, type: 3}
     m_TargetAsset: {fileID: 1717544434526737157, guid: 2803fe4f89ea6c24eb1430a192e01e09, type: 3}
+  - m_GUID: 620d3a75107ecf046ac4b93fb1a8105d
+    m_Address: Exp
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 5397731775936926164, guid: 620d3a75107ecf046ac4b93fb1a8105d, type: 3}
+    m_TargetAsset: {fileID: 5397731775936926164, guid: 620d3a75107ecf046ac4b93fb1a8105d, type: 3}
   - m_GUID: f2b9e94a2cbc03441b3f57004efa9067
     m_Address: Energy
     m_ReadOnly: 0

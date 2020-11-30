@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: PlayerSkins
+  m_EditorClassIdentifier: 
+  m_GroupName: PlayerSkins
+  m_Data:
+    m_SerializedData: []
+  m_GUID: cf7296d63affd7c4096d11b518ebabb2
+  m_SerializeEntries:
+  - m_GUID: 0c6713bfd544d4941a59b8f697358e44
+    m_Address: Doctor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 3590007344782449556, guid: 0c6713bfd544d4941a59b8f697358e44, type: 3}
+    m_TargetAsset: {fileID: 3590007344782449556, guid: 0c6713bfd544d4941a59b8f697358e44, type: 3}
+  - m_GUID: 76a4890ffa265b244be63c149a3da3da
+    m_Address: Biohazard
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 8938416669399983580, guid: 76a4890ffa265b244be63c149a3da3da, type: 3}
+    m_TargetAsset: {fileID: 8938416669399983580, guid: 76a4890ffa265b244be63c149a3da3da, type: 3}
+  - m_GUID: dc1a59e8f54172b40bad89f18df13641
+    m_Address: Business
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 8921644281902885728, guid: dc1a59e8f54172b40bad89f18df13641, type: 3}
+    m_TargetAsset: {fileID: 8921644281902885728, guid: dc1a59e8f54172b40bad89f18df13641, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f58ba2e77fdda0f4897abc610fa0dffd, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 82041da1b2215064784366b37d15cfaa, type: 2}
+    - {fileID: 11400000, guid: eb8c427fbcf2b74469d57464b6e32ad0, type: 2}

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5472a9ea204354961ff4b1a06ce06c, type: 3}
+  m_Name: PlayerSettings
+  m_EditorClassIdentifier: 
+  _skins:
+  - {fileID: 11400000, guid: ee4a0f60be268ab44aee9bf5b4074038, type: 2}
+  - {fileID: 11400000, guid: 697f9cb957e8e3c478fbb97149d4399e, type: 2}
+  - {fileID: 11400000, guid: 3da4b5c710f7d0b4282b07bb8cc39b84, type: 2}

@@ -16,6 +16,7 @@ MonoBehaviour:
   _speedMove: 7
   _speedRotate: 6
   _speedRotateNoMove: 1200
+  _startSkin: {fileID: 11400000, guid: 697f9cb957e8e3c478fbb97149d4399e, type: 2}
   _startInventory:
   - _item: {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
     _amount: 100

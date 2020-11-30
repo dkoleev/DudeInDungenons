@@ -15,6 +15,8 @@ namespace Runtime {
         private readonly WorldBar _healthBar;
         private readonly Player _player;
         private Animator _animator;
+
+        private bool _initialized;
         
         public PlayerVisual(Player player) {
             _player = player;
@@ -24,15 +26,25 @@ namespace Runtime {
         
         public void Initialize() {
             _animator = _player.GetComponentInChildren<Animator>();
+            
+            _initialized = true;
         }
 
         public void Update() {
+            if (!_initialized) {
+                return;
+            }
+
             _animator.SetBool(_animationRun, _player.IsMoving);
             var haveWeapon = _player.AttackComponent != null && _player.AttackComponent.CurrentWeapon != null;
             _animator.SetInteger(_animationWeaponId,  value: haveWeapon ? _player.AttackComponent.CurrentWeapon.AnimatorId : 0);
         }
 
         public void UpdateVisualByState(IState prevState, IState newState) {
+            if (!_initialized) {
+                return;
+            }
+
             _animator.ResetTrigger(_animationAttack);
             if (newState is PlayerAttackState) {
                 _animator.SetTrigger(_animationAttack);

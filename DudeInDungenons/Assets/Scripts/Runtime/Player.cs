@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Avocado.Framework.Patterns.StateMachine;
 using Runtime.Data;
 using Runtime.Data.Items;
@@ -7,6 +8,7 @@ using Runtime.Logic;
 using Runtime.Logic.Components;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
+using Runtime.Logic.GameProgress;
 using Runtime.Logic.GameProgress.Progress;
 using Runtime.Logic.States.Player;
 using Runtime.Static;
@@ -41,6 +43,7 @@ namespace Runtime {
 
         public Transform RaycastStartPoint => _shootRaycastStartPoint;
         public Transform RotateTransform => _rotateTransform;
+        public Transform Root => _rotateTransform;
         public Transform MainTransform => _mainTransform;
         public bool IsMoving => _mover.IsMoving;
         public Dictionary<string, int> Drop => _drop;
@@ -54,6 +57,7 @@ namespace Runtime {
         private PlayerVisual _visual;
         
         private Transform _rotateTransform;
+        private Transform _root;
         private Transform _mainTransform;
         private PlayerProgress PlayerProgress => Progress.Player;
         private int _health;
@@ -70,7 +74,8 @@ namespace Runtime {
 
             _health = _data.MaxHealth;
             _mainTransform = transform;
-            _rotateTransform = _mainTransform.Find("Root");
+            _root = _mainTransform.Find("Root");
+            _rotateTransform = _root;
             
             _visual = new PlayerVisual(this);
 
@@ -108,12 +113,27 @@ namespace Runtime {
         }
 
         protected override void Start() {
-            base.Start();
+        }
+
+        public override void Initialize(GameController gameController) {
+            base.Initialize(gameController);
+
+            var skin = string.IsNullOrEmpty(PlayerProgress.CurrentSkin) ? _data.StartSkin.Id : PlayerProgress.CurrentSkin;
+            var currentSkinData =
+                gameController.SettingsReference.Player.Skins.First(data => data.Id == skin);
+            currentSkinData.Asset.InstantiateAsync(_root).Completed += handle => {
+                InitializeComponents();
+                
+                var go = handle.Result;
+                go.transform.localPosition = Vector3.zero;
+                go.transform.localRotation = Quaternion.identity;
+                
+                _visual.Initialize();
+                
+                InitializeFsm();
             
-            InitializeFsm();
-            _visual.Initialize();
-            
-            _initialized = true;
+                _initialized = true;
+            };
         }
 
         private void InitializeFsm() {

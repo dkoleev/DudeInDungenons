@@ -18,6 +18,9 @@ namespace Runtime.Data {
         [TabGroup("Base")]
         private float _speedRotateNoMove;
         [SerializeField]
+        [TabGroup("Base")]
+        private PlayerSkinData _startSkin;
+        [SerializeField]
         [TabGroup("Starting Inventory")]
         [TableList]
         private PLayerStartInventoryItemStack[] _startInventory;
@@ -26,6 +29,7 @@ namespace Runtime.Data {
         public float SpeedMove => _speedMove;
         public float SpeedRotate => _speedRotate;
         public float SpeedRotateNoMove => _speedRotateNoMove;
+        public PlayerSkinData StartSkin => _startSkin;
         public PLayerStartInventoryItemStack[] StartInventory => _startInventory;
     }
 }
