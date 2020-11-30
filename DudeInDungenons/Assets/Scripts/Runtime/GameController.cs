@@ -74,11 +74,6 @@ namespace Runtime {
             Application.targetFrameRate = 60;
             
             _progress = LoadGameProgress();
-            if (string.IsNullOrEmpty(_progress.Player.CurrentPet)) {
-                var petToUnlock = _settingsReference.Pets.Pets[0].Asset.AssetGUID;
-                _progress.Player.UnlockedPets.Add(petToUnlock);
-                _progress.Player.CurrentPet = petToUnlock;
-            }
           
             _inventory = new Inventory(_progress);
             _inputManager = new InputManager();

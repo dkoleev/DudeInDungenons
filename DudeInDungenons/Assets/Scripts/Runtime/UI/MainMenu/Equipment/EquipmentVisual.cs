@@ -25,9 +25,7 @@ namespace Runtime.UI.MainMenu.Equipment {
 
         private void Initialize() {
             var asset = GetPetAssetById(_gameController.Progress.Player.CurrentPet);
-            if (asset is null) {
-                Debug.LogError("Not found pet with id " + _gameController.Progress.Player.CurrentPet);
-            } else {
+            if (!(asset is null)) {
                 LoadPet(asset);
             }
         }
@@ -63,6 +61,11 @@ namespace Runtime.UI.MainMenu.Equipment {
         }
 
         public void OnEvent(OnCurrentPetChangedInShop e) {
+            var currentPetState = _gameController.Progress.Player.CurrentPet;
+            if (string.IsNullOrEmpty(currentPetState) || currentPetState != e.PetAsset.AssetGUID) {
+                return;
+            }
+
             if (_currentPet == null || _currentPet.Asset.AssetGUID != e.PetAsset.AssetGUID) {
                 LoadPet(e.PetAsset);
             }

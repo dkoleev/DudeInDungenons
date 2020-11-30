@@ -56,19 +56,18 @@ namespace Runtime.UI.MainMenu.Equipment {
         private void LoadCurrentPet() {
             var progress = GameController.Progress.Player;
             if (!string.IsNullOrEmpty(progress.CurrentPet)) {
-               // EventBus<OnCurrentPetChangedInShop>.Raise(new OnCurrentPetChangedInShop(progress.CurrentPet));
+                EventBus<OnCurrentPetChangedInShop>.Raise(new OnCurrentPetChangedInShop(_selectedItem.Data.Asset));
             }
-            
-            EventBus<OnCurrentPetChangedInShop>.Raise(new OnCurrentPetChangedInShop(_selectedItem.Data.Asset));
         }
 
         private void FillScroll() {
+            var selected = GameController.Progress.Player.CurrentPet;
+            
             foreach (var petData in _petsSettings.Pets) {
                 var scrollItem = Instantiate(_scrollItemPrefab, Vector3.zero, Quaternion.identity, _grid.transform);
                 scrollItem.transform.localPosition = Vector3.zero;
 
-                var selected = GameController.Progress.Player.CurrentPet;
-                if (petData.Asset.AssetGUID == selected) {
+                if (!string.IsNullOrEmpty(selected) && petData.Asset.AssetGUID == selected) {
                     _selectedItem = scrollItem;
                     scrollItem.SetContent(petData, true);
                 } else {
@@ -79,10 +78,16 @@ namespace Runtime.UI.MainMenu.Equipment {
 
                 _scrollItems.Add(scrollItem);
             }
+            
+            if (string.IsNullOrEmpty(selected)) {
+                _selectedItem = _scrollItems[0];
+            }
 
             foreach (var petShopItem in _scrollItems) {
                 petShopItem.OnSelected.AddListener(OnItemSelected);
             }
+
+            _selectedItem.SelectPet();
         }
 
         private void UpdateView() {
@@ -92,6 +97,7 @@ namespace Runtime.UI.MainMenu.Equipment {
             var petIsCurrentSelected = selectedId == currentPet;
             
             _scrollItems.ForEach(item => item.SetCurrent(currentPet));
+            
             _selectButton.gameObject.SetActive(currentPetIsBought && !petIsCurrentSelected);
             _buyButton.gameObject.SetActive(!currentPetIsBought);
             _buyButton.SetIcon(_selectedItem.Data.Price.Item.Icon);
@@ -102,7 +108,6 @@ namespace Runtime.UI.MainMenu.Equipment {
             if (GameController.Inventory.SpendResource(_selectedItem.Data.Price) ==
                 Logic.Inventory.Inventory.InventoryOperationResult.Success) {
                 GameController.Progress.Player.UnlockedPets.Add(_selectedItem.Data.Asset.AssetGUID);
-                GameController.Progress.Player.CurrentPet = _selectedItem.Data.Asset.AssetGUID;
             } else {
                 OnNeedResources.Dispatch(_selectedItem.Data.Price.Item.Id);
             }
@@ -112,8 +117,8 @@ namespace Runtime.UI.MainMenu.Equipment {
 
         private void SelectPet() {
             GameController.Progress.Player.CurrentPet = _selectedItem.Data.Asset.AssetGUID;
-            
-            UpdateView();
+            _selectedItem.SelectPet();
+            CloseWindow();
         }
 
         private void OnItemSelected(PetShopItem item) {

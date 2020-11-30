@@ -41,7 +41,8 @@ namespace Runtime.UI.MainMenu.Equipment {
         }
 
         public void SetCurrent(string currentPetId) {
-            _currentFocus.enabled = _petData.Asset.AssetGUID == currentPetId;
+            var isCurrent = !string.IsNullOrEmpty(currentPetId) && _petData.Asset.AssetGUID == currentPetId;
+            _currentFocus.enabled = isCurrent;
         }
 
         public void SetSelected(bool isSelected) {
@@ -51,8 +52,7 @@ namespace Runtime.UI.MainMenu.Equipment {
             _defaultBack.ForEach(image => image.enabled = !IsSelected);
         }
         
-        private void SelectPet() {
-            //SetSelected(true);
+        public void SelectPet() {
             OnSelected.Dispatch(this);
             EventBus<OnCurrentPetChangedInShop>.Raise(new OnCurrentPetChangedInShop(_petData.Asset));
         }
