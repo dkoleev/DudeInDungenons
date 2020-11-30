@@ -16,6 +16,7 @@ namespace Runtime.Data {
         [SerializeField]
         private Texture2D _icon;
 
+        public string Id => _asset.AssetGUID;
         public Texture2D Icon => _icon;
         public float SpeedMove => _speedMove;
         public float Damage => _damage;

@@ -1,12 +1,12 @@
+using Runtime.Data;
 using Runtime.Logic.Core.EventBus;
-using UnityEngine.AddressableAssets;
 
 namespace Runtime.Logic.Events.Ui.Menu {
     public readonly struct OnCurrentPetChangedInShop : IEvent {
-        public readonly AssetReference PetAsset;
+        public readonly PetData PetData;
 
-        public OnCurrentPetChangedInShop(AssetReference petAsset) {
-            PetAsset = petAsset;
+        public OnCurrentPetChangedInShop(PetData petData) {
+            PetData = petData;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Runtime.UI.MainMenu.Equipment {
 
         private AssetReference GetPetAssetById(string id) {
             foreach (var petData in _gameController.SettingsReference.Pets.Pets) {
-                if (id == petData.Asset.AssetGUID) {
+                if (id == petData.Id) {
                     return petData.Asset;
                 }
             }
@@ -62,12 +62,12 @@ namespace Runtime.UI.MainMenu.Equipment {
 
         public void OnEvent(OnCurrentPetChangedInShop e) {
             var currentPetState = _gameController.Progress.Player.CurrentPet;
-            if (string.IsNullOrEmpty(currentPetState) || currentPetState != e.PetAsset.AssetGUID) {
+            if (string.IsNullOrEmpty(currentPetState) || currentPetState != e.PetData.Id) {
                 return;
             }
 
-            if (_currentPet == null || _currentPet.Asset.AssetGUID != e.PetAsset.AssetGUID) {
-                LoadPet(e.PetAsset);
+            if (_currentPet == null || _currentPet.Asset.AssetGUID != e.PetData.Id) {
+                LoadPet(e.PetData.Asset);
             }
         }
         

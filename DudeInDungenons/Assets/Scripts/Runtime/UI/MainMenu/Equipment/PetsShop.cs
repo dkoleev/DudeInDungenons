@@ -56,7 +56,7 @@ namespace Runtime.UI.MainMenu.Equipment {
         private void LoadCurrentPet() {
             var progress = GameController.Progress.Player;
             if (!string.IsNullOrEmpty(progress.CurrentPet)) {
-                EventBus<OnCurrentPetChangedInShop>.Raise(new OnCurrentPetChangedInShop(_selectedItem.Data.Asset));
+                EventBus<OnCurrentPetChangedInShop>.Raise(new OnCurrentPetChangedInShop(_selectedItem.Data));
             }
         }
 
@@ -67,7 +67,7 @@ namespace Runtime.UI.MainMenu.Equipment {
                 var scrollItem = Instantiate(_scrollItemPrefab, Vector3.zero, Quaternion.identity, _grid.transform);
                 scrollItem.transform.localPosition = Vector3.zero;
 
-                if (!string.IsNullOrEmpty(selected) && petData.Asset.AssetGUID == selected) {
+                if (!string.IsNullOrEmpty(selected) && petData.Id == selected) {
                     _selectedItem = scrollItem;
                     scrollItem.SetContent(petData, true);
                 } else {
@@ -91,7 +91,7 @@ namespace Runtime.UI.MainMenu.Equipment {
         }
 
         private void UpdateView() {
-            var selectedId = _selectedItem.Data.Asset.AssetGUID;
+            var selectedId = _selectedItem.Data.Id;
             var currentPetIsBought = GameController.Progress.Player.UnlockedPets.Contains(selectedId);
             var currentPet = GameController.Progress.Player.CurrentPet;
             var petIsCurrentSelected = selectedId == currentPet;
@@ -107,7 +107,7 @@ namespace Runtime.UI.MainMenu.Equipment {
         private void BuyPet() {
             if (GameController.Inventory.SpendResource(_selectedItem.Data.Price) ==
                 Logic.Inventory.Inventory.InventoryOperationResult.Success) {
-                GameController.Progress.Player.UnlockedPets.Add(_selectedItem.Data.Asset.AssetGUID);
+                GameController.Progress.Player.UnlockedPets.Add(_selectedItem.Data.Id);
             } else {
                 OnNeedResources.Dispatch(_selectedItem.Data.Price.Item.Id);
             }
@@ -116,7 +116,7 @@ namespace Runtime.UI.MainMenu.Equipment {
         }
 
         private void SelectPet() {
-            GameController.Progress.Player.CurrentPet = _selectedItem.Data.Asset.AssetGUID;
+            GameController.Progress.Player.CurrentPet = _selectedItem.Data.Id;
             _selectedItem.SelectPet();
             CloseWindow();
         }

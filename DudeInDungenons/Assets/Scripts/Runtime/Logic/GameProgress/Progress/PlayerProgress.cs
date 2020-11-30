@@ -5,5 +5,7 @@ namespace Runtime.Logic.GameProgress.Progress {
         public Dictionary<ResourceId, int> Inventory = new Dictionary<ResourceId, int>();
         public string CurrentPet;
         public HashSet<string> UnlockedPets = new HashSet<string>();
+        public string CurrentSkin;
+        public HashSet<string> UnlockedSkins = new HashSet<string>();
     }
 }

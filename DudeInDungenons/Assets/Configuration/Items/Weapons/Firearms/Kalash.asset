@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Kalash
   m_EditorClassIdentifier: 
   _id: 9
+  _haveAsset: 1
+  _asset:
+    m_AssetGUID: 4a3b655ccd0574a45a480caffc5dab3d
+    m_SubObjectName: 
   _icon: {fileID: 0}
   _animatorId: 2
   _damage: 120

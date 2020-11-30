@@ -19,8 +19,8 @@ namespace Runtime.UI.MainMenu.Equipment {
         }
 
         public void OnEvent(OnCurrentPetChangedInShop e) {
-            if (_currentPet == null || _currentPet.Asset.AssetGUID != e.PetAsset.AssetGUID) {
-                LoadPet(e.PetAsset);
+            if (_currentPet == null || _currentPet.Asset.AssetGUID != e.PetData.Id) {
+                LoadPet(e.PetData.Asset);
             }
         }
 
