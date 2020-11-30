@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: PeaWeapon
   m_EditorClassIdentifier: 
   _id: 10
+  _asset:
+    m_AssetGUID: 6cdd117e023783f4781a4bf57e165942
+    m_SubObjectName: 
   _icon: {fileID: 0}
   _animatorId: 0
   _damage: 20

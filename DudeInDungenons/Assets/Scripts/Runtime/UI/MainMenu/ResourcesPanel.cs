@@ -1,5 +1,5 @@
 using System.Linq;
-using Runtime.Logic;
+using Runtime.Data.Items;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 using Runtime.UI.Base;
@@ -12,7 +12,7 @@ namespace Runtime.UI.MainMenu {
     public class ResourcesPanel : UiBase, 
         IEventReceiver<OnAddResourceToInventory>,
         IEventReceiver<OnSpendResources> {
-        [SerializeField, Required]
+      [SerializeField, Required]
         private TextMeshProUGUI _gemAmount;
         [SerializeField, Required]
         private TextMeshProUGUI _goldAmount;
@@ -32,15 +32,15 @@ namespace Runtime.UI.MainMenu {
         }
 
         private void UpdateView() {
-            _gemAmount.text = GameController.Inventory.GetResourceAmount(ResourceId.Gem).ToString();
-            _goldAmount.text = GameController.Inventory.GetResourceAmount(ResourceId.Gold).ToString();
-            _energyAmount.text = GameController.Inventory.GetResourceAmount(ResourceId.Energy).ToString();
+            _gemAmount.text = GameController.Inventory.GetResourceAmount(ItemsReference.GemData.Id).ToString();
+            _goldAmount.text = GameController.Inventory.GetResourceAmount(ItemsReference.GoldData.Id).ToString();
+            _energyAmount.text = GameController.Inventory.GetResourceAmount(ItemsReference.EnergyData.Id).ToString();
             UpdateExp();
         }
 
         private void UpdateExp() {
-            var level = GameController.Inventory.GetResourceAmount(ResourceId.Level);
-            var curExp = GameController.Inventory.GetResourceAmount(ResourceId.Exp);
+            var level = GameController.Inventory.GetResourceAmount(ItemsReference.LevelData.Id);
+            var curExp = GameController.Inventory.GetResourceAmount(ItemsReference.ExpData.Id);
             var levelingModel = GameController.SettingsReference.LevelUp.LevelByExp;
 
             var needExp = 0;

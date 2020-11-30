@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Weapons
+  m_EditorClassIdentifier: 
+  m_GroupName: Weapons
+  m_Data:
+    m_SerializedData: []
+  m_GUID: bd500447933585b4f9c5cc19758fae6f
+  m_SerializeEntries:
+  - m_GUID: 4a3b655ccd0574a45a480caffc5dab3d
+    m_Address: Kalash
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2729572062571122813, guid: 4a3b655ccd0574a45a480caffc5dab3d, type: 3}
+    m_TargetAsset: {fileID: 2729572062571122813, guid: 4a3b655ccd0574a45a480caffc5dab3d, type: 3}
+  - m_GUID: 6cdd117e023783f4781a4bf57e165942
+    m_Address: PeaWeapon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2729572062571122813, guid: 6cdd117e023783f4781a4bf57e165942, type: 3}
+    m_TargetAsset: {fileID: 2729572062571122813, guid: 6cdd117e023783f4781a4bf57e165942, type: 3}
+  - m_GUID: 9fe5f2d5e646994459a9a61f678a9bd4
+    m_Address: Pistol
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - weapon
+    m_MainAsset: {fileID: 2729572062571122813, guid: 9fe5f2d5e646994459a9a61f678a9bd4, type: 3}
+    m_TargetAsset: {fileID: 2729572062571122813, guid: 9fe5f2d5e646994459a9a61f678a9bd4, type: 3}
+  - m_GUID: b9d813439ef01984cbb7240313f9e1a8
+    m_Address: Bit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - weapon
+    m_MainAsset: {fileID: 2729572062571122813, guid: b9d813439ef01984cbb7240313f9e1a8, type: 3}
+    m_TargetAsset: {fileID: 2729572062571122813, guid: b9d813439ef01984cbb7240313f9e1a8, type: 3}
+  - m_GUID: e5743e5caf7952d4ba64bff62cb3a549
+    m_Address: Hand
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 2729572062571122813, guid: e5743e5caf7952d4ba64bff62cb3a549, type: 3}
+    m_TargetAsset: {fileID: 2729572062571122813, guid: e5743e5caf7952d4ba64bff62cb3a549, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f58ba2e77fdda0f4897abc610fa0dffd, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 19bcc2e35c8e56d4bacfa00d670b7fbf, type: 2}
+    - {fileID: 11400000, guid: 435b2b8300c96564086b64f49949f696, type: 2}

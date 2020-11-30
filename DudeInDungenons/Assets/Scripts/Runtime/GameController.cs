@@ -77,7 +77,7 @@ namespace Runtime {
           
             _inventory = new Inventory(_progress);
             _inputManager = new InputManager();
-            _expToLevelConverter = new ResourceConverter(ResourceId.Exp, ResourceId.Level, _settingsReference.LevelUp.LevelByExp, _inventory);
+            _expToLevelConverter = new ResourceConverter(_itemsReference.ExpData, _itemsReference.LevelData, _settingsReference.LevelUp.LevelByExp, _inventory);
             
             ShowLoadingScreen();
 
@@ -237,7 +237,7 @@ namespace Runtime {
                     Addressables.InstantiateAsync(entityId, Vector3.zero, Quaternion.identity);
                 }));
 
-            DeveloperConsole.Instance.AddCommand(new DevCommand("add",
+            /*DeveloperConsole.Instance.AddCommand(new DevCommand("add",
                 "Add resource to inventory: add [resource_id] [amount]"
                 , delegate(List<string> list) {
                     var ids = Enum.GetNames(typeof(ResourceId)).ToList();
@@ -249,7 +249,7 @@ namespace Runtime {
                     var enumId = (ResourceId) Enum.Parse(typeof(ResourceId), list[0]);
 
                     Inventory.AddResource(enumId, Int32.Parse(list[1]));
-                }));
+                }));*/
         }
     }
 }

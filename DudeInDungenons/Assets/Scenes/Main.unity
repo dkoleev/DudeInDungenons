@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12245957, g: 0.17959993, b: 0.26246205, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -961,6 +961,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 34cfd57b43212af4ca4e6a814b1e52f7, type: 2}
   - {fileID: 11400000, guid: e755c460eca3d034692e5d6c43df3b4a, type: 2}
   - {fileID: 11400000, guid: 97969319a31509a4f9a346a03928b49d, type: 2}
+  _gemData: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
+  _goldData: {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
+  _expData: {fileID: 11400000, guid: 4df6660ed1683424e9fc54f406a4bf66, type: 2}
+  _levelData: {fileID: 11400000, guid: a342ddffa37cf5d49bdc76abf8392ad1, type: 2}
+  _energyData: {fileID: 11400000, guid: f5e52579595fa5b4b9f662e883ae6e58, type: 2}
 --- !u!1 &1936352728
 GameObject:
   m_ObjectHideFlags: 0

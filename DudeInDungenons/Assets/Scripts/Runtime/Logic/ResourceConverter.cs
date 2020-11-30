@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Runtime.Data.Items;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 
 namespace Runtime.Logic {
     public class ResourceConverter : IEventReceiver<OnAddResourceToInventory>, IDisposable {
-        private ResourceId _from;
-        private ResourceId _to;
+        private Item _from;
+        private Item _to;
         private Dictionary<int, int> _convertModel;
         private Inventory.Inventory _inventory;
         
-        public ResourceConverter(ResourceId from, ResourceId to, Dictionary<int, int> convertModel, Inventory.Inventory inventory) {
+        public ResourceConverter(Item from, Item to, Dictionary<int, int> convertModel, Inventory.Inventory inventory) {
             _from = from;
             _to = to;
             _convertModel = convertModel;
@@ -21,7 +22,7 @@ namespace Runtime.Logic {
         }
 
         public void OnEvent(OnAddResourceToInventory e) {
-            if (e.ResourceId != _from) {
+            if (e.ResourceId != _from.Id) {
                 return;
             }
 
@@ -29,15 +30,15 @@ namespace Runtime.Logic {
         }
 
         private void Convert() {
-            var newFromAmount = _inventory.GetResourceAmount(_from);
-            var curToAmount = _inventory.GetResourceAmount(_to);
+            var newFromAmount = _inventory.GetResourceAmount(_from.Id);
+            var curToAmount = _inventory.GetResourceAmount(_to.Id);
             if (curToAmount == _convertModel.Last().Key) {
                 return;
             }
 
             var needToConvert = _convertModel[curToAmount + 1];
             if (newFromAmount >= needToConvert) {
-                _inventory.AddResource(_to, 1);
+                _inventory.AddResource(_to.Id, 1);
                 Convert();
             }
         }

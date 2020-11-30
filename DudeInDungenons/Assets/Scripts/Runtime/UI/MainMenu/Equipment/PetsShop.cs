@@ -25,7 +25,7 @@ namespace Runtime.UI.MainMenu.Equipment {
         private Button _backButton;
         
         public Relay OnBackClick = new Relay();
-        public Relay<ResourceId> OnNeedResources = new Relay<ResourceId>();
+        public Relay<string> OnNeedResources = new Relay<string>();
         
         private List<PetShopItem> _scrollItems = new List<PetShopItem>();
         private PetShopItem _selectedItem;

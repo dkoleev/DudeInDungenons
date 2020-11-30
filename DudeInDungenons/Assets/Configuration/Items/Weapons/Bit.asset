@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Bit
   m_EditorClassIdentifier: 
   _id: 7
+  _asset:
+    m_AssetGUID: b9d813439ef01984cbb7240313f9e1a8
+    m_SubObjectName: 
   _icon: {fileID: 0}
   _animatorId: 0
   _damage: 5

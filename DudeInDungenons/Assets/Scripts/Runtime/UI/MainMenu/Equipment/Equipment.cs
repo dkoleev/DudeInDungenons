@@ -32,7 +32,7 @@ namespace Runtime.UI.MainMenu.Equipment {
         [SerializeField]
         private float _moveDuration = 1.0f;
         
-        public Relay<ResourceId> OnNeedResources = new Relay<ResourceId>();
+        public Relay<string> OnNeedResources = new Relay<string>();
 
         private Camera _camera;
         private EquipmentCategory _currentCategory;
@@ -55,7 +55,7 @@ namespace Runtime.UI.MainMenu.Equipment {
             _skins.OnBackClick.AddListener(OnCloseSubMenu);
         }
 
-        private void NoResources(ResourceId resourceId) {
+        private void NoResources(string resourceId) {
             OnNeedResources.Dispatch(resourceId);
         }
 

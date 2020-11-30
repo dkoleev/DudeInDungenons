@@ -1,5 +1,4 @@
-﻿using Runtime.Logic;
-using Runtime.Logic.Core.EventBus;
+﻿using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events.Ui;
 using Runtime.Logic.Inventory;
 using Runtime.UI;
@@ -33,7 +32,7 @@ namespace Runtime.Ui.World.Windows {
         }
 
         private void ContinueByRes() {
-            var res = GameController.Inventory.SpendResource(ResourceId.Gem, 12);
+            var res = GameController.Inventory.SpendResource(ItemsReference.GemData.Id, 12);
             if (res == Inventory.InventoryOperationResult.NoEnoughResource) {
                 //TODO: show shop to by resources
                 return;

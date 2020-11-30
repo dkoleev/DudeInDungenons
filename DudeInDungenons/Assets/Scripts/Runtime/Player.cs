@@ -43,7 +43,7 @@ namespace Runtime {
         public Transform RotateTransform => _rotateTransform;
         public Transform MainTransform => _mainTransform;
         public bool IsMoving => _mover.IsMoving;
-        public Dictionary<ResourceId, int> Drop => _drop;
+        public Dictionary<string, int> Drop => _drop;
 
 
         private WorldBar _healthBar;
@@ -60,7 +60,7 @@ namespace Runtime {
 
         private StateMachine _stateMachine;
         private IState _attackState;
-        private Dictionary<ResourceId, int> _drop = new Dictionary<ResourceId, int>();
+        private Dictionary<string, int> _drop = new Dictionary<string, int>();
         
         private bool _initialized;
 
@@ -75,7 +75,7 @@ namespace Runtime {
             _visual = new PlayerVisual(this);
 
             var currentWeapon = GetEquippedWeapon();
-            if (currentWeapon != ResourceId.None) {
+            if (!string.IsNullOrEmpty(currentWeapon)) {
                 AttackComponent = new AttackComponent(currentWeapon, this, _data.SpeedRotateNoMove);
                 AddComponent(AttackComponent);
             }
@@ -97,14 +97,14 @@ namespace Runtime {
             AddHealth(_data.MaxHealth);
         }
 
-        private ResourceId GetEquippedWeapon() {
+        private string GetEquippedWeapon() {
             foreach (var itemStack in _data.StartInventory) {
                 if (itemStack.Equipped && itemStack.Item is WeaponData) {
                     return itemStack.Item.Id;
                 }
             }
             
-            return ResourceId.None;
+            return String.Empty;
         }
 
         protected override void Start() {

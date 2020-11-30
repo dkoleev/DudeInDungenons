@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Gold
   m_EditorClassIdentifier: 
   _id: 2
+  _asset:
+    m_AssetGUID: 2803fe4f89ea6c24eb1430a192e01e09
+    m_SubObjectName: 
   _icon: {fileID: 2800000, guid: 1dfabe731edd7455e935a8150018f09d, type: 3}

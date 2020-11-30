@@ -10,8 +10,24 @@ namespace Runtime {
         [SerializeField, Required]
         [InlineEditor]
         private List<Item> _items;
+
+        [SerializeField, Required, InlineEditor]
+        private Item _gemData;
+        [SerializeField, Required, InlineEditor]
+        private Item _goldData;
+        [SerializeField, Required, InlineEditor]
+        private Item _expData;
+        [SerializeField, Required, InlineEditor]
+        private Item _levelData;
+        [SerializeField, Required, InlineEditor]
+        private Item _energyData;
         
-        private Dictionary<ResourceId, Item> _itemDic = new Dictionary<ResourceId, Item>();
+        private Dictionary<string, Item> _itemDic = new Dictionary<string, Item>();
+        public Item ExpData => _expData;
+        public Item GemData => _gemData;
+        public Item GoldData => _goldData;
+        public Item LevelData => _levelData;
+        public Item EnergyData => _energyData;
 
         public void Initialize() {
             foreach (var item in _items) {
@@ -19,7 +35,7 @@ namespace Runtime {
             }
         }
 
-        public Item GetItemById(ResourceId id) {
+        public Item GetItemById(string id) {
             return _itemDic[id];
         }
     }

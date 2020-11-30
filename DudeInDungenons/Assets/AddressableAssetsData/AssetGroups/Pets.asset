@@ -17,12 +17,24 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 73840aca34e12fd478b926427108a150
   m_SerializeEntries:
+  - m_GUID: 10eb0b6b544a597448ce5855cb3a2955
+    m_Address: Doberman
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 1919dca27b8e1f24eb7b28340aa88029
     m_Address: Beagle
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 8385335782972711164, guid: 1919dca27b8e1f24eb7b28340aa88029, type: 3}
     m_TargetAsset: {fileID: 8385335782972711164, guid: 1919dca27b8e1f24eb7b28340aa88029, type: 3}
+  - m_GUID: 8041fe7c05b58c94aaa0ef349db54466
+    m_Address: Chihuahua
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f58ba2e77fdda0f4897abc610fa0dffd, type: 2}
   m_SchemaSet:

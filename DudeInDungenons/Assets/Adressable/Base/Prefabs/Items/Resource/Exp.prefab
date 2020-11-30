@@ -19430,7 +19430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2102573303490382718}
   m_Layer: 0
-  m_Name: Soul
+  m_Name: Exp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

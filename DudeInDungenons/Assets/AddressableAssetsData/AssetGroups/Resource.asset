@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Resource
+  m_EditorClassIdentifier: 
+  m_GroupName: Resource
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 8732f6f5a0b47fa4696b0053bbc7c0c7
+  m_SerializeEntries:
+  - m_GUID: 1274bd69739727948a655426dbae49c1
+    m_Address: Level
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 1717544434526737157, guid: 1274bd69739727948a655426dbae49c1, type: 3}
+    m_TargetAsset: {fileID: 1717544434526737157, guid: 1274bd69739727948a655426dbae49c1, type: 3}
+  - m_GUID: 238d6016854cd3a4cae7d910ceef60f9
+    m_Address: Gem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 1717544434526737157, guid: 238d6016854cd3a4cae7d910ceef60f9, type: 3}
+    m_TargetAsset: {fileID: 1717544434526737157, guid: 238d6016854cd3a4cae7d910ceef60f9, type: 3}
+  - m_GUID: 2803fe4f89ea6c24eb1430a192e01e09
+    m_Address: Gold
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 1717544434526737157, guid: 2803fe4f89ea6c24eb1430a192e01e09, type: 3}
+    m_TargetAsset: {fileID: 1717544434526737157, guid: 2803fe4f89ea6c24eb1430a192e01e09, type: 3}
+  - m_GUID: f2b9e94a2cbc03441b3f57004efa9067
+    m_Address: Energy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 1717544434526737157, guid: f2b9e94a2cbc03441b3f57004efa9067, type: 3}
+    m_TargetAsset: {fileID: 1717544434526737157, guid: f2b9e94a2cbc03441b3f57004efa9067, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f58ba2e77fdda0f4897abc610fa0dffd, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 89eda235bc3dd1c4089237c5c2bf71cb, type: 2}
+    - {fileID: 11400000, guid: 851b8951ddaeed345ad048c0186295bf, type: 2}

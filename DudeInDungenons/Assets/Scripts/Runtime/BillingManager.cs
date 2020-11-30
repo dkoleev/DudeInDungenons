@@ -247,7 +247,7 @@ namespace Runtime {
 
         private void Award(string productId) {
             var item = _data.StoreItems.First(store => store.Price.ToString() == productId);
-            _gameController.Inventory.AddResource(ResourceId.Gem, item.Reward.Amount);
+            _gameController.Inventory.AddResource(item.Reward.Item.Id, item.Reward.Amount);
         }
 
         public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason) {
