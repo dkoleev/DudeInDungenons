@@ -1056,7 +1056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1445937065265451895, guid: aca0bbbf577effb4b8968e3aa43498ab, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 125.405
       objectReference: {fileID: 0}
     - target: {fileID: 1445937065265451895, guid: aca0bbbf577effb4b8968e3aa43498ab, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2972,7 +2972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1445937065265451895, guid: aca0bbbf577effb4b8968e3aa43498ab, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 125.405
       objectReference: {fileID: 0}
     - target: {fileID: 1445937065265451895, guid: aca0bbbf577effb4b8968e3aa43498ab, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5703,10 +5703,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2061992037}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14189ce3383c4edd97c85807bd5d2901, type: 3}
+  m_Script: {fileID: 11500000, guid: 18cac812c6bc447181757f6e3b3e6403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scrollItemPrefab: {fileID: 7291789737194180526, guid: 95f0cc29c932922448a05f58bceeedac, type: 3}
+  _type: 1
+  _scrollItemPrefab: {fileID: 5999669360469134982, guid: 95f0cc29c932922448a05f58bceeedac, type: 3}
   _grid: {fileID: 574363364}
   _buyButton: {fileID: 644971023}
   _selectButton: {fileID: 378823718}

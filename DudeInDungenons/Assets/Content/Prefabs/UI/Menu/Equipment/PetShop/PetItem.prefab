@@ -519,7 +519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1838015263680488732}
   - component: {fileID: 1838015263680488734}
-  - component: {fileID: 7291789737194180526}
+  - component: {fileID: 5999669360469134982}
   m_Layer: 5
   m_Name: PetItem
   m_TagString: Untagged
@@ -555,7 +555,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838015263680488731}
   m_CullTransparentMesh: 0
---- !u!114 &7291789737194180526
+--- !u!114 &5999669360469134982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1838015263680488731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 946077af84e847b597cb87af4299399c, type: 3}
+  m_Script: {fileID: 11500000, guid: f0b314f88a544ee8842e8983b50c4bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 5132603362110804175}

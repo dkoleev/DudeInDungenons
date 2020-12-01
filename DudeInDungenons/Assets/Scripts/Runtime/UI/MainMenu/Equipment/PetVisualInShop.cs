@@ -1,26 +1,27 @@
-using Runtime.Logic.Core.EventBus;
-using Runtime.Logic.Events.Ui.Menu;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace Runtime.UI.MainMenu.Equipment {
-    public class PetVisualInShop : MonoBehaviour, IEventReceiver<OnCurrentPetChangedInShop> {
+    public class PetVisualInShop : MonoBehaviour {
         [SerializeField, Required]
         private Transform _petTransformParent;
+
+        private PetsShop _shop;
 
         private Pet _currentPet;
         private AssetReference _currentAsset;
 
         private bool _isLoading;
 
-        private void Awake() {
-            EventBus.Register(this);
+        private void Start() {
+            _shop = FindObjectOfType<PetsShop>();
+            _shop.OnItemSelected.AddListener(SkinSelected);
         }
 
-        public void OnEvent(OnCurrentPetChangedInShop e) {
-            if (_currentPet == null || _currentPet.Asset.AssetGUID != e.PetData.Id) {
-                LoadPet(e.PetData.Asset);
+        private void SkinSelected(ItemsShopItem skinItem) {
+            if (_currentPet == null || _currentPet.Asset.AssetGUID != skinItem.Data.Id) {
+                LoadPet(skinItem.Data.Asset);
             }
         }
 
@@ -42,10 +43,6 @@ namespace Runtime.UI.MainMenu.Equipment {
 
                 _isLoading = false;
             };
-        }
-
-        private void OnDestroy() {
-            EventBus.UnRegister(this);
         }
     }
 }

@@ -78,6 +78,8 @@ namespace Runtime {
             Application.targetFrameRate = 60;
             
             _progress = LoadGameProgress();
+
+            SetStartProgress();
           
             _inventory = new Inventory(_progress);
             _inputManager = new InputManager();
@@ -98,6 +100,12 @@ namespace Runtime {
             }
 
             AddDevCommands();
+        }
+
+        private void SetStartProgress() {
+            if (string.IsNullOrEmpty(_progress.Player.CurrentSkin)) {
+                _progress.Player.CurrentSkin = _playerData.StartSkin.Id;
+            }
         }
 
         private IEnumerator Start() {
