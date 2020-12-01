@@ -67,9 +67,9 @@ namespace Runtime.UI.MainMenu {
             } else {
                 var itemData = GameController.Billing.Data.ResourceItems.First(store => store.Id == _id);
 
-                if (GameController.Inventory.SpendResource(itemData.Price.Item.Id, itemData.Price.Amount) ==
+                if (GameController.Inventory.SpendResource(itemData.Price) ==
                     Logic.Inventory.Inventory.InventoryOperationResult.Success) {
-                    GameController.Inventory.AddResource(itemData.Reward.Item.Id, itemData.Reward.Amount);
+                    GameController.Inventory.Add(itemData.Reward.Item.Id, itemData.Reward.Amount);
                 }
             }
         }

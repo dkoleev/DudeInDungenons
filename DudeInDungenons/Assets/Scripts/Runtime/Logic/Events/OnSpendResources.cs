@@ -1,13 +1,12 @@
+using Runtime.Data.Items;
 using Runtime.Logic.Core.EventBus;
 
 namespace Runtime.Logic.Events {
     public readonly struct OnSpendResources : IEvent {
-        public readonly string ResourceId;
-        public readonly int Amount;
+        public readonly ItemStack Item;
         
-        public OnSpendResources(string resourceId, int amount) {
-            ResourceId = resourceId;
-            Amount = amount;
+        public OnSpendResources(ItemStack item) {
+            Item = item;
         }
     }
 }

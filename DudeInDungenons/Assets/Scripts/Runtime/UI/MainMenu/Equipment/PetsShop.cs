@@ -100,16 +100,17 @@ namespace Runtime.UI.MainMenu.Equipment {
             
             _selectButton.gameObject.SetActive(currentPetIsBought && !petIsCurrentSelected);
             _buyButton.gameObject.SetActive(!currentPetIsBought);
-            _buyButton.SetIcon(_selectedItem.Data.Price.Item.Icon);
-            _buyButton.SetText(_selectedItem.Data.Price.Amount.ToString());
+
+            var price = _selectedItem.Data.Action.Price[0];
+            _buyButton.SetIcon(price.Item.Icon);
+            _buyButton.SetText(price.Amount.ToString());
         }
 
         private void BuyPet() {
-            if (GameController.Inventory.SpendResource(_selectedItem.Data.Price) ==
-                Logic.Inventory.Inventory.InventoryOperationResult.Success) {
+            if (_selectedItem.Data.Action.Pay(GameController.Inventory)) {
                 GameController.Progress.Player.UnlockedPets.Add(_selectedItem.Data.Id);
             } else {
-                OnNeedResources.Dispatch(_selectedItem.Data.Price.Item.Id);
+                OnNeedResources.Dispatch(_selectedItem.Data.Action.Price[0].Item.Id);
             }
 
             UpdateView();

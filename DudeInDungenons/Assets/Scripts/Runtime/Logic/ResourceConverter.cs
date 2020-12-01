@@ -38,7 +38,7 @@ namespace Runtime.Logic {
 
             var needToConvert = _convertModel[curToAmount + 1];
             if (newFromAmount >= needToConvert) {
-                _inventory.AddResource(_to.Id, 1);
+                _inventory.Add(_to.Id, 1);
                 Convert();
             }
         }

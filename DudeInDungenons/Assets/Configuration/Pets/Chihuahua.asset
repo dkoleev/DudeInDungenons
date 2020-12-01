@@ -15,9 +15,14 @@ MonoBehaviour:
   _asset:
     m_AssetGUID: 8041fe7c05b58c94aaa0ef349db54466
     m_SubObjectName: 
-  _speedMove: 4
-  _damage: 50
-  _price:
-    _item: {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
-    _amount: 2000
   _icon: {fileID: 2800000, guid: 84f3e0d76f96a61449de267c6d26571b, type: 3}
+  _action:
+    _havePrice: 1
+    _price:
+    - _item: {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
+      _amount: 100
+    _haveReward: 0
+    _reward: []
+    _haveRequirement: 0
+    _requirement: []
+  _damage: 50
