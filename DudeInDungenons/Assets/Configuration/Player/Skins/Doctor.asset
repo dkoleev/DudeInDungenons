@@ -15,7 +15,7 @@ MonoBehaviour:
   _asset:
     m_AssetGUID: 0c6713bfd544d4941a59b8f697358e44
     m_SubObjectName: 
-  _icon: {fileID: 2800000, guid: 31d53a70785234e88be6d58697c6cfd3, type: 3}
+  _icon: {fileID: 2800000, guid: 92167da42c58e7e4ca876248e2e7ab78, type: 3}
   _action:
     _havePrice: 1
     _price:

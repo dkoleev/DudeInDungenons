@@ -21,8 +21,8 @@ MonoBehaviour:
     m_Address: MushroomRed
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 726563576646290228, guid: 7c573786b923fd04fbd75968437430c3, type: 3}
-    m_TargetAsset: {fileID: 726563576646290228, guid: 7c573786b923fd04fbd75968437430c3, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f58ba2e77fdda0f4897abc610fa0dffd, type: 2}
   m_SchemaSet:

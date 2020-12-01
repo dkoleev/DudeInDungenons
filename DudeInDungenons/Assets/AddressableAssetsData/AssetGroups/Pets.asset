@@ -27,10 +27,16 @@ MonoBehaviour:
     m_Address: Beagle
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 8385335782972711164, guid: 1919dca27b8e1f24eb7b28340aa88029, type: 3}
-    m_TargetAsset: {fileID: 8385335782972711164, guid: 1919dca27b8e1f24eb7b28340aa88029, type: 3}
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: 8041fe7c05b58c94aaa0ef349db54466
     m_Address: Chihuahua
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c0e678d051466044793b66e5838aa54b
+    m_Address: GemanShepherd
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}

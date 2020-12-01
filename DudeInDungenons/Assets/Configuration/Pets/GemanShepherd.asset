@@ -9,19 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32e6c95693b8472eb4cacfa3abc368a4, type: 3}
-  m_Name: Biohazard
+  m_Script: {fileID: 11500000, guid: ae1b89fdbaed4b27b9c4e452145b201e, type: 3}
+  m_Name: GemanShepherd
   m_EditorClassIdentifier: 
   _asset:
-    m_AssetGUID: 76a4890ffa265b244be63c149a3da3da
+    m_AssetGUID: c0e678d051466044793b66e5838aa54b
     m_SubObjectName: 
-  _icon: {fileID: 2800000, guid: ed866457b103af741a84f389e466373a, type: 3}
+  _icon: {fileID: 2800000, guid: 6088b252147397f499fc9b0b5f1840b1, type: 3}
   _action:
     _havePrice: 1
     _price:
     - _item: {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
-      _amount: 10
+      _amount: 30
     _haveReward: 0
     _reward: []
     _haveRequirement: 0
     _requirement: []
+  _damage: 50
