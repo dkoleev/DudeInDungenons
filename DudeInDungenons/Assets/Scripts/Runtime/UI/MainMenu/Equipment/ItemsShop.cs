@@ -1,18 +1,17 @@
 using System.Collections.Generic;
-using Runtime.Data.Settings;
-using Runtime.Logic.Core.EventBus;
-using Runtime.Logic.Events.Ui.Menu;
+using Runtime.Data.Items;
 using Runtime.UI.Base;
 using Sigtrap.Relays;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
-using Button = UnityEngine.UI.Button;
 
 namespace Runtime.UI.MainMenu.Equipment {
-    public class PetsShop : UiBase {
+    public class ItemsShop : UiBase {
+        [SerializeField]
+        protected ItemsReference.ItemType _type;
         [SerializeField, AssetsOnly, Required]
-        private PetShopItem _scrollItemPrefab;
+        private ItemsShopItem _scrollItemPrefab;
         [SerializeField, Required]
         private GridLayoutGroup _grid;
         [SerializeField, Required]
@@ -25,51 +24,51 @@ namespace Runtime.UI.MainMenu.Equipment {
         public Relay OnBackClick = new Relay();
         public Relay<string> OnNeedResources = new Relay<string>();
         
-        private List<PetShopItem> _scrollItems = new List<PetShopItem>();
-        private PetShopItem _selectedItem;
-        private PetsSettingsData _petsSettings;
+        private List<ItemsShopItem> _scrollItems = new List<ItemsShopItem>();
+        protected ItemsShopItem _selectedItem;
+        private List<ItemAction> _items = new List<ItemAction>();
 
         public override void Initialize(GameController gameController, ItemsReference itemsReference) {
             base.Initialize(gameController, itemsReference);
 
-            _petsSettings = GameController.SettingsReference.Pets;
+            var items = itemsReference.GetItems(_type);
+            foreach (var item in items) {
+                _items.Add(item as ItemAction);
+            }
 
             FillScroll();
             UpdateView();
-            LoadCurrentPet();
+            LoadCurrentItem();
             
             _backButton.onClick.AddListener(CloseWindow);
-            _buyButton.Button.onClick.AddListener(BuyPet);
-            _selectButton.onClick.AddListener(SelectPet);
+            _buyButton.Button.onClick.AddListener(BuyItem);
+            _selectButton.onClick.AddListener(SelectItem);
         }
 
         public override void SetActive(bool isActive) {
             base.SetActive(isActive);
 
             if (isActive) {
-                LoadCurrentPet();
+                LoadCurrentItem();
             }
         }
 
-        private void LoadCurrentPet() {
-            var progress = GameController.Progress.Player;
-            if (!string.IsNullOrEmpty(progress.CurrentPet)) {
-                EventBus<OnCurrentPetChangedInShop>.Raise(new OnCurrentPetChangedInShop(_selectedItem.Data));
-            }
+        protected virtual void LoadCurrentItem() {
+            
         }
 
         private void FillScroll() {
-            var selected = GameController.Progress.Player.CurrentPet;
+            var selected = GetCurrentItem();
             
-            foreach (var petData in _petsSettings.Pets) {
+            foreach (var item in _items) {
                 var scrollItem = Instantiate(_scrollItemPrefab, Vector3.zero, Quaternion.identity, _grid.transform);
                 scrollItem.transform.localPosition = Vector3.zero;
 
-                if (!string.IsNullOrEmpty(selected) && petData.Id == selected) {
+                if (!string.IsNullOrEmpty(selected) && item.Id == selected) {
                     _selectedItem = scrollItem;
-                    scrollItem.SetContent(petData, true);
+                    scrollItem.SetContent(_type, item, true);
                 } else {
-                    scrollItem.SetContent(petData, false);
+                    scrollItem.SetContent(_type, item, false);
                 }
                 
                 scrollItem.SetCurrent(selected);
@@ -81,32 +80,44 @@ namespace Runtime.UI.MainMenu.Equipment {
                 _selectedItem = _scrollItems[0];
             }
 
-            foreach (var petShopItem in _scrollItems) {
-                petShopItem.OnSelected.AddListener(OnItemSelected);
+            foreach (var shopItem in _scrollItems) {
+                shopItem.OnSelected.AddListener(OnItemSelected);
             }
 
-            _selectedItem.SelectPet();
+            _selectedItem.SelectItem();
         }
 
         private void UpdateView() {
             var selectedId = _selectedItem.Data.Id;
-            var currentPetIsBought = GameController.Progress.Player.UnlockedPets.Contains(selectedId);
-            var currentPet = GameController.Progress.Player.CurrentPet;
-            var petIsCurrentSelected = selectedId == currentPet;
+            var currentItemIsBought = GetUnlockedItems().Contains(selectedId);
+            var currentItem = GetCurrentItem();
+            var itemIsCurrentSelected = selectedId == currentItem;
             
-            _scrollItems.ForEach(item => item.SetCurrent(currentPet));
+            _scrollItems.ForEach(item => item.SetCurrent(currentItem));
             
-            _selectButton.gameObject.SetActive(currentPetIsBought && !petIsCurrentSelected);
-            _buyButton.gameObject.SetActive(!currentPetIsBought);
+            _selectButton.gameObject.SetActive(currentItemIsBought && !itemIsCurrentSelected);
+            _buyButton.gameObject.SetActive(!currentItemIsBought);
 
             var price = _selectedItem.Data.Action.Price[0];
             _buyButton.SetIcon(price.Item.Icon);
             _buyButton.SetText(price.Amount.ToString());
         }
 
-        private void BuyPet() {
+        protected virtual string GetCurrentItem() {
+            return string.Empty;
+        }
+        
+        protected virtual void SetCurrentItem(string id) {
+            
+        }
+
+        protected virtual HashSet<string> GetUnlockedItems() {
+            return new HashSet<string>();
+        }
+
+        private void BuyItem() {
             if (_selectedItem.Data.Action.Pay(GameController.Inventory)) {
-                GameController.Progress.Player.UnlockedPets.Add(_selectedItem.Data.Id);
+                UnlockItem();
             } else {
                 OnNeedResources.Dispatch(_selectedItem.Data.Action.Price[0].Item.Id);
             }
@@ -114,13 +125,17 @@ namespace Runtime.UI.MainMenu.Equipment {
             UpdateView();
         }
 
-        private void SelectPet() {
-            GameController.Progress.Player.CurrentPet = _selectedItem.Data.Id;
-            _selectedItem.SelectPet();
+        protected virtual void UnlockItem() {
+            
+        }
+
+        private void SelectItem() {
+            SetCurrentItem(_selectedItem.Data.Id);
+            _selectedItem.SelectItem();
             CloseWindow();
         }
 
-        private void OnItemSelected(PetShopItem item) {
+        private void OnItemSelected(ItemsShopItem item) {
             _selectedItem = item;
 
             foreach (var shopItem in _scrollItems) {

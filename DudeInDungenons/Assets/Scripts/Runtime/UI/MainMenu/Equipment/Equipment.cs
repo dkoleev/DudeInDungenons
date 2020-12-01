@@ -20,7 +20,7 @@ namespace Runtime.UI.MainMenu.Equipment {
         [SerializeField, Required]
         private PetsShop _petsShop;
         [SerializeField, Required]
-        private Skins _skins;
+        private SkinsShop _skins;
         [SerializeField, Required]
         private Button _changePetButton;
         [SerializeField, Required]
@@ -53,6 +53,7 @@ namespace Runtime.UI.MainMenu.Equipment {
             _petsShop.OnBackClick.AddListener(OnCloseSubMenu);
             _petsShop.OnNeedResources.AddListener(NoResources);
             _skins.OnBackClick.AddListener(OnCloseSubMenu);
+            _skins.OnNeedResources.AddListener(NoResources);
         }
 
         private void NoResources(string resourceId) {
@@ -110,6 +111,7 @@ namespace Runtime.UI.MainMenu.Equipment {
             _petsShop.OnBackClick.RemoveListener(OnCloseSubMenu);
             _petsShop.OnNeedResources.RemoveListener(NoResources);
             _skins.OnBackClick.RemoveListener(OnCloseSubMenu);
+            _skins.OnNeedResources.RemoveListener(NoResources);
         }
     }
 }

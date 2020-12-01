@@ -46,6 +46,10 @@ namespace Runtime {
                 }
             }
         }
+        
+        public List<Item> GetItems(ItemType type) {
+            return _itemsByType[type];
+        }
 
         public Item GetItem(ItemType type, string id) {
             return _itemDicByType[type][id];
