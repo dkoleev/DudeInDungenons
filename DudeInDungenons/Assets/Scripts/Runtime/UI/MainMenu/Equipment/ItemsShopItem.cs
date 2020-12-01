@@ -56,7 +56,6 @@ namespace Runtime.UI.MainMenu.Equipment {
         
         public void SelectItem() {
             OnSelected.Dispatch(this);
-            EventBus<OnCurrentItemChangedInShop>.Raise(new OnCurrentItemChangedInShop(_type, _data));
         }
     }
 }

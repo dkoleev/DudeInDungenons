@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Runtime.Data.Items;
+using Runtime.Logic.Core.EventBus;
+using Runtime.Logic.Events.Ui.Menu;
 using Runtime.UI.Base;
 using Sigtrap.Relays;
 using Sirenix.OdinInspector;
@@ -21,10 +23,11 @@ namespace Runtime.UI.MainMenu.Equipment {
         [SerializeField, Required]
         private Button _backButton;
         
+        public Relay<ItemsShopItem> OnItemSelected = new Relay<ItemsShopItem>();
         public Relay OnBackClick = new Relay();
         public Relay<string> OnNeedResources = new Relay<string>();
         
-        private List<ItemsShopItem> _scrollItems = new List<ItemsShopItem>();
+        protected List<ItemsShopItem> _scrollItems = new List<ItemsShopItem>();
         protected ItemsShopItem _selectedItem;
         private List<ItemAction> _items = new List<ItemAction>();
 
@@ -50,6 +53,8 @@ namespace Runtime.UI.MainMenu.Equipment {
 
             if (isActive) {
                 LoadCurrentItem();
+                UpdateView();
+                ItemSelected(_selectedItem);
             }
         }
 
@@ -81,7 +86,7 @@ namespace Runtime.UI.MainMenu.Equipment {
             }
 
             foreach (var shopItem in _scrollItems) {
-                shopItem.OnSelected.AddListener(OnItemSelected);
+                shopItem.OnSelected.AddListener(ItemSelected);
             }
 
             _selectedItem.SelectItem();
@@ -132,10 +137,11 @@ namespace Runtime.UI.MainMenu.Equipment {
         private void SelectItem() {
             SetCurrentItem(_selectedItem.Data.Id);
             _selectedItem.SelectItem();
+            EventBus<OnCurrentItemChangedInShop>.Raise(new OnCurrentItemChangedInShop(_type, _selectedItem.Data));
             CloseWindow();
         }
 
-        private void OnItemSelected(ItemsShopItem item) {
+        private void ItemSelected(ItemsShopItem item) {
             _selectedItem = item;
 
             foreach (var shopItem in _scrollItems) {
@@ -143,6 +149,8 @@ namespace Runtime.UI.MainMenu.Equipment {
             }
 
             UpdateView();
+            
+            OnItemSelected.Dispatch(_selectedItem);
         }
 
         private void CloseWindow() {

@@ -1,4 +1,5 @@
-﻿using Runtime.Logic.Core.EventBus;
+﻿using Runtime.Data.Items;
+using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events.Ui.Menu;
 using Runtime.Static;
 using Sirenix.OdinInspector;
@@ -6,7 +7,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace Runtime.UI.MainMenu.Equipment {
-    public class EquipmentVisual : MonoBehaviour, IEventReceiver<OnCurrentPetChangedInShop> {
+    public class EquipmentVisual : MonoBehaviour, IEventReceiver<OnCurrentItemChangedInShop> {
         [SerializeField, Required]
         private Transform _petParent;
         
@@ -59,18 +60,26 @@ namespace Runtime.UI.MainMenu.Equipment {
                 _isLoading = false;
             };
         }
+        
+        public void OnEvent(OnCurrentItemChangedInShop e) {
+            switch (e.ItemType) {
+                case ItemsReference.ItemType.Pets:
+                    ChangePet(e.Data);
+                    break;
+            }
+        }
 
-        public void OnEvent(OnCurrentPetChangedInShop e) {
+        private void ChangePet(Item item) {
             var currentPetState = _gameController.Progress.Player.CurrentPet;
-            if (string.IsNullOrEmpty(currentPetState) || currentPetState != e.PetData.Id) {
+            if (string.IsNullOrEmpty(currentPetState) || currentPetState != item.Id) {
                 return;
             }
 
-            if (_currentPet == null || _currentPet.Asset.AssetGUID != e.PetData.Id) {
-                LoadPet(e.PetData.Asset);
+            if (_currentPet == null || _currentPet.Asset.AssetGUID != item.Id) {
+                LoadPet(item.Asset);
             }
         }
-        
+
         private void OnDestroy() {
             EventBus.UnRegister(this);
         }

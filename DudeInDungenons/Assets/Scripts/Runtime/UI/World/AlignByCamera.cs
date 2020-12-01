@@ -13,6 +13,10 @@ namespace Runtime.Ui.World {
         }
         
         private void AlignCamera() {
+            if (_mainCamera is null) {
+                return;
+            }
+
             var camXform = _mainCamera.transform;
             var forward = transform.position - camXform.position;
             forward.Normalize();

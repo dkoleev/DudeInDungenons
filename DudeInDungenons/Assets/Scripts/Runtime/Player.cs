@@ -19,21 +19,24 @@ using UnityEngine;
 
 namespace Runtime {
     public class Player : Entity, ILocalPositionAdapter, IWeaponOwner, IDamagable,
-        IEventReceiver<OnEnemyDead> {
-        
+        IEventReceiver<OnEnemyDead>,
+        IEventReceiver<OnLevelCompleted> {
+
         public enum PlayerState {
             Idle,
             Run,
             Attack
         }
-        
-        [SerializeField, Required, AssetsOnly, InlineEditor] 
+
+        [SerializeField, Required, AssetsOnly, InlineEditor]
         private PlayerData _data;
+
         [SerializeField]
         public EntityTag _attackTarget;
+
         [SerializeField, Required]
         private Transform _shootRaycastStartPoint;
-        
+
         public Relay<IState, IState> OnStateChanged = new Relay<IState, IState>();
 
         public Vector3 LocalPosition {
@@ -55,7 +58,7 @@ namespace Runtime {
         private RotateByAxis _rotator;
         private FindTargetByDistance _findTargetByDistance;
         private PlayerVisual _visual;
-        
+
         private Transform _rotateTransform;
         private Transform _root;
         private Transform _mainTransform;
@@ -65,8 +68,9 @@ namespace Runtime {
         private StateMachine _stateMachine;
         private IState _attackState;
         private Dictionary<string, int> _drop = new Dictionary<string, int>();
-        
+
         private bool _initialized;
+        private bool _isStopping;
 
         protected override void Awake() {
             base.Awake();
@@ -76,7 +80,7 @@ namespace Runtime {
             _mainTransform = transform;
             _root = _mainTransform.Find("Root");
             _rotateTransform = _root;
-            
+
             _visual = new PlayerVisual(this);
 
             var currentWeapon = GetEquippedWeapon();
@@ -84,14 +88,14 @@ namespace Runtime {
                 AttackComponent = new AttackComponent(currentWeapon, this, _data.SpeedRotateNoMove);
                 AddComponent(AttackComponent);
             }
-         
+
             _mover = new MoveByController(this, _data.SpeedMove);
             AddComponent(_mover);
             _rotator = new RotateByAxis(_rotateTransform, _data.SpeedRotate);
             AddComponent(_rotator);
             _findTargetByDistance = new FindTargetByDistance(_mainTransform, _attackTarget);
             AddComponent(_findTargetByDistance);
-            
+
             _healthBar = GetComponentInChildren<WorldBar>();
             _healthBar.Initialize(_health, _data.MaxHealth);
 
@@ -108,32 +112,44 @@ namespace Runtime {
                     return itemStack.Item.Id;
                 }
             }
-            
+
             return String.Empty;
         }
 
-        protected override void Start() {
-        }
+        protected override void Start() { }
 
         public override void Initialize(GameController gameController) {
             base.Initialize(gameController);
 
-            var skin = string.IsNullOrEmpty(PlayerProgress.CurrentSkin) ? _data.StartSkin.Id : PlayerProgress.CurrentSkin;
-            var currentSkinData =
-                gameController.SettingsReference.Player.Skins.First(data => data.Id == skin);
+            var currentSkinData = GetSkin(GameController);
             currentSkinData.Asset.InstantiateAsync(_root).Completed += handle => {
                 InitializeComponents();
-                
+
                 var go = handle.Result;
                 go.transform.localPosition = Vector3.zero;
                 go.transform.localRotation = Quaternion.identity;
-                
+
                 _visual.Initialize();
-                
+
                 InitializeFsm();
-            
+
                 _initialized = true;
             };
+        }
+
+        public static Item GetSkin(GameController gameController, string skinId = "") {
+            var playerData = gameController.PlayerData;
+
+            var skin = skinId;
+            if (string.IsNullOrEmpty(skin)) {
+                skin = string.IsNullOrEmpty(gameController.Progress.Player.CurrentSkin)
+                    ? playerData.StartSkin.Id
+                    : gameController.Progress.Player.CurrentSkin;
+            }
+           
+            var data = gameController.ItemReference.GetItem(ItemsReference.ItemType.PlayerSkins, skin);
+
+            return data;
         }
 
         private void InitializeFsm() {
@@ -141,13 +157,13 @@ namespace Runtime {
             var idleState = new PlayerIdleState();
             var moveState = new PlayerMoveState(_rotator, _mover, _findTargetByDistance);
             _attackState = new PlayerAttackState(AttackComponent, _findTargetByDistance);
-            
+
             _stateMachine.SetState(idleState);
 
             To(_attackState, () => !_mover.IsMoving && _findTargetByDistance.CurrentTargetIsAvailable());
             To(moveState, () => _mover.IsMoving);
-            To(idleState, ()=> !_mover.IsMoving && !_findTargetByDistance.CurrentTargetIsAvailable());
-            
+            To(idleState, () => !_mover.IsMoving && !_findTargetByDistance.CurrentTargetIsAvailable());
+
             void To(IState to, Func<bool> condition) => _stateMachine.AddAnyTransition(to, condition);
             void At(IState from, IState to, Func<bool> condition) => _stateMachine.AddTransition(from, to, condition);
 
@@ -158,8 +174,8 @@ namespace Runtime {
 
         protected override void Update() {
             base.Update();
-            
-            if (!_initialized) {
+
+            if (!_initialized || _isStopping) {
                 return;
             }
 
@@ -167,22 +183,22 @@ namespace Runtime {
             _findTargetByDistance.Update();
             _stateMachine.Tick();
             _visual.Update();
-            
+
             _mainTransform.localRotation = Quaternion.Euler(new Vector3(0, _mainTransform.localRotation.y, 0));
         }
-        
+
         private void OnShoot() {
             _stateMachine.SetState(_attackState);
             _visual.UpdateVisualByState(null, _attackState);
         }
-        
+
         public void TakeDamage(int damage) {
             _health -= damage;
             if (_health <= 0) {
                 _health = 0;
                 Dead();
             }
-            
+
             _healthBar.SetProgress(_health);
         }
 
@@ -191,10 +207,10 @@ namespace Runtime {
             if (_health > _data.MaxHealth) {
                 _health = _data.MaxHealth;
             }
-            
+
             _healthBar.SetProgress(_health);
         }
-        
+
         private void AddDrop(List<ItemStack> drop) {
             foreach (var itemStack in drop) {
                 var id = itemStack.Item.Id;
@@ -207,11 +223,15 @@ namespace Runtime {
         }
 
         private void Dead() {
-           EventBus<OnPlayerDead>.Raise(new OnPlayerDead());
+            EventBus<OnPlayerDead>.Raise(new OnPlayerDead());
         }
-        
+
         public void OnEvent(OnEnemyDead e) {
             AddDrop(e.Enemy.Data.Drop);
+        }
+
+        public void OnEvent(OnLevelCompleted e) {
+            _isStopping = true;
         }
 
         private void OnDestroy() {

@@ -46,6 +46,12 @@ namespace Runtime {
         [SerializeField, Required]
         private BillingManager _billingManager;
 
+        [SerializeField, Required]
+        private PlayerData _playerData;
+
+        public PlayerData PlayerData => _playerData;
+        public ItemsReference ItemReference => _itemsReference;
+
         public WorldData CurrentWorldData { get; private set; }
         public World СurrentWorld => _currentWorld;
         public WorldVisual CurrentWorldVisual { get; private set; }
