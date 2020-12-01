@@ -18,7 +18,7 @@ namespace Runtime.UI.MainMenu.Equipment {
             
             _items = new List<InventoryItem>();
             foreach (var item in GameController.Inventory.Get()) {
-                var itemData = ItemsReference.GetItemById(item.Key);
+                var itemData = ItemsReference.GetItem(item.Key);
                 var inventoryItem = Instantiate(_itemPrefab, _inventoryGrid.transform);
                 inventoryItem.Initialize(itemData.Icon, item.Value.ToString());
                 _items.Add(inventoryItem);

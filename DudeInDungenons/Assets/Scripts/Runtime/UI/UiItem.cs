@@ -22,7 +22,7 @@ namespace Runtime.UI {
         public bool IsActive { get; private set; }
 
         public void SetContent(KeyValuePair<string, int> dropItem) {
-            var itemData = ItemsReference.GetItemById(dropItem.Key);
+            var itemData = ItemsReference.GetItem(dropItem.Key);
             
             _icon.sprite = Sprite.Create(itemData.Icon, new Rect(0, 0, itemData.Icon.width, itemData.Icon.height), Vector2.one / 2f);
             _amount.text = dropItem.Value.ToString();

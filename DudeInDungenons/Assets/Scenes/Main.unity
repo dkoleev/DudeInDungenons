@@ -950,6 +950,194 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f254b1585ca534f9aa003604ba3ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 4df6660ed1683424e9fc54f406a4bf66, type: 2}
+    - {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
+    - {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
+    - {fileID: 11400000, guid: a342ddffa37cf5d49bdc76abf8392ad1, type: 2}
+    - {fileID: 11400000, guid: f5e52579595fa5b4b9f662e883ae6e58, type: 2}
+    - {fileID: 11400000, guid: 5e99603e7edc6c446a72864743c1629b, type: 2}
+    - {fileID: 11400000, guid: 30c3e74ea71dfd4408e10d4007147f88, type: 2}
+    - {fileID: 11400000, guid: 7540e5b0c0d5d2f429a22646bbc6a239, type: 2}
+    - {fileID: 11400000, guid: e755c460eca3d034692e5d6c43df3b4a, type: 2}
+    - {fileID: 11400000, guid: 77630409208cd0c439783b1ddad6bb15, type: 2}
+    - {fileID: 11400000, guid: 97969319a31509a4f9a346a03928b49d, type: 2}
+    - {fileID: 11400000, guid: 34cfd57b43212af4ca4e6a814b1e52f7, type: 2}
+    - {fileID: 11400000, guid: 51bdc64555201ce4b920c07abc4780b9, type: 2}
+    - {fileID: 11400000, guid: ee4a0f60be268ab44aee9bf5b4074038, type: 2}
+    - {fileID: 11400000, guid: 697f9cb957e8e3c478fbb97149d4399e, type: 2}
+    - {fileID: 11400000, guid: 3da4b5c710f7d0b4282b07bb8cc39b84, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _itemsByType
+      Entry: 7
+      Data: 0|UnityEngine.Rendering.SerializedDictionary`2[[Runtime.ItemsReference+ItemType,
+        DD.Runtime],[System.Collections.Generic.List`1[[Runtime.Data.Items.Item,
+        DD.Runtime]], mscorlib]], Unity.RenderPipelines.Core.Runtime
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Runtime.ItemsReference+ItemType,
+        DD.Runtime]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[Runtime.Data.Items.Item, DD.Runtime]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 7
+      Data: 3|System.Collections.Generic.List`1[[Runtime.Data.Items.Item, DD.Runtime]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 7
+      Data: 4|System.Collections.Generic.List`1[[Runtime.Data.Items.Item, DD.Runtime]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 10
+      Data: 10
+    - Name: 
+      Entry: 10
+      Data: 11
+    - Name: 
+      Entry: 10
+      Data: 12
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[Runtime.Data.Items.Item, DD.Runtime]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 13
+    - Name: 
+      Entry: 10
+      Data: 14
+    - Name: 
+      Entry: 10
+      Data: 15
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   _items:
   - {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
   - {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
