@@ -343,18 +343,32 @@ namespace Runtime.LocalNotifications
                     vibrationPattern = notificationChannel.VibrationPattern.Select(v => (long)v).ToArray();
 
                 // Wrap channel in Android object
-                var androidChannel = new AndroidNotificationChannel(notificationChannel.Id, notificationChannel.Name,
-                    notificationChannel.Description,
-                    (Importance)notificationChannel.Style)
-                {
-                    CanBypassDnd = notificationChannel.HighPriority,
-                    CanShowBadge = notificationChannel.ShowsBadge,
-                    EnableLights = notificationChannel.ShowLights,
-                    EnableVibration = notificationChannel.Vibrates,
-                    LockScreenVisibility = (LockScreenVisibility)notificationChannel.Privacy,
-                    VibrationPattern = vibrationPattern
-                };
-                AndroidNotificationCenter.RegisterNotificationChannel(androidChannel);
+                if (vibrationPattern != null) {
+                    var androidChannel = new AndroidNotificationChannel(notificationChannel.Id, notificationChannel.Name,
+                        notificationChannel.Description,
+                        (Importance)notificationChannel.Style)
+                    {
+                        CanBypassDnd = notificationChannel.HighPriority,
+                        CanShowBadge = notificationChannel.ShowsBadge,
+                        EnableLights = notificationChannel.ShowLights,
+                        EnableVibration = notificationChannel.Vibrates,
+                        LockScreenVisibility = (LockScreenVisibility)notificationChannel.Privacy,
+                        VibrationPattern = vibrationPattern
+                    };
+                    AndroidNotificationCenter.RegisterNotificationChannel(androidChannel);
+                } else {
+                    var androidChannel = new AndroidNotificationChannel(notificationChannel.Id, notificationChannel.Name,
+                        notificationChannel.Description,
+                        (Importance)notificationChannel.Style)
+                    {
+                        CanBypassDnd = notificationChannel.HighPriority,
+                        CanShowBadge = notificationChannel.ShowsBadge,
+                        EnableLights = notificationChannel.ShowLights,
+                        EnableVibration = notificationChannel.Vibrates,
+                        LockScreenVisibility = (LockScreenVisibility)notificationChannel.Privacy,
+                    };
+                    AndroidNotificationCenter.RegisterNotificationChannel(androidChannel);
+                }
             }
 #elif UNITY_IOS
             Platform = new iOSNotificationsPlatform();

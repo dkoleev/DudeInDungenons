@@ -4,6 +4,7 @@ using Avocado.DeveloperCheatConsole.Scripts.Core;
 using Avocado.DeveloperCheatConsole.Scripts.Core.Commands;
 using Runtime.Data;
 using Runtime.Input;
+using Runtime.LocalNotifications;
 using Runtime.Logic;
 using Runtime.Logic.Core.SaveEngine;
 using Runtime.Logic.GameProgress;
@@ -45,6 +46,8 @@ namespace Runtime {
         private UiManager _uiManager;
         [SerializeField, Required]
         private BillingManager _billingManager;
+        [SerializeField, Required]
+        private GameNotificationsManager _localNotificationsManager;
 
         [SerializeField, Required]
         private PlayerData _playerData;
@@ -71,6 +74,7 @@ namespace Runtime {
 
         private World _currentWorld;
         private ResourceConverter _expToLevelConverter;
+        private LocalNotificationsRegistration _notificationsRegistration;
 
         private GameMode _gameMode = GameMode.MainMenu;
 
@@ -84,6 +88,7 @@ namespace Runtime {
             _inventory = new Inventory(_progress);
             _inputManager = new InputManager();
             _expToLevelConverter = new ResourceConverter(_itemsReference.ExpData, _itemsReference.LevelData, _settingsReference.LevelUp.LevelByExp, _inventory);
+            _notificationsRegistration = new LocalNotificationsRegistration(_localNotificationsManager);
             
             ShowLoadingScreen();
 

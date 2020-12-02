@@ -1228,6 +1228,7 @@ MonoBehaviour:
   _settingsReference: {fileID: 2002899633}
   _uiManager: {fileID: 1665176545}
   _billingManager: {fileID: 1602595916}
+  _localNotificationsManager: {fileID: 1853524572}
   _playerData: {fileID: 11400000, guid: a6a0ec420927bc74798496466b9b4549, type: 2}
 --- !u!4 &1936352730
 Transform:
