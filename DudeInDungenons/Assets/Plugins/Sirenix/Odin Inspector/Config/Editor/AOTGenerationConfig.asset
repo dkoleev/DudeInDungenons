@@ -16,10 +16,19 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 637423730710861647
+  lastScan: 637424568769197825
   supportSerializedTypes:
   - TypeName: System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.Int32,
       mscorlib]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[Runtime.ItemsReference+ItemType,
+      DD.Runtime],[System.Collections.Generic.List`1[[Runtime.Data.Items.Item, DD.Runtime]],
+      mscorlib]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[Runtime.ItemsReference+ItemType,
+      DD.Runtime]], mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
@@ -30,10 +39,29 @@ MonoBehaviour:
       mscorlib
     IsCustom: 0
     Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[Runtime.ItemsReference+ItemType,
+      DD.Runtime]], mscorlib
+    IsCustom: 0
+    Emit: 1
   - TypeName: System.Int32, mscorlib
     IsCustom: 0
     Emit: 1
+  - TypeName: Runtime.Data.Items.Item, DD.Runtime
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Runtime.ItemsReference+ItemType, DD.Runtime
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.List`1[[Runtime.Data.Items.Item, DD.Runtime]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
   - TypeName: UnityEngine.Rendering.SerializedDictionary`2[[System.Int32, mscorlib],[System.Int32,
+      mscorlib]], Unity.RenderPipelines.Core.Runtime
+    IsCustom: 0
+    Emit: 1
+  - TypeName: UnityEngine.Rendering.SerializedDictionary`2[[Runtime.ItemsReference+ItemType,
+      DD.Runtime],[System.Collections.Generic.List`1[[Runtime.Data.Items.Item, DD.Runtime]],
       mscorlib]], Unity.RenderPipelines.Core.Runtime
     IsCustom: 0
     Emit: 1
