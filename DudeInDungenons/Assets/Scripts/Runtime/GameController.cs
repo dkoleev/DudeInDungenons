@@ -4,6 +4,7 @@ using Avocado.DeveloperCheatConsole.Scripts.Core;
 using Avocado.DeveloperCheatConsole.Scripts.Core.Commands;
 using Runtime.Data;
 using Runtime.Input;
+using Runtime.LocalNotifications;
 using Runtime.Logic;
 using Runtime.Logic.Core.SaveEngine;
 using Runtime.Logic.GameProgress;
@@ -45,6 +46,8 @@ namespace Runtime {
         private UiManager _uiManager;
         [SerializeField, Required]
         private BillingManager _billingManager;
+        [SerializeField, Required]
+        private GameNotificationsManager _localNotificationsManager;
 
         [SerializeField, Required]
         private PlayerData _playerData;
@@ -71,6 +74,7 @@ namespace Runtime {
 
         private World _currentWorld;
         private ResourceConverter _expToLevelConverter;
+        private LocalNotificationsRegistration _notificationsRegistration;
 
         private GameMode _gameMode = GameMode.MainMenu;
 
@@ -84,6 +88,7 @@ namespace Runtime {
             _inventory = new Inventory(_progress);
             _inputManager = new InputManager();
             _expToLevelConverter = new ResourceConverter(_itemsReference.ExpData, _itemsReference.LevelData, _settingsReference.LevelUp.LevelByExp, _inventory);
+            _notificationsRegistration = new LocalNotificationsRegistration(_localNotificationsManager);
             
             ShowLoadingScreen();
 
@@ -262,6 +267,24 @@ namespace Runtime {
 
                     Inventory.AddResource(enumId, Int32.Parse(list[1]));
                 }));*/
+        }
+        
+        private int playReminderHour = 6;
+        public void OnPlayReminder()
+        {
+            // Schedule a reminder to play the game. Schedule it for the next day.
+            DateTime deliveryTime = DateTime.Now.ToLocalTime().AddDays(1);
+            deliveryTime = new DateTime(deliveryTime.Year, deliveryTime.Month, deliveryTime.Day, playReminderHour, 0, 0,
+                DateTimeKind.Local);
+
+            _notificationsRegistration.SendNotification("Cookie Reminder", "Remember to make more cookies!", deliveryTime,
+                channelId: LocalNotificationsRegistration.ReminderChannelId);
+        }
+
+        public void SendNotif() {
+            DateTime deliveryTime = DateTime.Now.ToLocalTime() + TimeSpan.FromMinutes(1);
+            _notificationsRegistration.SendNotification("Test", "hello world", deliveryTime, reschedule: true,
+                smallIcon: "icon_0", largeIcon: "icon_1");
         }
     }
 }
