@@ -268,5 +268,23 @@ namespace Runtime {
                     Inventory.AddResource(enumId, Int32.Parse(list[1]));
                 }));*/
         }
+        
+        private int playReminderHour = 6;
+        public void OnPlayReminder()
+        {
+            // Schedule a reminder to play the game. Schedule it for the next day.
+            DateTime deliveryTime = DateTime.Now.ToLocalTime().AddDays(1);
+            deliveryTime = new DateTime(deliveryTime.Year, deliveryTime.Month, deliveryTime.Day, playReminderHour, 0, 0,
+                DateTimeKind.Local);
+
+            _notificationsRegistration.SendNotification("Cookie Reminder", "Remember to make more cookies!", deliveryTime,
+                channelId: LocalNotificationsRegistration.ReminderChannelId);
+        }
+
+        public void SendNotif() {
+            DateTime deliveryTime = DateTime.Now.ToLocalTime() + TimeSpan.FromMinutes(1);
+            _notificationsRegistration.SendNotification("Test", "hello world", deliveryTime, reschedule: true,
+                smallIcon: "icon_0", largeIcon: "icon_1");
+        }
     }
 }

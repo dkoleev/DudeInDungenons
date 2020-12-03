@@ -1,5 +1,6 @@
 #if UNITY_IOS
 using System;
+using Runtime.LocalNotifications;
 using Unity.Notifications.iOS;
 
 namespace NotificationSamples.iOS
