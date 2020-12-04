@@ -20,7 +20,8 @@ namespace Runtime.Logic {
             _player.transform.position = _playerStartPosition;
         }
 
-        public void CreateStage(string stageName) {
+        public void Enter(string stageName) {
+            _gameController.Inventory.SpendResource(_gameController.ItemReference.EnergyData, 5);
             _currentStage = new Stage(stageName, _gameController, _player);
         }
 

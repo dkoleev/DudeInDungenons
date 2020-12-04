@@ -41,12 +41,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 5397731775936926164, guid: 620d3a75107ecf046ac4b93fb1a8105d, type: 3}
     m_TargetAsset: {fileID: 5397731775936926164, guid: 620d3a75107ecf046ac4b93fb1a8105d, type: 3}
-  - m_GUID: f2b9e94a2cbc03441b3f57004efa9067
+  - m_GUID: f1d3688d3cf3f234c951f5805623c223
     m_Address: Energy
     m_ReadOnly: 0
     m_SerializedLabels: []
-    m_MainAsset: {fileID: 1717544434526737157, guid: f2b9e94a2cbc03441b3f57004efa9067, type: 3}
-    m_TargetAsset: {fileID: 1717544434526737157, guid: f2b9e94a2cbc03441b3f57004efa9067, type: 3}
+    m_MainAsset: {fileID: 1717544434526737157, guid: f1d3688d3cf3f234c951f5805623c223, type: 3}
+    m_TargetAsset: {fileID: 1717544434526737157, guid: f1d3688d3cf3f234c951f5805623c223, type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f58ba2e77fdda0f4897abc610fa0dffd, type: 2}
   m_SchemaSet:

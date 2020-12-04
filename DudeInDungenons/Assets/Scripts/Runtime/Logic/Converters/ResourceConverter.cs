@@ -5,8 +5,8 @@ using Runtime.Data.Items;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 
-namespace Runtime.Logic {
-    public class ResourceConverter : IEventReceiver<OnAddResourceToInventory>, IDisposable {
+namespace Runtime.Logic.Converters {
+    public class ResourceConverter : IResourceConverter, IEventReceiver<OnAddResourceToInventory>, IDisposable {
         private Item _from;
         private Item _to;
         private Dictionary<int, int> _convertModel;
@@ -45,6 +45,10 @@ namespace Runtime.Logic {
 
         public void Dispose() {
             EventBus.UnRegister(this);
+        }
+
+        public void Update() {
+            
         }
     }
 }

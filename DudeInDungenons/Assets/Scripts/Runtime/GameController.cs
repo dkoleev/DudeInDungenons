@@ -1,13 +1,17 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Avocado.DeveloperCheatConsole.Scripts.Core;
 using Avocado.DeveloperCheatConsole.Scripts.Core.Commands;
 using Runtime.Data;
 using Runtime.Input;
 using Runtime.LocalNotifications;
 using Runtime.Logic;
+using Runtime.Logic.Converters;
 using Runtime.Logic.Core.SaveEngine;
 using Runtime.Logic.GameProgress;
+using Runtime.Logic.GameProgress.Progress;
+using Runtime.Logic.Managers;
 using Runtime.Static;
 using Runtime.UI;
 using Runtime.UI.MainMenu;
@@ -73,21 +77,21 @@ namespace Runtime {
         private Action OnAllScenesLoaded;
 
         private World _currentWorld;
-        private ResourceConverter _expToLevelConverter;
         private LocalNotificationsRegistration _notificationsRegistration;
+        private List<ManagerBase> _managers = new List<ManagerBase>();
 
         private GameMode _gameMode = GameMode.MainMenu;
+        private bool _initialized;
 
         private void Awake() {
             Application.targetFrameRate = 60;
             
             _progress = LoadGameProgress();
-
-            SetStartProgress();
+            PutStartProgress();
           
             _inventory = new Inventory(_progress);
             _inputManager = new InputManager();
-            _expToLevelConverter = new ResourceConverter(_itemsReference.ExpData, _itemsReference.LevelData, _settingsReference.LevelUp.LevelByExp, _inventory);
+            InitializeManagers();
             _notificationsRegistration = new LocalNotificationsRegistration(_localNotificationsManager);
             
             ShowLoadingScreen();
@@ -107,9 +111,26 @@ namespace Runtime {
             AddDevCommands();
         }
 
-        private void SetStartProgress() {
+        private void InitializeManagers() {
+            var resourceConverter = new ResourceConvertManager(this);
+            
+            _managers.Add(resourceConverter);
+        }
+
+        private void PutStartProgress() {
+            if (!_progress.FirstRun) {
+                return;
+            }
+
+            _progress.FirstRun = false;
             if (string.IsNullOrEmpty(_progress.Player.CurrentSkin)) {
                 _progress.Player.CurrentSkin = _playerData.StartSkin.Id;
+            }
+
+            foreach (var itemStack in _playerData.StartInventory) {
+                if (!_progress.Player.Inventory.ContainsKey(itemStack.Item.Id)) {
+                    _progress.Player.Inventory.Add(itemStack.Item.Id, new ItemProgress(itemStack.Item.Id, itemStack.Amount));
+                }
             }
         }
 
@@ -141,9 +162,21 @@ namespace Runtime {
                 
             }
             
+            _initialized = true;
+            
             yield return new WaitForSeconds(1.0f);
             HideLoadingScreen();
             yield return null;
+        }
+
+        private void Update() {
+            if (!_initialized) {
+                return;
+            }
+
+            foreach (var manager in _managers) {
+                manager.Update();
+            }
         }
 
         private void ShowLoadingScreen() {
@@ -215,7 +248,7 @@ namespace Runtime {
             yield return StartCoroutine(LoadScene(SceneNames.WorldUI, LoadSceneMode.Additive));
             yield return StartCoroutine(LoadScene(stageToLoad, LoadSceneMode.Additive));
             
-            _currentWorld.CreateStage(stageToLoad);
+            _currentWorld.Enter(stageToLoad);
             
             yield return new WaitForSeconds(0.3f);
             yield return StartCoroutine(UnloadScene(SceneNames.Loading));
@@ -241,7 +274,9 @@ namespace Runtime {
         }
 
         private void OnDestroy() {
-            _expToLevelConverter.Dispose();
+            foreach (var manager in _managers) {
+                manager.Dispose();
+            }
         }
 
         private void OnApplicationQuit() {

@@ -24,17 +24,20 @@ namespace Runtime {
         [SerializeField, Required, InlineEditor]
         private Item _levelData;
         [SerializeField, Required, InlineEditor]
-        private Item _energyData;
+        private ItemRestoreByTime _energyData;
         
-        private Dictionary<string, Item> _itemDic = new Dictionary<string, Item>();
-        private Dictionary<ItemType, Dictionary<string, Item>> _itemDicByType = new Dictionary<ItemType, Dictionary<string, Item>>();
+        private Dictionary<string, Item> _itemDic;
+        private Dictionary<ItemType, Dictionary<string, Item>> _itemDicByType;
         public Item ExpData => _expData;
         public Item GemData => _gemData;
         public Item GoldData => _goldData;
         public Item LevelData => _levelData;
-        public Item EnergyData => _energyData;
+        public ItemRestoreByTime EnergyData => _energyData;
 
         public void Initialize() {
+            _itemDic = new Dictionary<string, Item>();
+            _itemDicByType = new Dictionary<ItemType, Dictionary<string, Item>>();
+            
             foreach (var item in _itemsByType) {
                 if (!_itemDicByType.ContainsKey(item.Key)) {
                     _itemDicByType.Add(item.Key, new Dictionary<string, Item>());

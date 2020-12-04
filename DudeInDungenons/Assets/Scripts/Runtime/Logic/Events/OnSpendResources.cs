@@ -3,10 +3,12 @@ using Runtime.Logic.Core.EventBus;
 
 namespace Runtime.Logic.Events {
     public readonly struct OnSpendResources : IEvent {
-        public readonly ItemStack Item;
+        public readonly Item Item;
+        public readonly int Amount;
         
-        public OnSpendResources(ItemStack item) {
+        public OnSpendResources(Item item, int amount) {
             Item = item;
+            Amount = amount;
         }
     }
 }

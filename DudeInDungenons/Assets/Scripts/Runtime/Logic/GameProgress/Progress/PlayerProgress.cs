@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 
 namespace Runtime.Logic.GameProgress.Progress {
+    [Serializable]
     public class PlayerProgress {
-        public Dictionary<string, int> Inventory = new Dictionary<string, int>();
+        public Dictionary<string, ItemProgress> Inventory = new Dictionary<string, ItemProgress>();
         public string CurrentPet;
         public HashSet<string> UnlockedPets = new HashSet<string>();
         public string CurrentSkin;

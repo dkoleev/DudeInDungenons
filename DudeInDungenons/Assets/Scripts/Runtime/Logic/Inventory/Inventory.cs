@@ -2,24 +2,33 @@ using System.Collections.Generic;
 using Runtime.Data.Items;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
+using Runtime.Logic.GameProgress.Progress;
 
 namespace Runtime.Logic.Inventory {
     public class Inventory {
-        private Dictionary<string, int> _inventory;
+        private Dictionary<string, ItemProgress> _inventory;
         
         public Inventory(GameProgress.GameProgress gameProgress) {
             _inventory = gameProgress.Player.Inventory;
         }
 
-        public IReadOnlyDictionary<string, int> Get() {
+        public IReadOnlyDictionary<string, ItemProgress> Get() {
             return _inventory;
+        }
+        
+        public ItemProgress GetItem(string id) {
+            if (!_inventory.ContainsKey(id)) {
+                return null;
+            }
+
+            return _inventory[id];
         }
 
         public void Add(string id, int amount) {
             if (_inventory.ContainsKey(id)) {
-                _inventory[id] += amount;
+                _inventory[id].Add(amount);
             } else {
-                _inventory.Add(id, amount);
+                _inventory.Add(id, new ItemProgress(id, amount));
             }
             
             EventBus<OnAddResourceToInventory>.Raise(new OnAddResourceToInventory(id, amount));
@@ -43,16 +52,20 @@ namespace Runtime.Logic.Inventory {
         
         public void Add(ItemStack drop) {
             if (_inventory.ContainsKey(drop.Item.Id)) {
-                _inventory[drop.Item.Id] += drop.Amount;
+                _inventory[drop.Item.Id].Add(drop.Amount);
             } else {
-                _inventory.Add(drop.Item.Id, drop.Amount);
+                _inventory.Add(drop.Item.Id, new ItemProgress(drop.Item.Id, drop.Amount));
             }
             
             EventBus<OnAddResourceToInventory>.Raise(new OnAddResourceToInventory(drop.Item.Id, drop.Amount));
         }
 
+        public bool Have(Item item, int amount) {
+            return _inventory.ContainsKey(item.Id) && _inventory[item.Id].Amount >= amount;
+        }
+        
         public bool Have(ItemStack item) {
-            return _inventory.ContainsKey(item.Item.Id) && _inventory[item.Item.Id] >= item.Amount;
+            return Have(item.Item, item.Amount);
         }
         
         public bool Have(List<ItemStack> items) {
@@ -64,22 +77,31 @@ namespace Runtime.Logic.Inventory {
            
             return true;
         }
-
-        public InventoryOperationResult SpendResource(ItemStack item) {
-            if (!Have(item)) {
+        
+        public InventoryOperationResult SpendResource(Item item, int amount) {
+            if (!Have(item, amount)) {
                 return InventoryOperationResult.NoEnoughResource;
             }
 
-            _inventory[item.Item.Id] -= item.Amount;
+            if (item is ItemRestoreByTime itemRestoreByTime) {
+                _inventory[item.Id].Spend(amount, itemRestoreByTime.RestoreTime);
+            } else {
+                _inventory[item.Id].Remove(amount);
+            }
+
             
-            EventBus<OnSpendResources>.Raise(new OnSpendResources(item));
+            EventBus<OnSpendResources>.Raise(new OnSpendResources(item, amount));
 
             return InventoryOperationResult.Success;
+        }
+
+        public InventoryOperationResult SpendResource(ItemStack item) {
+            return SpendResource(item.Item, item.Amount);
         }
         
         public InventoryOperationResult SpendResource(List<ItemStack> items) {
             foreach (var item in items) {
-                if (!Have(item)) {
+                if (!Have(item.Item, item.Amount)) {
                     return InventoryOperationResult.NoEnoughResource;
                 }
             }
@@ -96,7 +118,7 @@ namespace Runtime.Logic.Inventory {
                 return 0;
             }
 
-            return _inventory[resourceId];
+            return _inventory[resourceId].Amount;
         }
         
         public enum InventoryOperationResult {

@@ -958,7 +958,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
     - {fileID: 11400000, guid: e31c45d73f636054d9096bac483484fc, type: 2}
     - {fileID: 11400000, guid: a342ddffa37cf5d49bdc76abf8392ad1, type: 2}
-    - {fileID: 11400000, guid: f5e52579595fa5b4b9f662e883ae6e58, type: 2}
+    - {fileID: 11400000, guid: 1d563eb175b97574e942c38de2245262, type: 2}
     - {fileID: 11400000, guid: 5e99603e7edc6c446a72864743c1629b, type: 2}
     - {fileID: 11400000, guid: 30c3e74ea71dfd4408e10d4007147f88, type: 2}
     - {fileID: 11400000, guid: 7540e5b0c0d5d2f429a22646bbc6a239, type: 2}
@@ -1146,7 +1146,7 @@ MonoBehaviour:
   _goldData: {fileID: 11400000, guid: a1de2aec0018f9f4b94dc74c2dd70744, type: 2}
   _expData: {fileID: 11400000, guid: 4df6660ed1683424e9fc54f406a4bf66, type: 2}
   _levelData: {fileID: 11400000, guid: a342ddffa37cf5d49bdc76abf8392ad1, type: 2}
-  _energyData: {fileID: 11400000, guid: f5e52579595fa5b4b9f662e883ae6e58, type: 2}
+  _energyData: {fileID: 11400000, guid: 1d563eb175b97574e942c38de2245262, type: 2}
 --- !u!1 &1853524570
 GameObject:
   m_ObjectHideFlags: 0

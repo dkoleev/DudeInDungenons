@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Runtime.UI.Base {
@@ -18,6 +19,10 @@ namespace Runtime.UI.Base {
             }
 
             gameObject.SetActive(isActive);
+        }
+
+        protected virtual void Update() {
+            
         }
     }
 }
