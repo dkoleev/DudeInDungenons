@@ -10,5 +10,13 @@ namespace Runtime.Logic.GameProgress.Progress {
         public HashSet<string> UnlockedPets = new HashSet<string>();
         public string CurrentSkin;
         public HashSet<string> UnlockedSkins = new HashSet<string>();
+
+        public ItemProgress GetInventoryItem(string key) {
+            if (Inventory.ContainsKey(key)) {
+                return Inventory[key];
+            }
+
+            return null;
+        }
     }
 }

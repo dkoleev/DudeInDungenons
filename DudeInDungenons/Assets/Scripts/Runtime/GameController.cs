@@ -7,7 +7,9 @@ using Runtime.Data;
 using Runtime.Input;
 using Runtime.LocalNotifications;
 using Runtime.Logic;
+using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Core.SaveEngine;
+using Runtime.Logic.Events;
 using Runtime.Logic.Factories;
 using Runtime.Logic.GameProgress;
 using Runtime.Logic.GameProgress.Progress.Items;
@@ -17,6 +19,7 @@ using Runtime.UI;
 using Runtime.UI.MainMenu;
 using Runtime.Utilities;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
@@ -68,6 +71,7 @@ namespace Runtime {
         public BillingManager Billing => _billingManager;
         public Player Player => _player;
         public GameProgress Progress => _progress;
+        public GameNotificationsManager LocalNotificationsManager => _localNotificationsManager;
         
         private SaveEngine<GameProgress> _saveEngine;
         private InputManager _inputManager;
@@ -78,8 +82,7 @@ namespace Runtime {
         private Action OnAllScenesLoaded;
 
         private World _currentWorld;
-        private LocalNotificationsRegistration _notificationsRegistration;
-        private List<ManagerBase> _managers = new List<ManagerBase>();
+        private ImmutableHashSet<ManagerBase> _managers;
 
         private GameMode _gameMode = GameMode.MainMenu;
         private bool _initialized;
@@ -95,7 +98,6 @@ namespace Runtime {
             _inventory = new Inventory(_progress);
             _inputManager = new InputManager();
             InitializeManagers();
-            _notificationsRegistration = new LocalNotificationsRegistration(_localNotificationsManager);
 
             switch (_runMode) {
                 case RunMode.MainMenu:
@@ -113,9 +115,10 @@ namespace Runtime {
         }
 
         private void InitializeManagers() {
-            var resourceConverter = new ResourceConvertManager(this);
-            
-            _managers.Add(resourceConverter);
+            _managers = new ImmutableHashSet<ManagerBase>(new HashSet<ManagerBase> {
+                new ResourceConvertManager(this),
+                new LocalNotificationManager(this)
+            });
         }
 
         private void PutStartProgress(GameProgress progress) {
@@ -282,6 +285,7 @@ namespace Runtime {
         }
 
         private void OnApplicationQuit() {
+            EventBus<OnApplicationQuit>.Raise(new OnApplicationQuit());
             SaveProgress();
         }
 
@@ -309,24 +313,6 @@ namespace Runtime {
 
                     Inventory.AddResource(enumId, Int32.Parse(list[1]));
                 }));*/
-        }
-        
-        private int playReminderHour = 6;
-        public void OnPlayReminder()
-        {
-            // Schedule a reminder to play the game. Schedule it for the next day.
-            DateTime deliveryTime = DateTime.Now.ToLocalTime().AddDays(1);
-            deliveryTime = new DateTime(deliveryTime.Year, deliveryTime.Month, deliveryTime.Day, playReminderHour, 0, 0,
-                DateTimeKind.Local);
-
-            _notificationsRegistration.SendNotification("Cookie Reminder", "Remember to make more cookies!", deliveryTime,
-                channelId: LocalNotificationsRegistration.ReminderChannelId);
-        }
-
-        public void SendNotif() {
-            DateTime deliveryTime = DateTime.Now.ToLocalTime() + TimeSpan.FromMinutes(1);
-            _notificationsRegistration.SendNotification("Test", "hello world", deliveryTime, reschedule: true,
-                smallIcon: "icon_0", largeIcon: "icon_1");
         }
     }
 }
