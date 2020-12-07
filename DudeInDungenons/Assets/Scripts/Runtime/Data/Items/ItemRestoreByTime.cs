@@ -1,3 +1,4 @@
+using Runtime.Logic.Core.BaseTypes;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -7,9 +8,9 @@ namespace Runtime.Data.Items {
         [SerializeField]
         private int _maxAmount;
         [SerializeField, Title("Restore time in seconds", horizontalLine:false)]
-        private long _restoreTime;
+        private TargetTime _restoreTime;
 
         public int MaxAmount => _maxAmount;
-        public long RestoreTime => _restoreTime;
+        public TargetTime RestoreTime => _restoreTime;
     }
 }

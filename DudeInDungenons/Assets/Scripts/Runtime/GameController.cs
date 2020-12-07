@@ -7,14 +7,15 @@ using Runtime.Data;
 using Runtime.Input;
 using Runtime.LocalNotifications;
 using Runtime.Logic;
-using Runtime.Logic.Converters;
 using Runtime.Logic.Core.SaveEngine;
+using Runtime.Logic.Factories;
 using Runtime.Logic.GameProgress;
-using Runtime.Logic.GameProgress.Progress;
+using Runtime.Logic.GameProgress.Progress.Items;
 using Runtime.Logic.Managers;
 using Runtime.Static;
 using Runtime.UI;
 using Runtime.UI.MainMenu;
+using Runtime.Utilities;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -86,15 +87,15 @@ namespace Runtime {
         private void Awake() {
             Application.targetFrameRate = 60;
             
+            ShowLoadingScreen();
+            
             _progress = LoadGameProgress();
-            PutStartProgress();
+            PutStartProgress(_progress);
           
             _inventory = new Inventory(_progress);
             _inputManager = new InputManager();
             InitializeManagers();
             _notificationsRegistration = new LocalNotificationsRegistration(_localNotificationsManager);
-            
-            ShowLoadingScreen();
 
             switch (_runMode) {
                 case RunMode.MainMenu:
@@ -117,19 +118,20 @@ namespace Runtime {
             _managers.Add(resourceConverter);
         }
 
-        private void PutStartProgress() {
-            if (!_progress.FirstRun) {
+        private void PutStartProgress(GameProgress progress) {
+            if (!progress.FirstRun) {
                 return;
             }
 
-            _progress.FirstRun = false;
-            if (string.IsNullOrEmpty(_progress.Player.CurrentSkin)) {
-                _progress.Player.CurrentSkin = _playerData.StartSkin.Id;
+            progress.FirstRun = false;
+            progress.GameExitTime = TimeUtils.Current;
+            if (string.IsNullOrEmpty(progress.Player.CurrentSkin)) {
+                progress.Player.CurrentSkin = _playerData.StartSkin.Id;
             }
 
             foreach (var itemStack in _playerData.StartInventory) {
-                if (!_progress.Player.Inventory.ContainsKey(itemStack.Item.Id)) {
-                    _progress.Player.Inventory.Add(itemStack.Item.Id, new ItemProgress(itemStack.Item.Id, itemStack.Amount));
+                if (!progress.Player.Inventory.ContainsKey(itemStack.Item.Id)) {
+                    progress.Player.Inventory.Add(itemStack.Item.Id, ItemProgressFactory.Create(itemStack));
                 }
             }
         }
@@ -280,6 +282,11 @@ namespace Runtime {
         }
 
         private void OnApplicationQuit() {
+            SaveProgress();
+        }
+
+        private void SaveProgress() {
+            _progress.GameExitTime = TimeUtils.Current;
             _saveEngine.SaveProgress();
         }
 

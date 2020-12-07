@@ -3,6 +3,7 @@ using Runtime.Data.Items;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 using Runtime.Logic.GameProgress.Progress;
+using Runtime.Logic.GameProgress.Progress.Items;
 
 namespace Runtime.Logic.Inventory {
     public class Inventory {
@@ -25,6 +26,10 @@ namespace Runtime.Logic.Inventory {
         }
 
         public void Add(string id, int amount) {
+            if (amount <= 0) {
+                return;
+            }
+
             if (_inventory.ContainsKey(id)) {
                 _inventory[id].Add(amount);
             } else {
@@ -84,7 +89,7 @@ namespace Runtime.Logic.Inventory {
             }
 
             if (item is ItemRestoreByTime itemRestoreByTime) {
-                _inventory[item.Id].Spend(amount, itemRestoreByTime.RestoreTime);
+                _inventory[item.Id].Spend(amount, itemRestoreByTime.RestoreTime.TotalMilliseconds);
             } else {
                 _inventory[item.Id].Remove(amount);
             }

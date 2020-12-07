@@ -43,12 +43,16 @@ namespace Runtime.Logic.Converters {
             }
         }
 
-        public void Dispose() {
-            EventBus.UnRegister(this);
-        }
-
         public void Update() {
             
+        }
+
+        public void ApplyGameOutProgress(GameProgress.GameProgress progress) {
+            
+        }
+        
+        public void Dispose() {
+            EventBus.UnRegister(this);
         }
     }
 }

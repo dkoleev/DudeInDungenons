@@ -3,6 +3,7 @@ using Runtime.Data.Items;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 using Runtime.Logic.GameProgress.Progress;
+using Runtime.Logic.GameProgress.Progress.Items;
 using Runtime.UI.Base;
 using Runtime.Utilities;
 using Sirenix.OdinInspector;
@@ -32,7 +33,7 @@ namespace Runtime.UI.MainMenu {
         [SerializeField, Required]
         private Slider _expProgress;
 
-        private ItemProgress _energyProgress;
+        private ItemTimeProgress _energyProgress;
         private ItemRestoreByTime _energyData;
 
         public override void Initialize(GameController gameController, ItemsReference itemsReference) {
@@ -41,7 +42,7 @@ namespace Runtime.UI.MainMenu {
             EventBus.Register(this);
 
             _energyData = GameController.ItemReference.EnergyData;
-            _energyProgress = GameController.Inventory.GetItem(_energyData.Id);
+            _energyProgress = GameController.Inventory.GetItem(_energyData.Id) as ItemTimeProgress;
 
             UpdateView();
 
@@ -57,7 +58,7 @@ namespace Runtime.UI.MainMenu {
                 _energyTimeRestore.enabled = false;
             } else {
                 _energyTimeRestore.enabled = true;
-                _energyTimeRestore.text = TimeUtils.GetTimeCaption(_energyProgress.TimeLeft - TimeUtils.Current,
+                _energyTimeRestore.text = TimeUtils.GetTimeCaption(_energyProgress.Timer.Remaining,
                     TimeUtils.TimeCaptionDetails.MMSS);
             }
         }

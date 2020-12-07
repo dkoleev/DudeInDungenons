@@ -14,6 +14,10 @@ namespace Runtime.Logic.Managers {
 
             _converters.Add(energyRestore);
             _converters.Add(expToLevelConverter);
+
+            foreach (var converter in _converters) {
+                converter.ApplyGameOutProgress(GameController.Progress);
+            }
         }
 
         public override void Update() {

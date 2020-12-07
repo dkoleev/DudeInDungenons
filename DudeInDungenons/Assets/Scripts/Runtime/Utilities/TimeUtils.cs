@@ -9,21 +9,21 @@ namespace Runtime.Utilities {
             SS
         }
         
-        public static long Current => (long)(DateTime.UtcNow - EpochStart).TotalSeconds;
+        public static long Current => (long)(DateTime.UtcNow - EpochStart).TotalMilliseconds;
         
         private static readonly DateTime EpochStart = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
         
-        public static string GetTimeCaption(float seconds, TimeCaptionDetails details = TimeCaptionDetails.HHMMSS) {
-            if (seconds > TimeSpan.MaxValue.TotalSeconds) {
-                Debug.LogError($"value {seconds} must be less then {TimeSpan.MaxValue.TotalSeconds}");
+        public static string GetTimeCaption(float milliseconds, TimeCaptionDetails details = TimeCaptionDetails.HHMMSS) {
+            if (milliseconds > TimeSpan.MaxValue.TotalMilliseconds) {
+                Debug.LogError($"value {milliseconds} must be less then {TimeSpan.MaxValue.TotalMilliseconds}");
                 return string.Empty;
             }
 
-            if (seconds < 0) {
-                seconds = 0;
+            if (milliseconds < 0) {
+                milliseconds = 0;
             }
 
-            var timeSpan = TimeSpan.FromSeconds(seconds);
+            var timeSpan = TimeSpan.FromMilliseconds(milliseconds);
             switch (details) {
                 case TimeCaptionDetails.HHMMSS:
                     return timeSpan.ToString(@"hh\:mm\:ss");

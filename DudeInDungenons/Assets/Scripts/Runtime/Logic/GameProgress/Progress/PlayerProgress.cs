@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Logic.GameProgress.Progress.Items;
 
 namespace Runtime.Logic.GameProgress.Progress {
     [Serializable]

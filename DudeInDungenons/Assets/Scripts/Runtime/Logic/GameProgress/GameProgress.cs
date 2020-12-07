@@ -7,5 +7,6 @@ namespace Runtime.Logic.GameProgress {
     public class GameProgress : IProgress {
         public PlayerProgress Player = new PlayerProgress();
         public bool FirstRun = true;
+        public long GameExitTime;
     }
 }
