@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: _data
       value: 
       objectReference: {fileID: 11400000, guid: 5e99603e7edc6c446a72864743c1629b, type: 2}
+    - target: {fileID: 6526291813750498738, guid: 47d715d3008d01d47b336d3e5bd344ff, type: 3}
+      propertyPath: _data
+      value: 
+      objectReference: {fileID: 11400000, guid: 5e99603e7edc6c446a72864743c1629b, type: 2}
     - target: {fileID: 7291143199272370974, guid: 47d715d3008d01d47b336d3e5bd344ff, type: 3}
       propertyPath: m_Name
       value: Beagle

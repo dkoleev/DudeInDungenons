@@ -1,8 +1,9 @@
 ﻿using Runtime.Data.Items;
+using Runtime.Game.Entities.Pet;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events.Ui.Menu;
 using Runtime.Static;
-using Runtime.Visual;
+using Runtime.Utilities;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -12,7 +13,7 @@ namespace Runtime.UI.MainMenu.Equipment {
         [SerializeField, Required]
         private Transform _petParent;
         
-        private PetInMenu _currentPet;
+        private Pet _currentPet;
         private AssetReference _currentAsset;
         private GameController _gameController;
 
@@ -52,14 +53,10 @@ namespace Runtime.UI.MainMenu.Equipment {
             _currentAsset = asset;
 
             _isLoading = true;
-            _currentAsset.InstantiateAsync().Completed += handle => {
-                _currentPet = handle.Result.GetComponent<PetInMenu>();
-                _currentPet.transform.parent = _petParent;
-                _currentPet.transform.localPosition = Vector3.zero;
-                _currentPet.transform.localRotation = Quaternion.Euler(Vector3.zero);
-
+            LoadHelper.InstantiateAsset<Pet>(_currentAsset, pet => {
+                _currentPet = pet;
                 _isLoading = false;
-            };
+            }, _petParent);
         }
         
         public void OnEvent(OnCurrentItemChangedInShop e) {
@@ -76,7 +73,7 @@ namespace Runtime.UI.MainMenu.Equipment {
                 return;
             }
 
-            if (_currentPet == null || _currentPet.Asset.AssetGUID != item.Id) {
+            if (_currentPet == null || _currentPet.Data.Asset.AssetGUID != item.Id) {
                 LoadPet(item.Asset);
             }
         }

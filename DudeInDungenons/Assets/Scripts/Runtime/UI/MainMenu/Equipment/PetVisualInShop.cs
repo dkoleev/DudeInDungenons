@@ -1,3 +1,5 @@
+using Runtime.Game.Entities.Pet;
+using Runtime.Utilities;
 using Runtime.Visual;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -10,7 +12,7 @@ namespace Runtime.UI.MainMenu.Equipment {
 
         private PetsShop _shop;
 
-        private PetInMenu _currentPet;
+        private Pet _currentPet;
         private AssetReference _currentAsset;
 
         private bool _isLoading;
@@ -21,7 +23,7 @@ namespace Runtime.UI.MainMenu.Equipment {
         }
 
         private void SkinSelected(ItemsShopItem skinItem) {
-            if (_currentPet == null || _currentPet.Asset.AssetGUID != skinItem.Data.Id) {
+            if (_currentPet == null || _currentPet.Data.Asset.AssetGUID != skinItem.Data.Id) {
                 LoadPet(skinItem.Data.Asset);
             }
         }
@@ -36,8 +38,9 @@ namespace Runtime.UI.MainMenu.Equipment {
             _currentAsset = asset;
 
             _isLoading = true;
+            
             _currentAsset.InstantiateAsync().Completed += handle => {
-                _currentPet = handle.Result.GetComponent<PetInMenu>();
+                _currentPet = handle.Result.GetComponent<Pet>();
                 _currentPet.transform.parent = _petTransformParent;
                 _currentPet.transform.localPosition = Vector3.zero;
                 _currentPet.transform.localRotation = Quaternion.Euler(Vector3.zero);

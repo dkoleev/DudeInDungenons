@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: _data
       value: 
       objectReference: {fileID: 11400000, guid: 7540e5b0c0d5d2f429a22646bbc6a239, type: 2}
+    - target: {fileID: 6526291813750498738, guid: 47d715d3008d01d47b336d3e5bd344ff, type: 3}
+      propertyPath: _data
+      value: 
+      objectReference: {fileID: 11400000, guid: 7540e5b0c0d5d2f429a22646bbc6a239, type: 2}
     - target: {fileID: 7291143199272370974, guid: 47d715d3008d01d47b336d3e5bd344ff, type: 3}
       propertyPath: m_Name
       value: Doberman

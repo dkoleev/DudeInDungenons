@@ -11,6 +11,7 @@ using Runtime.Logic.GameProgress.Progress;
 using Runtime.Logic.States.Player;
 using Runtime.Static;
 using Runtime.Ui.World;
+using Runtime.Utilities;
 using Sigtrap.Relays;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -99,22 +100,9 @@ namespace Runtime.Game.Entities.Player {
 
             AttackComponent?.OnShoot.AddListener(OnShoot);
         }
-
-        public void Resurrect() {
-            AddHealth(_data.MaxHealth);
+        
+        protected override void Start() {
         }
-
-        private string GetEquippedWeapon() {
-            foreach (var itemStack in _data.StartInventory) {
-                if (itemStack.Equipped && itemStack.Item is WeaponData) {
-                    return itemStack.Item.Id;
-                }
-            }
-
-            return String.Empty;
-        }
-
-        protected override void Start() { }
 
         public override void Initialize(GameController gameController) {
             base.Initialize(gameController);
@@ -130,9 +118,34 @@ namespace Runtime.Game.Entities.Player {
                 _visual.Initialize();
 
                 InitializeFsm();
+                InitializePet();
 
                 _initialized = true;
             };
+        }
+        
+        private void InitializePet() {
+            if (string.IsNullOrEmpty(PlayerProgress.CurrentPet)) {
+                return;
+            }
+
+            LoadHelper.InstantiateAsset<Pet.Pet>(PlayerProgress.CurrentPet, GameController.ItemReference, pet => {
+                pet.transform.position = transform.position + new Vector3(2, 0, 0);
+            });
+        }
+        
+        public void Resurrect() {
+            AddHealth(_data.MaxHealth);
+        }
+
+        private string GetEquippedWeapon() {
+            foreach (var itemStack in _data.StartInventory) {
+                if (itemStack.Equipped && itemStack.Item is WeaponData) {
+                    return itemStack.Item.Id;
+                }
+            }
+
+            return String.Empty;
         }
 
         public static Item GetSkin(GameController gameController, string skinId = "") {
