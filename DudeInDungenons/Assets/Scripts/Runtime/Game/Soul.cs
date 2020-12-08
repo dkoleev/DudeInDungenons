@@ -3,7 +3,7 @@ using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
 using UnityEngine;
 
-namespace Runtime {
+namespace Runtime.Game {
     public class Soul : MonoBehaviour {
         private Tweener _moveTweener;
         private void Start() {

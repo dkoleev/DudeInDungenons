@@ -6,8 +6,8 @@ using Runtime.Logic.GameProgress;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Runtime {
-    public class Entity : MonoBehaviour {
+namespace Runtime.Game.Entities {
+    public class  Entity : MonoBehaviour {
         [ShowInInspector, ReadOnly]
         protected readonly List<IComponent> Components = new List<IComponent>();
         protected GameController GameController;

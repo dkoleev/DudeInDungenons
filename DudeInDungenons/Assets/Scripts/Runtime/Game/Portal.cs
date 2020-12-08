@@ -1,8 +1,9 @@
-﻿using Runtime.Logic;
+﻿using Runtime.Game.Entities;
+using Runtime.Logic;
 using Runtime.Static;
 using UnityEngine;
 
-namespace Runtime {
+namespace Runtime.Game {
     public class Portal : Entity {
         private ParticleSystem _effect;
         private Stage _stage;

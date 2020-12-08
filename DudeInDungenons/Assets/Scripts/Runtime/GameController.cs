@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Avocado.DeveloperCheatConsole.Scripts.Core;
 using Avocado.DeveloperCheatConsole.Scripts.Core.Commands;
 using Runtime.Data;
+using Runtime.Game.Entities.Player;
 using Runtime.Input;
 using Runtime.LocalNotifications;
 using Runtime.Logic;
@@ -284,10 +285,17 @@ namespace Runtime {
             }
         }
 
-        private void OnApplicationQuit() {
+        private void OnApplicationPause(bool pauseStatus) {
+            if (pauseStatus) {
+                EventBus<OnApplicationQuit>.Raise(new OnApplicationQuit());
+                SaveProgress();
+            }
+        }
+
+        /*private void OnApplicationQuit() {
             EventBus<OnApplicationQuit>.Raise(new OnApplicationQuit());
             SaveProgress();
-        }
+        }*/
 
         private void SaveProgress() {
             _progress.GameExitTime = TimeUtils.Current;

@@ -1,11 +1,10 @@
 using System;
 using Avocado.Framework.Patterns.StateMachine;
-using Runtime.Logic.States;
 using Runtime.Logic.States.Ai;
 using Runtime.Ui.World;
 using UnityEngine;
 
-namespace Runtime {
+namespace Runtime.Game.Entities.Enemy {
     public class EnemyVisual : IDisposable {
         private static readonly int _animationWalk = Animator.StringToHash("Walk");
         private static readonly int _animationRun = Animator.StringToHash("Run");

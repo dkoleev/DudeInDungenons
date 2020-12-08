@@ -55,8 +55,9 @@ namespace Runtime.Logic.Managers {
             notification.Body = body;
             notification.Group = !string.IsNullOrEmpty(channelId) ? channelId : ChannelId;
             notification.DeliveryTime = deliveryTime;
-            notification.SmallIcon = smallIcon ?? "icon_0";
-            notification.LargeIcon = largeIcon ?? "icon_1";
+            notification.SmallIcon = "icon_0";
+            notification.LargeIcon = "icon_1";
+            notification.ShouldAutoCancel = true;
             if (badgeNumber != null)
             {
                 notification.BadgeNumber = badgeNumber;
@@ -91,6 +92,10 @@ namespace Runtime.Logic.Managers {
                 GameController.Progress.Player.GetInventoryItem(energyData.Id);
             if (currentEnergy != null && currentEnergy.Amount < energyData.MaxAmount) {
                 var amountToRestore = energyData.MaxAmount - currentEnergy.Amount;
+                if (amountToRestore < 3) {
+                    return;
+                }
+
                 var energyNotifyTime = amountToRestore * energyData.RestoreTime.TotalMilliseconds;
                 SendNotification("Energy Full", "Adventure time!", energyNotifyTime);
             }

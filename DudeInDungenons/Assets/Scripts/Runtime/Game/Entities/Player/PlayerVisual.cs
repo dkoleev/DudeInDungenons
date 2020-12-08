@@ -3,7 +3,7 @@ using Runtime.Logic.States.Player;
 using Runtime.Ui.World;
 using UnityEngine;
 
-namespace Runtime {
+namespace Runtime.Game.Entities.Player {
     public class PlayerVisual {
         private static readonly int _animationRun = Animator.StringToHash("Run");
         private static readonly int _animationIdle = Animator.StringToHash("Idle");

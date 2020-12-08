@@ -1,3 +1,5 @@
+using Runtime.Game.Entities.Enemy;
+
 namespace Runtime.Logic.Components {
     public class EnemyAi : IComponent {
         public bool IsAttack { get; private set; }

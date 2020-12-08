@@ -1,11 +1,12 @@
 using System.Collections;
 using Runtime.Data;
+using Runtime.Game.Entities;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Runtime {
-    public class Pet : Entity {
+namespace Runtime.Visual {
+    public class PetInMenu : Entity {
         [SerializeField, Required]
         private PetData _data;
 

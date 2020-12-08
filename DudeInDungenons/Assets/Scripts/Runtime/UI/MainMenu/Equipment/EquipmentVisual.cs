@@ -2,6 +2,7 @@
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events.Ui.Menu;
 using Runtime.Static;
+using Runtime.Visual;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -11,7 +12,7 @@ namespace Runtime.UI.MainMenu.Equipment {
         [SerializeField, Required]
         private Transform _petParent;
         
-        private Pet _currentPet;
+        private PetInMenu _currentPet;
         private AssetReference _currentAsset;
         private GameController _gameController;
 
@@ -52,7 +53,7 @@ namespace Runtime.UI.MainMenu.Equipment {
 
             _isLoading = true;
             _currentAsset.InstantiateAsync().Completed += handle => {
-                _currentPet = handle.Result.GetComponent<Pet>();
+                _currentPet = handle.Result.GetComponent<PetInMenu>();
                 _currentPet.transform.parent = _petParent;
                 _currentPet.transform.localPosition = Vector3.zero;
                 _currentPet.transform.localRotation = Quaternion.Euler(Vector3.zero);

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Runtime {
+namespace Runtime.Game {
     public class WeaponPlacer : MonoBehaviour
     {
     }

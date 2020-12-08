@@ -1,3 +1,4 @@
+using Runtime.Game;
 using Runtime.Logic.Core.EventBus;
 
 namespace Runtime.Logic.Events {

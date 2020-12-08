@@ -1,3 +1,4 @@
+using Runtime.Game.Entities.Enemy;
 using Runtime.Logic.Core.EventBus;
 
 namespace Runtime.Logic.Events {

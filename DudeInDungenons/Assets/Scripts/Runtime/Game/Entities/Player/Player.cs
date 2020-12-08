@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Avocado.Framework.Patterns.StateMachine;
 using Runtime.Data;
 using Runtime.Data.Items;
@@ -8,7 +7,6 @@ using Runtime.Logic;
 using Runtime.Logic.Components;
 using Runtime.Logic.Core.EventBus;
 using Runtime.Logic.Events;
-using Runtime.Logic.GameProgress;
 using Runtime.Logic.GameProgress.Progress;
 using Runtime.Logic.States.Player;
 using Runtime.Static;
@@ -17,7 +15,7 @@ using Sigtrap.Relays;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Runtime {
+namespace Runtime.Game.Entities.Player {
     public class Player : Entity, ILocalPositionAdapter, IWeaponOwner, IDamagable,
         IEventReceiver<OnEnemyDead>,
         IEventReceiver<OnLevelCompleted> {

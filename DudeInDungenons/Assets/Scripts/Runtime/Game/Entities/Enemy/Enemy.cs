@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Avocado.Framework.Patterns.StateMachine;
 using Avocado.UnityToolbox.Timer;
 using Runtime.Data;
@@ -15,7 +13,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Runtime {
+namespace Runtime.Game.Entities.Enemy {
     public class Enemy : Entity, IDamagable, IWeaponOwner, ITarget {
         [SerializeField, Required, AssetsOnly, InlineEditor]
         private EnemyData _data;
@@ -47,7 +45,7 @@ namespace Runtime {
         private NavMeshAgent _agent;
         private RandomMove _mover;
         private EnemyVisual _visual;
-        private Player _player;
+        private Player.Player _player;
         private AttackComponent _attackComponent;
         private bool _isDead;
         private bool _takeDamage;
@@ -83,7 +81,7 @@ namespace Runtime {
         protected override void Start() {
             base.Start();
 
-            _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+            _player = GameObject.FindWithTag("Player").GetComponent<Player.Player>();
             _visual.Initialize();
             InitializeFsm();
 
