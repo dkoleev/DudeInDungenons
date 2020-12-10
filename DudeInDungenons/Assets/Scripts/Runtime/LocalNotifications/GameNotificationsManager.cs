@@ -2,13 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Runtime.LocalNotifications.Android;
-using Unity.Notifications.Android;
 using UnityEngine;
 #if UNITY_ANDROID
+using Runtime.LocalNotifications.Android;
+using Unity.Notifications.Android;
 #elif UNITY_IOS
+using NotificationSamples.iOS;
 using Unity.Notifications.iOS;
 #endif
+
 
 namespace Runtime.LocalNotifications
 {
