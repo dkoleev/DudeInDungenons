@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
+using UnityEditor.AddressableAssets.Settings;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
@@ -12,14 +13,24 @@ namespace Editor.ToolsMenu {
         private static readonly string BuildPath = $"{Application.dataPath}/../Builds";
         private static readonly string BuildPathIOS = $"{Application.dataPath}/../Builds/iOS";
 
-        [MenuItem("Avocado/Build/Android", false, 10)]
+        [MenuItem("Avocado/Build/Android APK", false, 10)]
         private static void BuildAndroidApk() {
             BuildAndroid(false);
         }
         
-        [MenuItem("Avocado/Build/Android (with App Bundle)", false, 10)]
+        [MenuItem("Avocado/Build/Android APK (rebuild assets)", false, 10)]
+        private static void BuildAndroidApkRebuildAddressable() {
+            BuildAndroid(false, true);
+        }
+        
+        [MenuItem("Avocado/Build/Android AAB", false, 10)]
         private static void BuildAndroidWithBundles() {
             BuildAndroid(true);
+        }
+        
+        [MenuItem("Avocado/Build/Android AAB (rebuild assets)", false, 10)]
+        private static void BuildAndroidWithBundlesRebuildAddressable() {
+            BuildAndroid(true, true);
         }
         
         [MenuItem("Avocado/Build/iOS", false, 20)]
@@ -27,10 +38,14 @@ namespace Editor.ToolsMenu {
             BuildIOS();
         }
         
-          private static void BuildIOS() {
+          private static void BuildIOS(bool buildAddressable = false) {
             try {
                 EditorUtility.DisplayProgressBar("Building", "Preparing...", 0f);
-            
+
+                if (buildAddressable) {
+                    AddressableAssetSettings.BuildPlayerContent();
+                }
+                
                 var scenes = new List<string>();
                 foreach (var scene in EditorBuildSettings.scenes) {
                     scenes.Add(scene.path);
@@ -73,10 +88,12 @@ namespace Editor.ToolsMenu {
             }
         }
 
-        private static void BuildAndroid(bool buildAppBundle) {
+        private static void BuildAndroid(bool buildAppBundle, bool buildAddressable = false) {
             try {
                 EditorUtility.DisplayProgressBar("Building", "Preparing...", 0f);
-            
+                
+                AddressableAssetSettings.BuildPlayerContent();
+                
                 var scenes = new List<string>();
                 foreach (var scene in EditorBuildSettings.scenes) {
                     scenes.Add(scene.path);
