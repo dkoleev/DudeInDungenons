@@ -11,7 +11,10 @@ namespace Runtime.Logic.Core {
         [SerializeField]
         private bool _havePrice;
         [SerializeField, ShowIf("_havePrice")]
-        private List<ItemStack> _price;
+        private List<ItemStack> _price; 
+        [Title("Price")]
+        [SerializeField, ShowIf("_havePrice")]
+        private Price.Price _price2;
         [Title("Reward")]
         [SerializeField]
         private bool _haveReward;

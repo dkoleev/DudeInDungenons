@@ -199,7 +199,11 @@ namespace Runtime {
         }
 
         private void LoadWorld() {
-            LoadLevel(CurrentWorldData.Levels[0].Value, true);
+            if (_itemsReference.EnergyData.Price.Check(_inventory)) {
+                LoadLevel(CurrentWorldData.Levels[0].Value, true);
+            } else {
+                Debug.LogError("have no energy");
+            }
         }
 
         public void LoadLevel(string levelName, bool isFirstStage = false) {
