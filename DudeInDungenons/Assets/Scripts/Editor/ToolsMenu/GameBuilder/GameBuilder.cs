@@ -48,7 +48,7 @@ namespace Editor.ToolsMenu.GameBuilder {
         protected abstract BuildPlayerOptions SetBuildOptions(string[] scenes, bool buildAppBundle);
 
         protected string GetCurrentBuildName(string branch) {
-            return $"did_{branch}_v.{PlayerSettings.bundleVersion}";
+            return $"di_{branch}_v.{PlayerSettings.bundleVersion}";
         }
     }
 }
