@@ -14,6 +14,13 @@
       "dependencies": {},
       "hash": "b7da93eeda88ebeb82064b6d3fd9d22a0ed459eb"
     },
+    "com.tayx.graphy": {
+      "version": "https://github.com/Tayx94/graphy.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "7c7ba62a8e9b4956b0f4fc45d29f05e1e4023d52"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
