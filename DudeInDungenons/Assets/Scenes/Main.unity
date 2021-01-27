@@ -269,6 +269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Graphy_Variant_0
       objectReference: {fileID: 0}
+    - target: {fileID: 865993123718870511, guid: 78533c6fe91605449b46dda26f328d76, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 865993123725937851, guid: 78533c6fe91605449b46dda26f328d76, type: 3}
       propertyPath: m_ReferenceResolution.x
       value: 1080

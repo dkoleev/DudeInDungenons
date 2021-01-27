@@ -31,21 +31,34 @@ MonoBehaviour:
     - jillejr
     m_IsDefault: 0
     m_Capabilities: 0
-  m_UserSelectedRegistryName: 
+  - m_Id: scoped:package.openupm.com
+    m_Name: package.openupm.com
+    m_Url: https://package.openupm.com
+    m_Scopes:
+    - com.dotbunny.gdx
+    - com.needle.compilation-visualizer
+    - com.openupm
+    m_IsDefault: 0
+    m_Capabilities: 0
+  m_UserSelectedRegistryName: package.openupm.com
   m_UserAddingNewScopedRegistry: 0
   m_RegistryInfoDraft:
     m_ErrorMessage: 
     m_Original:
-      m_Id: scoped:Packages from jillejr
-      m_Name: Packages from jillejr
-      m_Url: https://npm.cloudsmith.io/jillejr/newtonsoft-json-for-unity
+      m_Id: scoped:package.openupm.com
+      m_Name: package.openupm.com
+      m_Url: https://package.openupm.com
       m_Scopes:
-      - jillejr
+      - com.dotbunny.gdx
+      - com.needle.compilation-visualizer
+      - com.openupm
       m_IsDefault: 0
       m_Capabilities: 0
     m_Modified: 0
-    m_Name: Packages from jillejr
-    m_Url: https://npm.cloudsmith.io/jillejr/newtonsoft-json-for-unity
+    m_Name: package.openupm.com
+    m_Url: https://package.openupm.com
     m_Scopes:
-    - jillejr
+    - com.dotbunny.gdx
+    - com.needle.compilation-visualizer
+    - com.openupm
     m_SelectedScopeIndex: 0

@@ -7,12 +7,26 @@
       "dependencies": {},
       "hash": "7f94137b2dbce4f660640bbaa47952a9cdfaadef"
     },
+    "com.dotbunny.gdx": {
+      "version": "1.2.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.febucci.custom-hierarchy": {
       "version": "https://github.com/febucci/unitypackage-custom-hierarchy.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
       "hash": "b7da93eeda88ebeb82064b6d3fd9d22a0ed459eb"
+    },
+    "com.needle.compilation-visualizer": {
+      "version": "1.3.0-preview",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
     },
     "com.tayx.graphy": {
       "version": "https://github.com/Tayx94/graphy.git",
