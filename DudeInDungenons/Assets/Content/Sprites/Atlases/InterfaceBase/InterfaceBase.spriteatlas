@@ -40,10 +40,12 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 1
       enableTightPacking: 0
+    secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 6765b143b3c371b42b42a1ea6767b250, type: 3}
     - {fileID: 102900000, guid: a032d7fa38727df44bd48fa373dcbff3, type: 3}
+    totalSpriteSurfaceArea: 1137995
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -176,5 +178,6 @@ SpriteAtlas:
   - user_level_bar_blue_0
   - common_circle_blue
   - energy_icon
+  m_RenderDataMap: {}
   m_Tag: InterfaceBase
   m_IsVariant: 0

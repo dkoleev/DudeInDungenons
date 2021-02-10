@@ -40,10 +40,12 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 0
       enableTightPacking: 0
+    secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 78678d87706fd4cae91de16005d9d2d8, type: 3}
     - {fileID: 102900000, guid: 5a155303bea9fc44d88dfb6f732cbe8e, type: 3}
+    totalSpriteSurfaceArea: 5605540
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -230,5 +232,6 @@ SpriteAtlas:
   - common_item_ranking
   - common_item_arrows
   - common_item_vertical_coin_1
+  m_RenderDataMap: {}
   m_Tag: Items
   m_IsVariant: 0
