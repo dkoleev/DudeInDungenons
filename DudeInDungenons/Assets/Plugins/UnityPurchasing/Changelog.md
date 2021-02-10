@@ -1,3 +1,25 @@
+## [2.2.7] - 2021-01-27
+
+### Changed
+
+- Amazon - Include SDK version 2.0.76. Continuing to investigate sensitivity to slow-network conditions.
+
+### Fixed
+- GooglePlay - Purchasing silently failing, showing `Failed to purchase unknown product {0}: System.Collections.Generic.List``1[UnityEngine.AndroidJavaObject]` in log, not calling `IStoreListener.OnPurchaseFailed`, after prior purchase when offline, after Initializing, until app has been restarted.
+- GooglePlay - `IStoreController.FetchAdditionalProducts` cleared receipts inappropriately.
+- Apple - Exception seen when purchasing and initializing with existing purchases (e.g. Non-Consumables) on devices set to Thai language. Internal logging of `DateTime` used `CurrentCulture` instead of `InvariantCulture`. Removed logs.
+
+## [2.2.6] - 2021-01-14
+
+### Changed
+- GooglePlay - OnSetupFailed called immediately when Unity IAP fails to connect to the underlying service. To handle users who are logged-out of Google Play we stop the initialization process quickly.
+
+### Fixed
+- GooglePlay - ConfirmPendingPurchase failed to acknowledge purchases after purchase and app restart.
+- GooglePlay - ProcessPurchase unexpectely called when player backgrounded and foregrounded app before the initialization phase finished.
+- GooglePlay - Initialization incorrectly reported as failing, while race-condition returned fetched product metadata simultaneously.
+- Apple - "ArgumentOutOfRangeException: Not a valid calendar for the given culture" during Apple receipt validation (`CrossPlatformValidator.Validate` > `AppleValidator.Validate` > `AppleReceiptParser.Parse`) on devices set to Thai locale.
+
 ## [2.2.5] - 2020-12-14
 
 ### Fixed

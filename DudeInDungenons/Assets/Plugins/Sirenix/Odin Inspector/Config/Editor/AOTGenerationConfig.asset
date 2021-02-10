@@ -16,7 +16,7 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 637444009229128824
+  lastScan: 637475342024063552
   supportSerializedTypes:
   - TypeName: System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.Int32,
       mscorlib]], mscorlib
