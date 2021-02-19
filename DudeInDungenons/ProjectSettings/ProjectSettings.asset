@@ -701,8 +701,20 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: ODIN_INSPECTOR
-    7: ODIN_INSPECTOR
+    1: ODIN_INSPECTOR;TextMeshPro
+    4: TextMeshPro
+    7: ODIN_INSPECTOR;TextMeshPro
+    13: TextMeshPro
+    19: TextMeshPro
+    21: TextMeshPro
+    25: TextMeshPro
+    27: TextMeshPro
+    28: TextMeshPro
+    29: TextMeshPro
+    30: TextMeshPro
+    31: TextMeshPro
+    32: TextMeshPro
+    33: TextMeshPro
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
