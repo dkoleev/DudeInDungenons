@@ -17,7 +17,7 @@ MonoBehaviour:
     UserAgreesToHaveItInsideThePluginsFolder: 0
     GoogleLiveSyncIsUptoDate: 1
     mTerms:
-    - Term: ui_world
+    - Term: ui/ui_world
       TermType: 0
       Description: 
       Languages:
@@ -48,7 +48,7 @@ MonoBehaviour:
     Google_WebServiceURL: https://script.google.com/macros/s/AKfycby9euZ0BPtn6PyIN-YfomSd4dY8ksHdi59KF2f7/exec
     Google_SpreadsheetKey: 1zwRAZqkv3uC9YX_UOczPn4YzvyDvXafuL1AfbRsqBcE
     Google_SpreadsheetName: I2Loc DudeInDungenons Localization
-    Google_LastUpdatedVersion: 
+    Google_LastUpdatedVersion: 1613719374649
     Google_Password: 
     GoogleUpdateFrequency: 3
     GoogleInEditorCheckFrequency: 2

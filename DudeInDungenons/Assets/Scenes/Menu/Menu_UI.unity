@@ -1040,7 +1040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1445937065265451895, guid: aca0bbbf577effb4b8968e3aa43498ab, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 125.405
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1445937065265451895, guid: aca0bbbf577effb4b8968e3aa43498ab, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1791,6 +1791,7 @@ MonoBehaviour:
   m_StopNaN: 0
   m_Dithering: 0
   m_ClearDepth: 1
+  m_AllowXRRendering: 1
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
@@ -1973,6 +1974,7 @@ MonoBehaviour:
   m_StopNaN: 0
   m_Dithering: 0
   m_ClearDepth: 1
+  m_AllowXRRendering: 1
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
@@ -2967,7 +2969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1445937065265451895, guid: aca0bbbf577effb4b8968e3aa43498ab, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 125.405
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1445937065265451895, guid: aca0bbbf577effb4b8968e3aa43498ab, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5345,6 +5347,7 @@ MonoBehaviour:
   m_StopNaN: 0
   m_Dithering: 0
   m_ClearDepth: 1
+  m_AllowXRRendering: 1
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
@@ -6368,6 +6371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -6939,6 +6943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -7298,6 +7303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -7344,8 +7350,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 270, y: -366}
-  m_SizeDelta: {x: 540, y: 400}
+  m_AnchoredPosition: {x: 256.14453, y: -366}
+  m_SizeDelta: {x: 512.28894, y: 400}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &3869285191767352260
 GameObject:
@@ -7916,6 +7922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -8216,6 +8223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -8262,8 +8270,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 810, y: -366}
-  m_SizeDelta: {x: 540, y: 400}
+  m_AnchoredPosition: {x: 768.4334, y: -366}
+  m_SizeDelta: {x: 512.28894, y: 400}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &3869285192262841942
 GameObject:
@@ -9254,6 +9262,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
 --- !u!1001 &5914019161020579532
 PrefabInstance:
   m_ObjectHideFlags: 0
