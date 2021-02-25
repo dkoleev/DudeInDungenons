@@ -20,7 +20,7 @@ namespace Runtime.UI.MainMenu.Equipment {
             foreach (var item in GameController.Inventory.Get()) {
                 var itemData = ItemsReference.GetItem(item.Key);
                 var inventoryItem = Instantiate(_itemPrefab, _inventoryGrid.transform);
-                inventoryItem.Initialize(itemData.Icon, item.Value.ToString());
+                inventoryItem.Initialize(itemData.Icon, item.Value.Amount.ToString());
                 _items.Add(inventoryItem);
             }
         }

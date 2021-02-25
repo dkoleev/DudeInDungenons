@@ -13,6 +13,16 @@ namespace Runtime.UI.Base {
             ItemsReference = itemsReference;
         }
 
+        protected virtual void Awake() { }
+
+        public virtual void Show() {
+            SetActive(true);
+        }
+
+        public virtual void Hide() {
+            SetActive(false);
+        }
+
         public virtual void SetActive(bool isActive) {
             if (gameObject.activeSelf == isActive) {
                 return;
