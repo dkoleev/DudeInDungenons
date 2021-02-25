@@ -27,6 +27,36 @@ MonoBehaviour:
       - Danke!
       Flags: 00000000
       Languages_Touch: []
+    - Term: ui/language
+      TermType: 0
+      Description: 
+      Languages:
+      - Language
+      - "\u042F\u0437\u044B\u043A"
+      - Langue
+      - Sprache
+      Flags: 00000000
+      Languages_Touch: []
+    - Term: ui/language_icon
+      TermType: 5
+      Description: 
+      Languages:
+      - LanguageFlagEng
+      - LanguageFlagRus
+      - LanguageFlagFra
+      - LanguageFlagDeu
+      Flags: 00000000
+      Languages_Touch: []
+    - Term: ui/language_name
+      TermType: 0
+      Description: 
+      Languages:
+      - English
+      - "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"
+      - "Fran\xE7ais"
+      - Deutsch
+      Flags: 00000000
+      Languages_Touch: []
     - Term: ui/ui_world
       TermType: 0
       Description: 
@@ -58,13 +88,17 @@ MonoBehaviour:
     Google_WebServiceURL: https://script.google.com/macros/s/AKfycby9euZ0BPtn6PyIN-YfomSd4dY8ksHdi59KF2f7/exec
     Google_SpreadsheetKey: 1zwRAZqkv3uC9YX_UOczPn4YzvyDvXafuL1AfbRsqBcE
     Google_SpreadsheetName: I2Loc DudeInDungenons Localization
-    Google_LastUpdatedVersion: 1613720059698
+    Google_LastUpdatedVersion: 1614241870366
     Google_Password: 
     GoogleUpdateFrequency: 3
     GoogleInEditorCheckFrequency: 2
     GoogleUpdateSynchronization: 1
     GoogleUpdateDelay: 0
-    Assets: []
+    Assets:
+    - {fileID: 2800000, guid: 6157da686ab5a453fa43773496521c8d, type: 3}
+    - {fileID: 2800000, guid: 8ff0221bfa7af412689476c7cde3cf15, type: 3}
+    - {fileID: 2800000, guid: ad4afe920127d4a218469358f0c286e0, type: 3}
+    - {fileID: 2800000, guid: d65a5a5daf92d45ebbb26f106bfebb6f, type: 3}
     Spreadsheet_LocalFileName: 
     Spreadsheet_LocalCSVSeparator: ','
     Spreadsheet_LocalCSVEncoding: utf-8
