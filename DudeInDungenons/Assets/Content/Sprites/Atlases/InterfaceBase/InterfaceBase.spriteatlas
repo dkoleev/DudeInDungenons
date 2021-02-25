@@ -45,7 +45,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: 6765b143b3c371b42b42a1ea6767b250, type: 3}
     - {fileID: 102900000, guid: a032d7fa38727df44bd48fa373dcbff3, type: 3}
-    totalSpriteSurfaceArea: 1137995
+    totalSpriteSurfaceArea: 1165505
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -97,6 +97,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: bd0a3f8b6f28f406dad6db82e03648ef, type: 3}
   - {fileID: 21300000, guid: 8a8ab5ab32d9c634aac250e8999b527f, type: 3}
   - {fileID: 21300000, guid: 4c845caba84fa44749a6755368a59a03, type: 3}
+  - {fileID: -2949534788114607370, guid: 18b4f7cb80106d347abe81dd68d60c84, type: 3}
   - {fileID: 21300000, guid: 1681cd1c1893a48cb9f2bea5bbb8bece, type: 3}
   - {fileID: 21300000, guid: 8f0b673c5a37642dc899ed7d25b0ab49, type: 3}
   - {fileID: 21300000, guid: 55dcfe4cdc2ec4575bf4ae59102968f9, type: 3}
@@ -161,6 +162,7 @@ SpriteAtlas:
   - shome_sub_icon_friend
   - common_whitebox
   - pause_btn_icon_setting
+  - popup_title_ribbon_0
   - shome_sub_icon_scroll
   - gold_icon
   - pause_btn_icon_back

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Runtime.UI.Base {
@@ -11,6 +10,16 @@ namespace Runtime.UI.Base {
         public virtual void Initialize(GameController gameController, ItemsReference itemsReference) {
             GameController = gameController;
             ItemsReference = itemsReference;
+        }
+
+        protected virtual void Awake() { }
+
+        public virtual void Show() {
+            SetActive(true);
+        }
+
+        public virtual void Hide() {
+            SetActive(false);
         }
 
         public virtual void SetActive(bool isActive) {

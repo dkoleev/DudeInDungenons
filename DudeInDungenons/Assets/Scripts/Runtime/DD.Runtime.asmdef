@@ -1,5 +1,6 @@
 {
     "name": "DD.Runtime",
+    "rootNamespace": "",
     "references": [
         "GUID:75469ad4d38634e559750d17036d5f7c",
         "GUID:8c4dd21966739024fbd72155091d199e",
@@ -16,7 +17,8 @@
         "GUID:60bfecf5cb232594891bc622f40d6bed",
         "GUID:ac145e6b8c6034cdbadc8c6e26aedbcf",
         "GUID:1e8e55397bd004beaba78a667566665f",
-        "GUID:d90ee60d8f724a8428da12ce8962e8f7"
+        "GUID:d90ee60d8f724a8428da12ce8962e8f7",
+        "GUID:8c470a4197276e9478dcf19f98a60677"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
