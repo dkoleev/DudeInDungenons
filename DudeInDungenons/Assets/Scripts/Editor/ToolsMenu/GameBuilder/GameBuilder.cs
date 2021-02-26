@@ -9,7 +9,7 @@ namespace Editor.ToolsMenu.GameBuilder {
     public abstract class GameBuilder {
         protected readonly string buildPathBase = $"{Application.dataPath}/../Builds";
 
-        public BuildSummary Build(bool buildAddressable = false, bool buildAppBundle = false) {
+        public BuildSummary Build(bool buildAddressable = false, bool buildAppBundle = false, BuildOptions buildOptions = BuildOptions.None) {
             EditorUtility.DisplayProgressBar("Building", "Preparing...", 0f);
 
             if (buildAddressable) {
@@ -21,7 +21,7 @@ namespace Editor.ToolsMenu.GameBuilder {
                 scenes.Add(scene.path);
             }
 
-            var options = SetBuildOptions(scenes.ToArray(), buildAppBundle);
+            var options = SetBuildOptions(scenes.ToArray(), buildAppBundle, buildOptions);
             var build = BuildPipeline.BuildPlayer(options);
 
             var summary = build.summary;
@@ -45,7 +45,7 @@ namespace Editor.ToolsMenu.GameBuilder {
             return summary;
         }
 
-        protected abstract BuildPlayerOptions SetBuildOptions(string[] scenes, bool buildAppBundle);
+        protected abstract BuildPlayerOptions SetBuildOptions(string[] scenes, bool buildAppBundle, BuildOptions buildOptions = BuildOptions.None);
 
         protected string GetCurrentBuildName(string branch) {
             return $"di_{branch}_v.{PlayerSettings.bundleVersion}";

@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Editor.ToolsMenu.GameBuilder {
     public class AndroidBuilder : GameBuilder{
-        protected override BuildPlayerOptions SetBuildOptions(string[] scenes, bool buildAppBundle) {
-            var buildOptions = new BuildPlayerOptions();
-            buildOptions.target = BuildTarget.Android;
-            buildOptions.scenes = scenes;
-            buildOptions.options = BuildOptions.None;
+        protected override BuildPlayerOptions SetBuildOptions(string[] scenes, bool buildAppBundle, BuildOptions buildOptions = BuildOptions.None) {
+            var buildPlayerOptions = new BuildPlayerOptions();
+            buildPlayerOptions.target = BuildTarget.Android;
+            buildPlayerOptions.scenes = scenes;
+            buildPlayerOptions.options = buildOptions;
             var extension = buildAppBundle ? ".aab" : ".apk";
-            buildOptions.locationPathName = Path.Combine(buildPathBase + "/Android", GetCurrentBuildName("develop")) + extension;
+            buildPlayerOptions.locationPathName = Path.Combine(buildPathBase + "/Android", GetCurrentBuildName("develop")) + extension;
             
             EditorUserBuildSettings.androidETC2Fallback = AndroidETC2Fallback.Quality32BitDownscaled;
             EditorUserBuildSettings.buildAppBundle = buildAppBundle;
@@ -22,7 +22,7 @@ namespace Editor.ToolsMenu.GameBuilder {
 
             PlayerSettings.SplashScreen.show = false;
 
-            return buildOptions;
+            return buildPlayerOptions;
         }
     }
 }
