@@ -296,10 +296,12 @@ namespace Runtime {
             }
         }
 
-        /*private void OnApplicationQuit() {
+        private void OnApplicationQuit() {
+    #if UNITY_EDITOR
             EventBus<OnApplicationQuit>.Raise(new OnApplicationQuit());
             SaveProgress();
-        }*/
+    #endif
+        }
 
         private void SaveProgress() {
             _progress.GameExitTime = TimeUtils.Current;
