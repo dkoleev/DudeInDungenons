@@ -59,7 +59,15 @@ namespace Runtime {
         }
         
         public Item GetItem(string id) {
-            return _itemDic[id];
+            if (id is null) {
+                return null;
+            }
+
+            if (_itemDic.ContainsKey(id)) {
+                return _itemDic[id];
+            }
+
+            return null;
         }
     }
 }

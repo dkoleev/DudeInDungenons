@@ -35,6 +35,10 @@ namespace Runtime.Visual {
                 return;
             }
 
+            if (item is null) {
+                return;
+            }
+
             if (_currentSkin != null) {
                 if (item.Id == _currentSkinItem.Id) {
                     return;

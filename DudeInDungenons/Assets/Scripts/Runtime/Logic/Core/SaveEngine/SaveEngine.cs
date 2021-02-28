@@ -43,12 +43,14 @@ namespace Runtime.Logic.Core.SaveEngine {
             FileStream fileStream = null;
             try {
                 fileStream = new FileStream(NewSaveFilePath, FileMode.Create, FileAccess.Write);
-#if UNITY_EDITOR
+                
+                var writer = new JsonTextWriter(new StreamWriter(fileStream));
+/*#if UNITY_EDITOR
                 var writer = new JsonTextWriter(new StreamWriter(fileStream));
 #else
                 var cryptoStream = new CryptoStream(fileStream, _cryptic.CreateEncryptor(), CryptoStreamMode.Write);
                 var writer = new BsonWriter(cryptoStream);
-#endif
+#endif*/
                 _serializer.Serialize(writer, _progress);
                 writer.Close();
 
@@ -84,12 +86,14 @@ namespace Runtime.Logic.Core.SaveEngine {
                 }
 
                 fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-#if UNITY_EDITOR
+                
+                var reader = new JsonTextReader(new StreamReader(fileStream));
+/*#if UNITY_EDITOR
                 var reader = new JsonTextReader(new StreamReader(fileStream));
 #else
                 var cryptoStream = new CryptoStream(fileStream, _cryptic.CreateDecryptor(), CryptoStreamMode.Read);
                 var reader = new BsonReader(cryptoStream);
-#endif
+#endif*/
 
                 _progress = _serializer.Deserialize<TProgress>(reader);
                 
