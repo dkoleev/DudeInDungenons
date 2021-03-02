@@ -7,7 +7,9 @@ namespace Runtime.Game.Entities.World.Traps {
         [SerializeField]
         private Saw _saw;
         [SerializeField]
-        private float _sawMoveSpeed;
+        private float _sawMoveRange;
+        [SerializeField]
+        private float _sawMoveDuration;
         [SerializeField]
         private float _sawRotateSpeed;
         [SerializeField]
@@ -18,8 +20,8 @@ namespace Runtime.Game.Entities.World.Traps {
 
             _saw.OnTriggerEnterAction += OnTriggerEnter;
 
-            _saw.transform.localPosition = new Vector3(-2.7f, 0);
-            _saw.transform.DOLocalMoveX(2.7f, _sawMoveSpeed).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+            _saw.transform.localPosition = new Vector3(-_sawMoveRange, 0);
+            _saw.transform.DOLocalMoveX(_sawMoveRange, _sawMoveDuration * _sawMoveRange).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
             _saw.transform.DOLocalRotate(new Vector3(0, 0, 180), _sawRotateSpeed).SetLoops(-1).SetEase(Ease.Linear);
         }
 
